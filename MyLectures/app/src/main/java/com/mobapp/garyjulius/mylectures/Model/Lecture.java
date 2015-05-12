@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 
 public class Lecture {
+    private String _title;
     private Docent _responsiblePerson;
     private ArrayList<Docent> _docents;
     private String _language;
@@ -16,6 +17,19 @@ public class Lecture {
     private ArrayList<ExamType> _examType;
     private int _semester;
     private Course _course;
+
+    public Lecture(String _title,Docent _responsiblePerson, ArrayList<Docent> _docents, String _language, int _swh, ArrayList<LectureType> type, int _creditPoints, ArrayList<ExamType> _examType, int _semester, Course _course) {
+        this._title = _title;
+        this._responsiblePerson = _responsiblePerson;
+        this._docents = _docents;
+        this._language = _language;
+        this._swh = _swh;
+        Type = type;
+        this._creditPoints = _creditPoints;
+        this._examType = _examType;
+        this._semester = _semester;
+        this._course = _course;
+    }
 
     public Docent get_responsiblePerson() {
         return _responsiblePerson;
@@ -87,5 +101,13 @@ public class Lecture {
 
     public void set_course(Course _course) {
         this._course = _course;
+    }
+
+    public String get_title() {
+        return _title;
+    }
+
+    public void set_title(String _title) {
+        this._title = _title;
     }
 }

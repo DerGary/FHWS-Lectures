@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
+
+import java.net.MalformedURLException;
+
 
 public class MainActivity extends ActionBarActivity {
 
+    DemoData demoData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+            demoData = new DemoData();
     }
 
     @Override
