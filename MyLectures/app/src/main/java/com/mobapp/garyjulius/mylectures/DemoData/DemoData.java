@@ -2,6 +2,7 @@ package com.mobapp.garyjulius.mylectures.DemoData;
 
 import com.mobapp.garyjulius.mylectures.Model.Course;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
+import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.ExamType;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.Model.LectureType;
@@ -9,6 +10,7 @@ import com.mobapp.garyjulius.mylectures.Model.LectureType;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Julius on 11.05.2015.
@@ -16,11 +18,14 @@ import java.util.ArrayList;
 public class DemoData {
     ArrayList<Docent> demoDocents;
     ArrayList<Lecture> demoLectures;
+    ArrayList<Event> demoEvents;
     public DemoData(){
         demoDocents = new ArrayList<>();
         demoLectures = new ArrayList<>();
+        demoEvents = new ArrayList<Event>();
         addDemoDocents();
         addDemoLectures();
+        addDemoEvents();
     }
 
     private void addDemoDocents() {
@@ -45,11 +50,17 @@ public class DemoData {
                     new URL("http://www.welearn.de/typo3temp/pics/8c69900f16.jpg"),
                     "http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-peter-braun.html"));
 
-            demoDocents.add(new Docent("Prof. Dr. Frank Deinzer", "0931/3511-8303",
-                    "none", "frank.deinzer@fhws.de", "I.3.26", "SHL", "monday 14-15 o'clock",
+            demoDocents.add(new Docent("Prof. Dr. Frank Deinzer", "0931/3511-7774",
+                    "none", "vitaliy.schreibmann@fhws.de", "I.2.37", "SHL", "monday 14-15 o'clock",
                     "Verantwortlicher für das Vertiefungsmodul: Medieninformatik (MI)",
                     new URL("http://www.welearn.de/typo3temp/pics/517bf0a67a.jpg"),
                     "http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-frank-deinzer.html"));
+
+            demoDocents.add(new Docent("M.Sc. Vitaliy Schreibmann", "0931/3511-8303",
+                    "none", "frank.deinzer@fhws.de", "I.3.26", "SHL", "agreement",
+                    "",
+                    new URL("http://www.welearn.de/fileadmin/bildmaterial/image/dummy_profil.jpg"),
+                    "http://www.welearn.de/fakultaet-iw/personen/details/person/schreibmann.html"));
         }
         catch(MalformedURLException e)
         {
@@ -64,12 +75,30 @@ public class DemoData {
         ArrayList<LectureType> _lectureTypes = new ArrayList<>();
 
         _docents.add(demoDocents.get(3));
-        _lectureTypes.add(LectureType.Seminar);
+        _lectureTypes.add(LectureType.Lecture);
         _examTypes.add(ExamType.WrittenExam);
         _examTypes.add( ExamType.OralExam);
 
         demoLectures.add(new Lecture("Vertiefung 1: Computergrafik",demoDocents.get(3),
                _docents,"german",4,_lectureTypes,5,_examTypes,6,
+                Course.BIN));
+//
+//        _lectureTypes.clear();
+//        _lectureTypes.add(LectureType.Lecture);
+
+        demoLectures.add(new Lecture("Tontechnik und Audioprogrammierung",
+                demoDocents.get(3),_docents,"german",4,_lectureTypes,5,_examTypes,6,
+                Course.BIN));
+
+        _lectureTypes.add(LectureType.LabClass);
+        _docents.clear();
+        _docents.add(demoDocents.get(1));
+        _docents.add(demoDocents.get(4));
+        _examTypes.clear();
+        _examTypes.add(ExamType.OralExam);
+
+        demoLectures.add(new Lecture("Mobile Applikations",
+                demoDocents.get(1), _docents, "english", 4, _lectureTypes, 5, _examTypes, 6,
                 Course.BIN));
 
         _docents.clear();
@@ -81,7 +110,49 @@ public class DemoData {
         _examTypes.add(ExamType.WrittenExam);
 
 
-        demoLectures.add(new Lecture("Mobile Applikationen",demoDocents.get(2),_docents,"english",
-                4,_lectureTypes,5,_examTypes,6,Course.BIN));
     }
+    private void addDemoEvents(){
+        ///Computergrafik
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,5,18,8,15,0),new GregorianCalendar(2015,5,18,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,1,8,15,0),new GregorianCalendar(2015,6,1,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,8,8,15,0),new GregorianCalendar(2015,6,8,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,15,8,15,0),new GregorianCalendar(2015,6,15,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,22,8,15,0),new GregorianCalendar(2015,6,22,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,29,8,15,0),new GregorianCalendar(2015,6,29,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,7,6,8,15,0),new GregorianCalendar(2015,7,6,11,30,0),LectureType.Lecture,"I 2.14"));
+
+        //TTAP
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,5,21,8,15,0),new GregorianCalendar(2015,5,21,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,5,28,8,15,0),new GregorianCalendar(2015,5,28,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,6,11,8,15,0),new GregorianCalendar(2015,6,11,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,6,18,8,15,0),new GregorianCalendar(2015,6,18,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,6,25,8,15,0),new GregorianCalendar(2015,6,25,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,7,2,8,15,0),new GregorianCalendar(2015,7,2,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,7,9,8,15,0),new GregorianCalendar(2015,7,9,11,30,0),LectureType.Lecture,"H 1.3"));
+
+        //Mobile Applikations
+        Docent braun = demoDocents.get(2);
+        Docent schreibmann = demoDocents.get(4);
+        ArrayList<Docent> braunList = new ArrayList<Docent>();
+        ArrayList<Docent> schreibmannList = new ArrayList<Docent>();
+        braunList.add(braun);
+        braunList.add(schreibmann);
+        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,5,21,11,45,0),new GregorianCalendar(2015,5,21,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,5,21,13,30,0),new GregorianCalendar(2015,5,21,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,5,28,11,45,0),new GregorianCalendar(2015,5,28,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,5,28,13,30,0),new GregorianCalendar(2015,5,28,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,6,11,11,45,0),new GregorianCalendar(2015,6,11,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,6,11,13,30,0),new GregorianCalendar(2015,6,11,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,6,18,11,45,0),new GregorianCalendar(2015,6,18,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,6,18,13,30,0),new GregorianCalendar(2015,6,18,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,6,25,11,45,0),new GregorianCalendar(2015,6,25,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,6,25,13,30,0),new GregorianCalendar(2015,6,25,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,7,2,11,45,0),new GregorianCalendar(2015,7,2,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,7,2,13,30,0),new GregorianCalendar(2015,7,2,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,7,9,11,45,0),new GregorianCalendar(2015,7,9,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,7,9,13,30,0),new GregorianCalendar(2015,7,9,15,0,0),LectureType.LabClass,"I 2.15"));
+
+    }
+
+
 }

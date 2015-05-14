@@ -15,6 +15,15 @@ public class Event {
     private LectureType _type;
     private String _room;
 
+    public Event(Lecture _lecture, ArrayList<Docent> _docent, GregorianCalendar _beginTime, GregorianCalendar _endTime, LectureType _type, String _room) {
+        this._lecture = _lecture;
+        this._docent = _docent;
+        this._beginTime = _beginTime;
+        this._endTime = _endTime;
+        this._type = _type;
+        this._room = _room;
+    }
+
     public Lecture get_lecture() {
         return _lecture;
     }
