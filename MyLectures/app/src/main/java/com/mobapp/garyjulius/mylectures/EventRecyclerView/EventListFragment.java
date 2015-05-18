@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
 import com.mobapp.garyjulius.mylectures.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventRecycleViewAdapter;
+import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
@@ -42,16 +43,17 @@ public class EventListFragment extends Fragment implements EventClickListener {
         RecyclerView listView = (RecyclerView)view.findViewById(R.id.event_recycler_view);
         listView.setHasFixedSize(true);
         listView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-
         RecyclerView.Adapter adapter = new EventRecycleViewAdapter(eventsToDisplay, this);
         listView.setAdapter(adapter);
         return view;
     }
 
     @Override
-    public void OnItemClick(Event data) {
-        EventDetailFragment fragment = new EventDetailFragment();
-        fragment.setActualEvent(data);
-        getFragmentManager().beginTransaction().replace(R.id.main_layout, fragment).addToBackStack(null).commit();
+    public void OnEventItemClick(Event data) {
+        EventDetailFragment detailFragment = new EventDetailFragment();
+        detailFragment.setActualEvent(data);
+        getFragmentManager().beginTransaction().setCustomAnimations(
+                R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
+        ).replace(R.id.main_layout,detailFragment).addToBackStack(null).commit();
     }
 }

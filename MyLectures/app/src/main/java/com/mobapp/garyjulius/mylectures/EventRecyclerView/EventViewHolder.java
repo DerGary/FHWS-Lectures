@@ -8,6 +8,8 @@ import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by Stefan on 18-05-15.
  */
@@ -33,12 +35,13 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
         for(Docent d : data.get_docent()){
             docents += d.get_name()+", ";
         }
-        if(docents.length() > 4)
-            docents.substring(0,docents.length()-4);
+        if(docents.length() > 2)
+            docents = docents.substring(0,docents.length()-2);
 
         this._docent.setText(docents);
-        this._beginTime.setText(data.get_beginTime().getTime().toString());
-        this._endTime.setText(data.get_endTime().getTime().toString());
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM HH:mm");
+        this._beginTime.setText(format.format(data.get_beginTime().getTime()));
+        this._endTime.setText(format.format(data.get_endTime().getTime()));
         this._room.setText(data.get_room());
     }
 }

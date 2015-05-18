@@ -58,13 +58,13 @@ public class DemoData {
                     "http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-peter-braun.html"));
 
             demoDocents.add(new Docent("Prof. Dr. Frank Deinzer", "0931/3511-7774",
-                    "none", "vitaliy.schreibmann@fhws.de", "I.2.37", "SHL", "monday 14-15 o'clock",
+                    "none", "frank.deinzer@fhws.de", "I.2.37", "SHL", "monday 14-15 o'clock",
                     "Verantwortlicher für das Vertiefungsmodul: Medieninformatik (MI)",
                     new URL("http://www.welearn.de/typo3temp/pics/517bf0a67a.jpg"),
                     "http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-frank-deinzer.html"));
 
             demoDocents.add(new Docent("M.Sc. Vitaliy Schreibmann", "0931/3511-8303",
-                    "none", "frank.deinzer@fhws.de", "I.3.26", "SHL", "agreement",
+                    "none", "vitaliy.schreibmann@fhws.de", "I.3.26", "SHL", "agreement",
                     "",
                     new URL("http://www.welearn.de/fileadmin/bildmaterial/image/dummy_profil.jpg"),
                     "http://www.welearn.de/fakultaet-iw/personen/details/person/schreibmann.html"));
@@ -92,14 +92,19 @@ public class DemoData {
                _docents, Language.german,4,_lectureTypes,5,_examTypes,6,
                 _courses,context.getResources().getString(R.string.CG_Description), Place.SHL));
 
+        _courses = new ArrayList<>();
+        _courses.add(Course.BIN);
+        _courses.add(Course.BWI);
         _courses.add(Course.EC);
 
         demoLectures.add(new Lecture("Tontechnik und Audioprogrammierung",
                 demoDocents.get(3), _docents,Language.german, 4, _lectureTypes, 5, _examTypes, 6,
                 _courses,context.getResources().getString(R.string.TTAP_Description),Place.SHL));
 
+        _lectureTypes = new ArrayList<>();
+        _lectureTypes.add(LectureType.Seminar);
         _lectureTypes.add(LectureType.LabClass);
-        _docents.clear();
+        _docents = new ArrayList<>();
         _docents.add(demoDocents.get(1));
         _docents.add(demoDocents.get(4));
 

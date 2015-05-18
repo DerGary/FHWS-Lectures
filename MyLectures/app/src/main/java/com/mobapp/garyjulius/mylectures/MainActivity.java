@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
+import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventClickListener;
 import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventListFragment;
+import com.mobapp.garyjulius.mylectures.Model.Event;
 
 public class MainActivity extends ActionBarActivity {
     private EventListFragment _eventListFragment;
@@ -51,5 +53,13 @@ public class MainActivity extends ActionBarActivity {
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount() > 0)
+            getFragmentManager().popBackStack();
+        else
+            super.onBackPressed();
     }
 }

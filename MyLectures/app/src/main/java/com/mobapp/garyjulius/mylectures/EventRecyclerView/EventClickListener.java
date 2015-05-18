@@ -7,5 +7,5 @@ import com.mobapp.garyjulius.mylectures.Model.Event;
  */
 public interface EventClickListener
 {
-    void OnItemClick(Event data);
+    void OnEventItemClick(Event data);
 }
