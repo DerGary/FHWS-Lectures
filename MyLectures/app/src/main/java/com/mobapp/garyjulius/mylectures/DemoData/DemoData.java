@@ -4,6 +4,7 @@ import com.mobapp.garyjulius.mylectures.Model.Course;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.ExamType;
+import com.mobapp.garyjulius.mylectures.Model.Language;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.Model.LectureType;
 
@@ -73,43 +74,32 @@ public class DemoData {
         ArrayList<Docent> _docents = new ArrayList<>();
         ArrayList<ExamType> _examTypes = new ArrayList<>();
         ArrayList<LectureType> _lectureTypes = new ArrayList<>();
+        ArrayList<Course> _courses = new ArrayList<>();
 
         _docents.add(demoDocents.get(3));
-        _lectureTypes.add(LectureType.Lecture);
-        _examTypes.add(ExamType.WrittenExam);
-        _examTypes.add( ExamType.OralExam);
+        _lectureTypes.add(LectureType.Seminar);
+        _examTypes.add(ExamType.OralExam);
+        _courses.add(Course.BIN);
+        _courses.add(Course.BWI);
 
         demoLectures.add(new Lecture("Vertiefung 1: Computergrafik",demoDocents.get(3),
-               _docents,"german",4,_lectureTypes,5,_examTypes,6,
-                Course.BIN));
-//
-//        _lectureTypes.clear();
-//        _lectureTypes.add(LectureType.Lecture);
+               _docents, Language.german,4,_lectureTypes,5,_examTypes,6,
+                _courses));
+
+        _courses.add(Course.EC);
 
         demoLectures.add(new Lecture("Tontechnik und Audioprogrammierung",
-                demoDocents.get(3),_docents,"german",4,_lectureTypes,5,_examTypes,6,
-                Course.BIN));
+                demoDocents.get(3), _docents,Language.german, 4, _lectureTypes, 5, _examTypes, 6,
+                _courses));
 
         _lectureTypes.add(LectureType.LabClass);
         _docents.clear();
         _docents.add(demoDocents.get(1));
         _docents.add(demoDocents.get(4));
-        _examTypes.clear();
-        _examTypes.add(ExamType.OralExam);
 
         demoLectures.add(new Lecture("Mobile Applikations",
-                demoDocents.get(1), _docents, "english", 4, _lectureTypes, 5, _examTypes, 6,
-                Course.BIN));
-
-        _docents.clear();
-        _lectureTypes.clear();
-        _examTypes.clear();
-
-        _docents.add(demoDocents.get(2));
-        _lectureTypes.add(LectureType.Seminar);
-        _examTypes.add(ExamType.WrittenExam);
-
-
+                demoDocents.get(1), _docents, Language.english, 4, _lectureTypes, 5, _examTypes, 6,
+                _courses));
     }
     private void addDemoEvents(){
         ///Computergrafik

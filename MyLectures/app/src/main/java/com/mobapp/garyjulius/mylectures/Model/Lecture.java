@@ -10,25 +10,25 @@ public class Lecture {
     private String _title;
     private Docent _responsiblePerson;
     private ArrayList<Docent> _docents;
-    private String _language;
+    private Language _language;
     private int _swh;
-    private ArrayList<LectureType> Type;
+    private ArrayList<LectureType> _type;
     private int _creditPoints;
     private ArrayList<ExamType> _examType;
     private int _semester;
-    private Course _course;
+    private ArrayList<Course> _courses;
 
-    public Lecture(String _title,Docent _responsiblePerson, ArrayList<Docent> _docents, String _language, int _swh, ArrayList<LectureType> type, int _creditPoints, ArrayList<ExamType> _examType, int _semester, Course _course) {
+    public Lecture(String _title,Docent _responsiblePerson, ArrayList<Docent> _docents, Language _language, int _swh, ArrayList<LectureType> _type, int _creditPoints, ArrayList<ExamType> _examType, int _semester, ArrayList<Course> _courses) {
         this._title = _title;
         this._responsiblePerson = _responsiblePerson;
         this._docents = _docents;
         this._language = _language;
         this._swh = _swh;
-        Type = type;
+        this._type = _type;
         this._creditPoints = _creditPoints;
         this._examType = _examType;
         this._semester = _semester;
-        this._course = _course;
+        this._courses = _courses;
     }
 
     public Docent get_responsiblePerson() {
@@ -47,11 +47,11 @@ public class Lecture {
         this._docents = _docents;
     }
 
-    public String get_language() {
+    public Language get_language() {
         return _language;
     }
 
-    public void set_language(String _language) {
+    public void set_language(Language _language) {
         this._language = _language;
     }
 
@@ -63,12 +63,12 @@ public class Lecture {
         this._swh = _swh;
     }
 
-    public ArrayList<LectureType> getType() {
-        return Type;
+    public ArrayList<LectureType> get_type() {
+        return _type;
     }
 
-    public void setType(ArrayList<LectureType> type) {
-        Type = type;
+    public void set_type(ArrayList<LectureType> type) {
+        _type = type;
     }
 
     public int get_creditPoints() {
@@ -95,12 +95,12 @@ public class Lecture {
         this._semester = _semester;
     }
 
-    public Course get_course() {
-        return _course;
+    public ArrayList<Course> get_courses() {
+        return _courses;
     }
 
-    public void set_course(Course _course) {
-        this._course = _course;
+    public void set_courses(ArrayList<Course> _courses) {
+        this._courses = _courses;
     }
 
     public String get_title() {
