@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
+import com.mobapp.garyjulius.mylectures.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventRecycleViewAdapter;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
@@ -26,7 +27,10 @@ public class EventListFragment extends Fragment implements EventClickListener {
 
     public EventListFragment() {
         // Required empty public constructor
-        eventsToDisplay = new DemoData().demoEvents;
+    }
+
+    public void setData(DemoData data){
+        eventsToDisplay = data.demoEvents;
     }
 
     @Override
@@ -46,6 +50,8 @@ public class EventListFragment extends Fragment implements EventClickListener {
 
     @Override
     public void OnItemClick(Event data) {
-        getFragmentManager().beginTransaction().replace(R.id.main_layout, null).commit();
+        EventDetailFragment fragment = new EventDetailFragment();
+        fragment.setActualEvent(data);
+        getFragmentManager().beginTransaction().replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 }

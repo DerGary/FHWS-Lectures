@@ -24,7 +24,6 @@ public class DemoData {
     public ArrayList<Docent> demoDocents;
     public ArrayList<Lecture> demoLectures;
     public ArrayList<Event> demoEvents;
-    public DemoData(){
     Context context;
     public DemoData(Context context){
         this.context = context;

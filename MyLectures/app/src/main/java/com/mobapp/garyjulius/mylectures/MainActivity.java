@@ -19,6 +19,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         demoData = new DemoData(getApplicationContext());
         _eventListFragment = new EventListFragment();
+        _eventListFragment.setData(demoData);
         getFragmentManager().beginTransaction().replace(R.id.main_layout, _eventListFragment).commit();
 
     }
@@ -49,6 +50,6 @@ public class MainActivity extends ActionBarActivity {
         ((EventDetailFragment)fragment).setActualEvent(demoData.demoEvents.get(0));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
-        ).replace(R.id.root, fragment).addToBackStack(null).commit();
+        ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 }

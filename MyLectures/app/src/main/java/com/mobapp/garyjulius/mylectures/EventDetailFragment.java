@@ -89,6 +89,6 @@ public class EventDetailFragment extends Fragment {
         ((LectureDetailFragment) fragment).setLecture(actualEvent.get_lecture());
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
-        ).replace(R.id.root, fragment).addToBackStack(null).commit();
+        ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 }

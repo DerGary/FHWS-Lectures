@@ -18,6 +18,7 @@ public class EventRecycleViewAdapter extends RecyclerView.Adapter<EventViewHolde
     private EventClickListener clickListener;
     public EventRecycleViewAdapter(List<Event> eventList, EventClickListener clickListener){
         list = eventList;
+        this.clickListener = clickListener;
     }
 
     @Override
