@@ -21,9 +21,10 @@ import java.util.GregorianCalendar;
  * Created by Julius on 11.05.2015.
  */
 public class DemoData {
-    ArrayList<Docent> demoDocents;
-    ArrayList<Lecture> demoLectures;
+    public ArrayList<Docent> demoDocents;
+    public ArrayList<Lecture> demoLectures;
     public ArrayList<Event> demoEvents;
+    public DemoData(){
     Context context;
     public DemoData(Context context){
         this.context = context;
@@ -132,7 +133,7 @@ public class DemoData {
         ArrayList<Docent> braunList = new ArrayList<Docent>();
         ArrayList<Docent> schreibmannList = new ArrayList<Docent>();
         braunList.add(braun);
-        braunList.add(schreibmann);
+        schreibmannList.add(schreibmann);
         demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,5,21,11,45,0),new GregorianCalendar(2015,5,21,13,15,0),LectureType.Lecture,"I 2.15"));
         demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,5,21,13,30,0),new GregorianCalendar(2015,5,21,15,0,0),LectureType.LabClass,"I 2.15"));
         demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,5,28,11,45,0),new GregorianCalendar(2015,5,28,13,15,0),LectureType.Lecture,"I 2.15"));

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/card_view"
+    android:orientation="horizontal"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    card_view:cardElevation="2dp"
+    card_view:cardCornerRadius="3dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="top|left"
+        android:elevation="0dp"
+        android:padding="15dp">
+        <!--<ImageView android:layout_height="wrap_content"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:background="@mipmap/person">-->
+        <!--</ImageView>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lecture Name"
+            android:padding="3dp"
+            android:id="@+id/event_lecture_name"
+            android:layout_gravity="left|center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lecture Type"
+            android:padding="3dp"
+            android:id="@+id/event_lecture_type"
+            android:layout_gravity="left|center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Docent"
+            android:padding="3dp"
+            android:id="@+id/event_docent"
+            android:layout_gravity="left|center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Begin Time"
+            android:padding="3dp"
+            android:id="@+id/event_begin_time"
+            android:layout_gravity="left|center_horizontal"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Time"
+            android:padding="3dp"
+            android:id="@+id/event_end_time"
+            android:layout_gravity="left|center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Room"
+            android:padding="3dp"
+            android:id="@+id/event_room"
+            android:layout_gravity="left|center_horizontal"/>
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
