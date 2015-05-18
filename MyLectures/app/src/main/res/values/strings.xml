@@ -3,4 +3,53 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="CG_Description">Die Studierenden erweitern und vertiefen ihre Kenntnisse in Richtung
+„Computergrafik“ und erwerben die Fertigkeit zur Analyse und
+Strukturierung komplexer Aufgabenstellungen.
+Die Studierenden lernen Aufgabenstellungen aus dem Bereich
+„Computergrafik“ zu beschreiben und zu lösen. Im Rahmen ihrer
+Aufgabenstellung erwerben die Studierenden Kenntnisse zum praktischen
+Einsatz von Techniken und Methoden der „Computergrafik“.
+Die Studierenden erwerben die Fähigkeit zur Realisierung performanter
+Computergrafik-Applikationen.</string>
+
+
+    <string name="TTAP_Description">Die Studierenden erweitern und vertiefen ihre Kenntnisse in Richtung
+"Tontechnik" bzw. "Audioprogrammierung" und erwerben die Fertigkeit
+zur Analyse und Strukturierung komplexer Aufgabenstellungen.
+Die Studierenden lernen Aufgabenstellungen aus dem Bereich
+„Audioprogrammierung“ zu beschreiben und zu lösen. Im Rahmen ihrer
+Aufgabenstellung erwerben die Studierenden Kenntnisse zum praktischen
+Einsatz von Audio-Techniken.
+Die Studierenden erwerben die Fähigkeit zur Realisierung performanter
+Audio-Applikationen.</string>
+
+    <string name="MobApp_Description">Grundlagen der Informatik:
+Die Studierenden lernen die Grundlagen der Programmierung von
+mobilen Applikationen am Beispiel von Android kennen.
+Fachspezifische Vertiefungen:
+Die Studierenden lernen die besonderen Herausforderungen bei der
+Programmierung von mobilen Endgeräten kennen. Insbesondere erlernen
+die Studierenden die Grundlagen der Gestaltung mobiler
+Nutzeroberflächen, Konzepte der asynchronen Programmierung und
+vertiefen die Kenntnisse der Thread-Programmierung in Java.
+Fertigkeit zur Analyse und Strukturierung technischer Problemstellungen:
+An Beispielen erlernen die Studenten Architekturkonzepte für mobile
+Lösungen, insbesondere die Verteilung zwischen Client und Server und
+spezifische Kommunikationskonzepte zwischen mobilen Endgeräten. Die
+Studierenden erlernen die strukturierte Programmierung von
+Nutzeroberflächen auf der Basis von wiederverwendbaren SoftwareKomponenten.
+Kenntnisse von praxisrelevanten Aufgabenstellungen:
+Der Einsatz von Methoden und Techniken wird anhand von
+praxisrelevanten Aufgabenstellungen dargestellt und eingeübt.
+Die Studierenden haben ein grundlegendes Verständnis zum Aufbau und
+zur Architektur von mobilen Applikationen. Sie sind in der Lage, eine
+Aufgabenstellung mit einer mobilen Applikation für das Betriebssystem
+Android zu lösen. Insbesondere können die Studierenden mobile Nutzeroberflächen
+        gestalten, Sensordaten auswerten und ein
+Kommunikatonsprotokoll zu enem Server implementieren.
+</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.mobapp.garyjulius.mylectures;
 
+import android.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,11 +14,15 @@ import java.net.MalformedURLException;
 public class MainActivity extends ActionBarActivity {
 
     DemoData demoData;
+    EventDetailFragment eventDetailFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-            demoData = new DemoData();
+            demoData = new DemoData(getApplicationContext());
+
+        eventDetailFragment = new EventDetailFragment();
+        changeFragment(eventDetailFragment);
     }
 
     @Override
@@ -39,5 +44,13 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void changeFragment(Fragment fragment)
+    {
+        //Testing event details
+        ((EventDetailFragment)fragment).setActualEvent(demoData.demoEvents.get(0));
+        getFragmentManager().beginTransaction().setCustomAnimations(
+                R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
+        ).replace(R.id.root, fragment).addToBackStack(null).commit();
     }
 }

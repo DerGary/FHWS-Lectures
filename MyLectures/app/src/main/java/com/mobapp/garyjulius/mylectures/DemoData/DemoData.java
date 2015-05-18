@@ -1,5 +1,7 @@
 package com.mobapp.garyjulius.mylectures.DemoData;
 
+import android.content.Context;
+
 import com.mobapp.garyjulius.mylectures.Model.Course;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
@@ -7,6 +9,8 @@ import com.mobapp.garyjulius.mylectures.Model.ExamType;
 import com.mobapp.garyjulius.mylectures.Model.Language;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.Model.LectureType;
+import com.mobapp.garyjulius.mylectures.Model.Place;
+import com.mobapp.garyjulius.mylectures.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,8 +23,10 @@ import java.util.GregorianCalendar;
 public class DemoData {
     ArrayList<Docent> demoDocents;
     ArrayList<Lecture> demoLectures;
-    ArrayList<Event> demoEvents;
-    public DemoData(){
+    public ArrayList<Event> demoEvents;
+    Context context;
+    public DemoData(Context context){
+        this.context = context;
         demoDocents = new ArrayList<>();
         demoLectures = new ArrayList<>();
         demoEvents = new ArrayList<Event>();
@@ -84,13 +90,13 @@ public class DemoData {
 
         demoLectures.add(new Lecture("Vertiefung 1: Computergrafik",demoDocents.get(3),
                _docents, Language.german,4,_lectureTypes,5,_examTypes,6,
-                _courses));
+                _courses,context.getResources().getString(R.string.CG_Description), Place.SHL));
 
         _courses.add(Course.EC);
 
         demoLectures.add(new Lecture("Tontechnik und Audioprogrammierung",
                 demoDocents.get(3), _docents,Language.german, 4, _lectureTypes, 5, _examTypes, 6,
-                _courses));
+                _courses,context.getResources().getString(R.string.TTAP_Description),Place.SHL));
 
         _lectureTypes.add(LectureType.LabClass);
         _docents.clear();
@@ -99,7 +105,7 @@ public class DemoData {
 
         demoLectures.add(new Lecture("Mobile Applikations",
                 demoDocents.get(1), _docents, Language.english, 4, _lectureTypes, 5, _examTypes, 6,
-                _courses));
+                _courses,context.getResources().getString(R.string.MobApp_Description),Place.SHL));
     }
     private void addDemoEvents(){
         ///Computergrafik

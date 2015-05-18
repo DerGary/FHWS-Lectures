@@ -17,8 +17,11 @@ public class Lecture {
     private ArrayList<ExamType> _examType;
     private int _semester;
     private ArrayList<Course> _courses;
+    private String _description;
+    private Place _place;
 
-    public Lecture(String _title,Docent _responsiblePerson, ArrayList<Docent> _docents, Language _language, int _swh, ArrayList<LectureType> _type, int _creditPoints, ArrayList<ExamType> _examType, int _semester, ArrayList<Course> _courses) {
+    public Lecture(String _title,Docent _responsiblePerson, ArrayList<Docent> _docents, Language _language, int _swh, ArrayList<LectureType> _type,
+                   int _creditPoints, ArrayList<ExamType> _examType, int _semester, ArrayList<Course> _courses, String _description,Place _place) {
         this._title = _title;
         this._responsiblePerson = _responsiblePerson;
         this._docents = _docents;
@@ -29,7 +32,10 @@ public class Lecture {
         this._examType = _examType;
         this._semester = _semester;
         this._courses = _courses;
+        this._description = _description;
+        this.set_place(_place);
     }
+
 
     public Docent get_responsiblePerson() {
         return _responsiblePerson;
@@ -109,5 +115,21 @@ public class Lecture {
 
     public void set_title(String _title) {
         this._title = _title;
+    }
+
+    public String get_description() {
+        return _description;
+    }
+
+    public void setDescription(String description) {
+        this._description = description;
+    }
+
+    public Place get_place() {
+        return _place;
+    }
+
+    public void set_place(Place _place) {
+        this._place = _place;
     }
 }
