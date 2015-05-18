@@ -6,11 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
-
-import java.net.MalformedURLException;
+import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventListFragment;
 
 
 public class MainActivity extends ActionBarActivity {
+    private EventListFragment _eventListFragment;
 
     DemoData demoData;
     @Override
@@ -18,6 +18,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
             demoData = new DemoData();
+        _eventListFragment = new EventListFragment();
+        getFragmentManager().beginTransaction().replace(R.id.main_layout, _eventListFragment).commit();
     }
 
     @Override
