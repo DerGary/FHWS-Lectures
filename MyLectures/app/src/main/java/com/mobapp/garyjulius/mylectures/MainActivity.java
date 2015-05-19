@@ -21,7 +21,6 @@ public class MainActivity extends ActionBarActivity {
         _eventListFragment = new EventListFragment();
         _eventListFragment.setData(demoData);
         getFragmentManager().beginTransaction().replace(R.id.main_layout, _eventListFragment).commit();
-
     }
 
     @Override
