@@ -15,6 +15,7 @@ import com.mobapp.garyjulius.mylectures.R;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -114,22 +115,27 @@ public class DemoData {
     }
     private void addDemoEvents(){
         ///Computergrafik
-        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,5,18,8,15,0),new GregorianCalendar(2015,5,18,11,30,0),LectureType.Lecture,"I 2.14"));
-        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,1,8,15,0),new GregorianCalendar(2015,6,1,11,30,0),LectureType.Lecture,"I 2.14"));
-        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,8,8,15,0),new GregorianCalendar(2015,6,8,11,30,0),LectureType.Lecture,"I 2.14"));
-        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,15,8,15,0),new GregorianCalendar(2015,6,15,11,30,0),LectureType.Lecture,"I 2.14"));
-        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,22,8,15,0),new GregorianCalendar(2015,6,22,11,30,0),LectureType.Lecture,"I 2.14"));
-        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,6,29,8,15,0),new GregorianCalendar(2015,6,29,11,30,0),LectureType.Lecture,"I 2.14"));
-        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,7,6,8,15,0),new GregorianCalendar(2015,7,6,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015, Calendar.MAY,18,8,15,0),new GregorianCalendar(2015, Calendar.MAY,18,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,1,8,15,0), new GregorianCalendar(2015,Calendar.JUNE,1,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,8,8,15,0), new GregorianCalendar(2015,Calendar.JUNE,8,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,15,8,15,0),new GregorianCalendar(2015,Calendar.JUNE,15,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,22,8,15,0),new GregorianCalendar(2015,Calendar.JUNE,22,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,29,8,15,0),new GregorianCalendar(2015,Calendar.JUNE,29,11,30,0),LectureType.Lecture,"I 2.14"));
+        demoEvents.add(new Event(demoLectures.get(0),demoLectures.get(0).get_docents(),new GregorianCalendar(2015,Calendar.JULY,6,8,15,0), new GregorianCalendar(2015,Calendar.JULY,6,11,30,0),LectureType.Lecture,"I 2.14"));
+
+        //TestEvents
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.MAY ,22,8,15,0),new GregorianCalendar(2015,Calendar.MAY ,24,11,30,0),LectureType.Lecture,"H 1.3"));
+
+
 
         //TTAP
-        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,5,21,8,15,0),new GregorianCalendar(2015,5,21,11,30,0),LectureType.Lecture,"H 1.3"));
-        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,5,28,8,15,0),new GregorianCalendar(2015,5,28,11,30,0),LectureType.Lecture,"H 1.3"));
-        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,6,11,8,15,0),new GregorianCalendar(2015,6,11,11,30,0),LectureType.Lecture,"H 1.3"));
-        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,6,18,8,15,0),new GregorianCalendar(2015,6,18,11,30,0),LectureType.Lecture,"H 1.3"));
-        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,6,25,8,15,0),new GregorianCalendar(2015,6,25,11,30,0),LectureType.Lecture,"H 1.3"));
-        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,7,2,8,15,0),new GregorianCalendar(2015,7,2,11,30,0),LectureType.Lecture,"H 1.3"));
-        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,7,9,8,15,0),new GregorianCalendar(2015,7,9,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.MAY ,21,8,15,0),new GregorianCalendar(2015,Calendar.MAY ,21,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.MAY ,28,8,15,0),new GregorianCalendar(2015,Calendar.MAY ,28,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,11,8,15,0),new GregorianCalendar(2015,Calendar.JUNE,11,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,18,8,15,0),new GregorianCalendar(2015,Calendar.JUNE,18,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.JUNE,25,8,15,0),new GregorianCalendar(2015,Calendar.JUNE,25,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.JULY,2,8,15,0), new GregorianCalendar(2015,Calendar.JULY,2,11,30,0),LectureType.Lecture,"H 1.3"));
+        demoEvents.add(new Event(demoLectures.get(1),demoLectures.get(1).get_docents(),new GregorianCalendar(2015,Calendar.JULY,9,8,15,0), new GregorianCalendar(2015,Calendar.JULY,9,11,30,0),LectureType.Lecture,"H 1.3"));
 
         //Mobile Applikations
         Docent braun = demoDocents.get(2);
@@ -138,20 +144,23 @@ public class DemoData {
         ArrayList<Docent> schreibmannList = new ArrayList<Docent>();
         braunList.add(braun);
         schreibmannList.add(schreibmann);
-        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,5,21,11,45,0),new GregorianCalendar(2015,5,21,13,15,0),LectureType.Lecture,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,5,21,13,30,0),new GregorianCalendar(2015,5,21,15,0,0),LectureType.LabClass,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,5,28,11,45,0),new GregorianCalendar(2015,5,28,13,15,0),LectureType.Lecture,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,5,28,13,30,0),new GregorianCalendar(2015,5,28,15,0,0),LectureType.LabClass,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,6,11,11,45,0),new GregorianCalendar(2015,6,11,13,15,0),LectureType.Lecture,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,6,11,13,30,0),new GregorianCalendar(2015,6,11,15,0,0),LectureType.LabClass,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,6,18,11,45,0),new GregorianCalendar(2015,6,18,13,15,0),LectureType.Lecture,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,6,18,13,30,0),new GregorianCalendar(2015,6,18,15,0,0),LectureType.LabClass,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,6,25,11,45,0),new GregorianCalendar(2015,6,25,13,15,0),LectureType.Lecture,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,6,25,13,30,0),new GregorianCalendar(2015,6,25,15,0,0),LectureType.LabClass,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,7,2,11,45,0),new GregorianCalendar(2015,7,2,13,15,0),LectureType.Lecture,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,7,2,13,30,0),new GregorianCalendar(2015,7,2,15,0,0),LectureType.LabClass,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),braunList,new GregorianCalendar(2015,7,9,11,45,0),new GregorianCalendar(2015,7,9,13,15,0),LectureType.Lecture,"I 2.15"));
-        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,new GregorianCalendar(2015,7,9,13,30,0),new GregorianCalendar(2015,7,9,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,         new GregorianCalendar(2015,Calendar.MAY ,21,11,45,0),new GregorianCalendar(2015,Calendar.MAY ,21,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.MAY ,21,13,30,0),new GregorianCalendar(2015,Calendar.MAY ,21,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,         new GregorianCalendar(2015,Calendar.MAY ,28,11,45,0),new GregorianCalendar(2015,Calendar.MAY ,28,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.MAY ,28,13,30,0),new GregorianCalendar(2015,Calendar.MAY ,28,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,         new GregorianCalendar(2015,Calendar.JUNE,11,11,45,0),new GregorianCalendar(2015,Calendar.JUNE,11,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.JUNE,11,13,30,0),new GregorianCalendar(2015,Calendar.JUNE,11,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,         new GregorianCalendar(2015,Calendar.JUNE,18,11,45,0),new GregorianCalendar(2015,Calendar.JUNE,18,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.JUNE,18,13,30,0),new GregorianCalendar(2015,Calendar.JUNE,18,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,         new GregorianCalendar(2015,Calendar.JUNE,25,11,45,0),new GregorianCalendar(2015,Calendar.JUNE,25,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.JUNE,25,13,30,0),new GregorianCalendar(2015,Calendar.JUNE,25,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,         new GregorianCalendar(2015,Calendar.JULY,2,11,45,0), new GregorianCalendar(2015,Calendar.JULY,2,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.JULY,2,13,30,0), new GregorianCalendar(2015,Calendar.JULY,2,15,0,0),LectureType.LabClass,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),braunList,         new GregorianCalendar(2015,Calendar.JULY,9,11,45,0), new GregorianCalendar(2015,Calendar.JULY,9,13,15,0),LectureType.Lecture,"I 2.15"));
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.JULY,9,13,30,0), new GregorianCalendar(2015,Calendar.JULY,9,15,0,0),LectureType.LabClass,"I 2.15"));
+
+
+        demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.MAY ,27,13,30,0),new GregorianCalendar(2015,Calendar.MAY ,27,15,0,0),LectureType.LabClass,"I 2.15"));
 
     }
 

@@ -7,12 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
-import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventClickListener;
-import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventListFragment;
-import com.mobapp.garyjulius.mylectures.Model.Event;
+import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
 public class MainActivity extends ActionBarActivity {
-    private EventListFragment _eventListFragment;
+    private ViewPagerFragment _viewPagerFragment;
 
     DemoData demoData;
     @Override
@@ -20,9 +18,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         demoData = new DemoData(getApplicationContext());
-        _eventListFragment = new EventListFragment();
-        _eventListFragment.setData(demoData);
-        getFragmentManager().beginTransaction().replace(R.id.main_layout, _eventListFragment).commit();
+        _viewPagerFragment = new ViewPagerFragment();
+        _viewPagerFragment.setData(demoData);
+        getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
     }
 
     @Override

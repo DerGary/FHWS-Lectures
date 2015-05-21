@@ -50,17 +50,9 @@
             android:layout_height="wrap_content"
             android:text="Begin Time"
             android:padding="3dp"
-            android:id="@+id/event_begin_time"
+            android:id="@+id/event_time"
             android:layout_gravity="left|center_horizontal"/>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Time"
-            android:padding="3dp"
-            android:id="@+id/event_end_time"
-            android:layout_gravity="left|center_horizontal"/>
 
         <TextView
             android:layout_width="wrap_content"
