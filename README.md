@@ -14,3 +14,5 @@ Dozenten Details View
 	- Bilder laden
 
 weitere Views anlegen (Monatsansicht, Dozentansicht, Hinzufügen)
+
+Email Intent filtern nach Email App
