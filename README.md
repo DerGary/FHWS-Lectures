@@ -5,6 +5,7 @@ This is an android app that shows you lectures that are held at the faculty of c
 Action Bar 
 	- Button einbauen (HOME)
 	- Back Arrow
+	- Beschriftung je nach Fragment ändern
 
 Fragments
 	- Touch Feedback (Buttons)
