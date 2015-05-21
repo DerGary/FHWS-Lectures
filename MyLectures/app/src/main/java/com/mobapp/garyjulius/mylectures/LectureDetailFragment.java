@@ -6,18 +6,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
+
+import java.util.ArrayList;
 
 
 public class LectureDetailFragment extends Fragment {
 
 
-    TextView lectureNameContent;
-    TextView lecturePlaceContent;
-    TextView lectureDocentsContent;
-    TextView lectureDescriptionContent;
+    private TextView lectureNameContent, lecturePlaceContent, lectureDescriptionContent;
+    private ListView lectureDocentsContent;
+
 
     Lecture actualLecture;
 
@@ -34,22 +38,34 @@ public class LectureDetailFragment extends Fragment {
 
         this.lectureNameContent = (TextView) rootView.findViewById(R.id.lectureNameContent);
         this.lecturePlaceContent = (TextView) rootView.findViewById(R.id.lecturePlaceContent);
-        this.lectureDocentsContent = (TextView) rootView.findViewById(R.id.lectureDocentContent);
+        this.lectureDocentsContent = (ListView) rootView.findViewById(R.id.lectureDocentsContent);
         this.lectureDescriptionContent = (TextView) rootView.findViewById(R.id.lectureDescTextfield);
 
-        lectureNameContent.setText(actualLecture.get_title());
-        lecturePlaceContent.setText(actualLecture.get_place().toString());
-        lectureDocentsContent.setText(actualLecture.get_docents().get(0).get_name());
-        lectureDescriptionContent.setText(actualLecture.get_description());
+        setData();
 
-        lectureDocentsContent.setOnClickListener(new View.OnClickListener() {
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(),R.layout.row);
+
+        for(int i = 0;i < actualLecture.get_docents().size(); i++)
+        {
+            listAdapter.add(actualLecture.get_docents().get(i).get_name());
+        }
+        lectureDocentsContent.setAdapter(listAdapter);
+        lectureDocentsContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                //switch to docent page
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
+                changeFragment(docentDetailFragment, position);
             }
         });
 
         return rootView;
+    }
+
+    private void setData()
+    {
+        lectureNameContent.setText(actualLecture.get_title());
+        lecturePlaceContent.setText(actualLecture.get_place().toString());
+        lectureDescriptionContent.setText(actualLecture.get_description());
     }
 
 
@@ -61,5 +77,12 @@ public class LectureDetailFragment extends Fragment {
     public void setLecture(Lecture actualLecture)
     {
         this.actualLecture = actualLecture;
+    }
+
+    public void changeFragment(Fragment fragment, int docentPosition) {
+        ((DocentDetailFragment) fragment).setDocent(actualLecture.get_docents().get(docentPosition));
+        getFragmentManager().beginTransaction().setCustomAnimations(
+                R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
+        ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 }

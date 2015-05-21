@@ -72,16 +72,15 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Docent:"
+                android:text="Docents:"
                 android:id="@+id/lectureDocentLabel"
                 android:layout_marginRight="5dp" />
 
-            <TextView
+            <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/lectureDocentContent" />
+                android:id="@+id/lectureDocentsContent" />
+
         </LinearLayout>
 
         <LinearLayout
