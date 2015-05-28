@@ -3,4 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_docents" android:title="Dozenten"
+        android:orderInCategory="100" app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_events" android:title="Termine"
+        android:orderInCategory="100" app:showAsAction="ifRoom" android:visible="false" />
 </menu>

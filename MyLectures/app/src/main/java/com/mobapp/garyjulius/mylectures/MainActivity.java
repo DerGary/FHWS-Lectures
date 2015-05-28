@@ -1,26 +1,29 @@
 package com.mobapp.garyjulius.mylectures;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
+import com.mobapp.garyjulius.mylectures.DocentRecyclerView.DocentListFragment;
 import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
 public class MainActivity extends ActionBarActivity {
     private ViewPagerFragment _viewPagerFragment;
-
-    DemoData demoData;
+    private DocentListFragment _docentListFragment;
+    DemoData _demoData;
+    private Menu _menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        demoData = new DemoData(getApplicationContext());
+        _demoData = new DemoData(getApplicationContext());
         _viewPagerFragment = new ViewPagerFragment();
-        _viewPagerFragment.setData(demoData);
+        _viewPagerFragment.setData(_demoData);
         getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
     }
 
@@ -28,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        _menu = menu;
         return true;
     }
 
@@ -41,16 +45,36 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.action_docents){
+            if(_docentListFragment== null){
+                _docentListFragment = new DocentListFragment();
+                _docentListFragment.setData(_demoData);
+            }
+            item.setVisible(false);
+            MenuItem events = _menu.findItem(R.id.action_events);
+            events.setVisible(true);
+            changeFragment(_docentListFragment,false);
+        }else if(id == R.id.action_events){
+            if(_viewPagerFragment== null){
+                _viewPagerFragment = new ViewPagerFragment();
+                _viewPagerFragment.setData(_demoData);
+            }
+            item.setVisible(false);
+            MenuItem events = _menu.findItem(R.id.action_docents);
+            events.setVisible(true);
+            changeFragment(_viewPagerFragment,false);
         }
         return super.onOptionsItemSelected(item);
     }
-    public void changeFragment(Fragment fragment)
+    public void changeFragment(Fragment fragment, boolean addToBackStack)
     {
-        //Testing event details
-        ((EventDetailFragment)fragment).setActualEvent(demoData.demoEvents.get(0));
-        getFragmentManager().beginTransaction().setCustomAnimations(
-                R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
-        ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction().setCustomAnimations(
+                R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
+        ).replace(R.id.main_layout, fragment);
+        if(addToBackStack){
+            transaction.addToBackStack(null);
+        }
+        transaction.commit();
     }
 
     @Override

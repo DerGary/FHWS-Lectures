@@ -99,14 +99,14 @@ public class EventDetailFragment extends Fragment {
     public void changeFragment(Fragment fragment) {
         ((LectureDetailFragment) fragment).setLecture(actualEvent.get_lecture());
         getFragmentManager().beginTransaction().setCustomAnimations(
-                R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
+                R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 
     public void changeToDocentFragment(Fragment fragment,int position) {
         ((DocentDetailFragment) fragment).setActualDocent(actualEvent.get_docent().get(position));
         getFragmentManager().beginTransaction().setCustomAnimations(
-                R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
+                R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 }

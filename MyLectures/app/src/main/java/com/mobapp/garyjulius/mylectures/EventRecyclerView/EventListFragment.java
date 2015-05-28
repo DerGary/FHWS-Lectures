@@ -48,8 +48,8 @@ public class EventListFragment extends Fragment implements EventClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_event_list, container, false);
-        RecyclerView listView = (RecyclerView)view.findViewById(R.id.event_recycler_view);
+        View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        RecyclerView listView = (RecyclerView)view.findViewById(R.id.recycler_view);
         listView.setHasFixedSize(true);
         listView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         RecyclerView.Adapter adapter = new EventRecycleViewAdapter(_eventsToDisplay, this);
@@ -62,7 +62,7 @@ public class EventListFragment extends Fragment implements EventClickListener {
         EventDetailFragment detailFragment = new EventDetailFragment();
         detailFragment.setActualEvent(data);
         getFragmentManager().beginTransaction().setCustomAnimations(
-                R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
+                R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout,detailFragment).addToBackStack(null).commit();
     }
 
