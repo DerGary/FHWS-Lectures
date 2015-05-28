@@ -1,4 +1,4 @@
-package com.mobapp.garyjulius.mylectures;
+package com.mobapp.garyjulius.mylectures.DetailFragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -12,8 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
-
-import java.util.ArrayList;
+import com.mobapp.garyjulius.mylectures.R;
 
 
 public class LectureDetailFragment extends Fragment {
@@ -36,10 +35,10 @@ public class LectureDetailFragment extends Fragment {
         // Inflate the layout for this fragment
        final View rootView = inflater.inflate(R.layout.fragment_lecture_detail,container,false);
 
-        this.lectureNameContent = (TextView) rootView.findViewById(R.id.lectureNameContent);
-        this.lecturePlaceContent = (TextView) rootView.findViewById(R.id.lecturePlaceContent);
-        this.lectureDocentsContent = (ListView) rootView.findViewById(R.id.lectureDocentsContent);
-        this.lectureDescriptionContent = (TextView) rootView.findViewById(R.id.lectureDescTextfield);
+        lectureNameContent = (TextView) rootView.findViewById(R.id.lectureNameContent);
+        lecturePlaceContent = (TextView) rootView.findViewById(R.id.lecturePlaceContent);
+        lectureDocentsContent = (ListView) rootView.findViewById(R.id.lectureDocentsContent);
+        lectureDescriptionContent = (TextView) rootView.findViewById(R.id.lectureDescTextfield);
 
         setData();
 

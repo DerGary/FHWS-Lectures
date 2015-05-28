@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
-import com.mobapp.garyjulius.mylectures.EventDetailFragment;
+import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 

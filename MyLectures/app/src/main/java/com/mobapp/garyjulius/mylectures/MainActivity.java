@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
+import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
 public class MainActivity extends ActionBarActivity {

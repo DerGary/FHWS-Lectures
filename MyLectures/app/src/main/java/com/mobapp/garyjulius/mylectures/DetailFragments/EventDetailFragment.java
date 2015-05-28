@@ -1,7 +1,6 @@
-package com.mobapp.garyjulius.mylectures;
+package com.mobapp.garyjulius.mylectures.DetailFragments;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Model.Event;
+import com.mobapp.garyjulius.mylectures.R;
 
 
 public class EventDetailFragment extends Fragment {
@@ -35,11 +35,11 @@ public class EventDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        final View rootView = inflater.inflate(R.layout.fragment_event_detail,container,false);
-        this.eventStartContent = (TextView)rootView.findViewById(R.id.eventStartContent);
-        this.eventEndContent = (TextView) rootView.findViewById(R.id.eventEndContent);
-        this.eventPlaceContent = (TextView)rootView.findViewById(R.id.eventPlaceContent);
-        this.eventDocentsContent = (ListView)rootView.findViewById(R.id.eventDocentsContent);
-        this.eventLectureContent = (TextView)rootView.findViewById(R.id.eventLectureContent);
+        eventStartContent = (TextView)rootView.findViewById(R.id.eventStartContent);
+        eventEndContent = (TextView) rootView.findViewById(R.id.eventEndContent);
+        eventPlaceContent = (TextView)rootView.findViewById(R.id.eventPlaceContent);
+        eventDocentsContent = (ListView)rootView.findViewById(R.id.eventDocentsContent);
+        eventLectureContent = (TextView)rootView.findViewById(R.id.eventLectureContent);
 
         setData();
 

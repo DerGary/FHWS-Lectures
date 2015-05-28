@@ -1,8 +1,9 @@
-package com.mobapp.garyjulius.mylectures;
+package com.mobapp.garyjulius.mylectures.DetailFragments;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -11,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobapp.garyjulius.mylectures.Helper.DownloadPictureTask;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
+import com.mobapp.garyjulius.mylectures.R;
 
 import org.w3c.dom.Text;
 
@@ -28,6 +32,7 @@ public class DocentDetailFragment extends Fragment {
     TextView docentPlaceContent;
     TextView docentConsultaitonContent;
     TextView docentWelearnContent;
+    ImageView docentPictureView;
 
     Docent actualDocent;
 
@@ -42,14 +47,20 @@ public class DocentDetailFragment extends Fragment {
         // Inflate the layout for this fragment
        final View rootView = inflater.inflate(R.layout.fragment_docent_detail,container,false);
 
-        this.docentNameContent = (TextView)rootView.findViewById(R.id.docentNameContent);
-        this.docentTelephoneContent = (TextView)rootView.findViewById(R.id.docentTelContent);
-        this.docentMailContent = (TextView)rootView.findViewById(R.id.docentMailContent);
-        this.docentPlaceContent = (TextView)rootView.findViewById(R.id.docentPlaceContent);
-        this.docentConsultaitonContent = (TextView)rootView.findViewById(R.id.docentConsultationContent);
-        this.docentWelearnContent = (TextView)rootView.findViewById(R.id.docentWelearnContent);
+        docentNameContent = (TextView)rootView.findViewById(R.id.docentNameContent);
+        docentTelephoneContent = (TextView)rootView.findViewById(R.id.docentTelContent);
+        docentMailContent = (TextView)rootView.findViewById(R.id.docentMailContent);
+        docentPlaceContent = (TextView)rootView.findViewById(R.id.docentPlaceContent);
+        docentConsultaitonContent = (TextView)rootView.findViewById(R.id.docentConsultationContent);
+        docentWelearnContent = (TextView)rootView.findViewById(R.id.docentWelearnContent);
+        docentPictureView = (ImageView)rootView.findViewById(R.id.docentPictureView);
+        docentPictureView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.profilepictureplaceholder));
 
         setData();
+
+        DownloadPictureTask downloadPictureTask = new DownloadPictureTask();
+        docentPictureView.setTag(actualDocent.get_picture());
+        downloadPictureTask.execute(docentPictureView);
 
         docentTelephoneContent.setOnClickListener(new View.OnClickListener() {
             @Override
