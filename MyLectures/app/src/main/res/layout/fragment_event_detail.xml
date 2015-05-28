@@ -31,7 +31,9 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
-                android:id="@+id/eventLectureContent" />
+                android:id="@+id/eventLectureContent"
+                android:textColor="@color/clickableColor"
+                android:background="@drawable/txtselector" />
         </LinearLayout>
 
         <LinearLayout

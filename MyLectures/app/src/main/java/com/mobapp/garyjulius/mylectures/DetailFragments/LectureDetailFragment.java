@@ -79,7 +79,7 @@ public class LectureDetailFragment extends Fragment {
     }
 
     public void changeFragment(Fragment fragment, int docentPosition) {
-        ((DocentDetailFragment) fragment).setDocent(actualLecture.get_docents().get(docentPosition));
+        ((DocentDetailFragment) fragment).setActualDocent(actualLecture.get_docents().get(docentPosition));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();

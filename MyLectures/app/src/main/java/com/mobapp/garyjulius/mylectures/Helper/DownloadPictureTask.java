@@ -26,6 +26,9 @@ public class DownloadPictureTask extends AsyncTask<ImageView, Void, Bitmap> {
     protected void onPostExecute(Bitmap result) {
         if(result != null) {
             imageView.setImageBitmap(result);
+            imageView.setAdjustViewBounds(true);
+            imageView.setMinimumHeight(150);
+            imageView.setMinimumWidth(result.getWidth() / 150);
         }
     }
 

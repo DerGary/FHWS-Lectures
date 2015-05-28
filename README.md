@@ -8,12 +8,11 @@ Action Bar
 	- Beschriftung je nach Fragment ändern
 
 Fragments
-	- Touch Feedback (Buttons)
-	- Views allgemein schöner gestalten (Material Design)
+	- Views allgemein schöner gestalten (Material Design)-> Event Detail und Lecture Detail
 
 Dozenten Details View
-	- Bilder laden
+	- Bilder speichern (+ autoanimation)
 
-weitere Views anlegen (Monatsansicht, Dozentansicht, Hinzufügen)
+weitere Views anlegen (Monatsansicht, Hinzufügen)
 
 Email Intent filtern nach Email App

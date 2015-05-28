@@ -104,7 +104,7 @@ public class EventDetailFragment extends Fragment {
     }
 
     public void changeToDocentFragment(Fragment fragment,int position) {
-        ((DocentDetailFragment) fragment).setDocent(actualEvent.get_docent().get(position));
+        ((DocentDetailFragment) fragment).setActualDocent(actualEvent.get_docent().get(position));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.card_flip_in, R.animator.card_flip_out, R.animator.card_flip_in, R.animator.card_flip_out
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();

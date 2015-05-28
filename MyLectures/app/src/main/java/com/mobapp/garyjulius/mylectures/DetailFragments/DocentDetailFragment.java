@@ -3,6 +3,7 @@ package com.mobapp.garyjulius.mylectures.DetailFragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -54,7 +55,11 @@ public class DocentDetailFragment extends Fragment {
         docentConsultaitonContent = (TextView)rootView.findViewById(R.id.docentConsultationContent);
         docentWelearnContent = (TextView)rootView.findViewById(R.id.docentWelearnContent);
         docentPictureView = (ImageView)rootView.findViewById(R.id.docentPictureView);
-        docentPictureView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.profilepictureplaceholder));
+        Bitmap placeholder = BitmapFactory.decodeResource(getResources(), R.drawable.profilepictureplaceholder);
+        docentPictureView.setImageBitmap(placeholder);
+        docentPictureView.setAdjustViewBounds(true);
+        docentPictureView.setMinimumHeight(150);
+        docentPictureView.setMinimumWidth(placeholder.getWidth() / 150);
 
         setData();
 
@@ -110,14 +115,14 @@ public class DocentDetailFragment extends Fragment {
         docentMailContent.setText(actualDocent.get_email());
         docentPlaceContent.setText(actualDocent.get_location() + ", " + actualDocent.get_room());
         docentConsultaitonContent.setText((actualDocent.get_consultationHour()));
-        docentWelearnContent.setText(actualDocent.get_linkWeLearn());
+        //docentWelearnContent.setText(actualDocent.get_linkWeLearn());
     }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
     }
 
-    public void setDocent(Docent actualDocent)
+    public void setActualDocent(Docent actualDocent)
     {
         this.actualDocent = actualDocent;
     }

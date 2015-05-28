@@ -1,30 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:animateLayoutChanges="true">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Docent name:"
-            android:id="@+id/docentNameLabel"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="5dp" />
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/docentPictureView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,131 +18,142 @@
             android:id="@+id/docentNameContent"
             android:layout_below="@+id/docentNameLabel"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="5dp" />
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" />
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/docentTelRow"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Telephone:"
-            android:id="@+id/docentTelLabel"
-            android:layout_marginRight="5dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/docentTelContent" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/docentPictureView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:elevation="10dp"
+        android:scaleType="center" />
+
+    <TextView
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/docentMailRow"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp">
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Telephone:"
+        android:id="@+id/docentTelLabel"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="E-Mail:"
-            android:id="@+id/docentMailLabel"
-            android:layout_marginRight="5dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/docentMailContent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/docentPlaceRow"
-        android:focusable="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/docentTelContent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="5dp"
+        android:clickable="true"
+        android:focusable="true"
         android:focusableInTouchMode="false"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Location:"
-            android:id="@+id/docentPlaceLabel"
-            android:layout_marginRight="5dp" />
+        android:background="@drawable/txtselector"
+        android:singleLine="false"
+        android:textColor="@color/clickableColor" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/docentPlaceContent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/docentConsultationRow"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Conustation time:"
-            android:id="@+id/docentConsultationLabel"
-            android:layout_marginRight="5dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="E-Mail:"
+        android:id="@+id/docentMailLabel"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/docentConsultationContent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/docentWlearnRow"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Welearn:"
-            android:id="@+id/docentWelearnLabel"
-            android:layout_marginRight="5dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/docentMailContent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/txtselector"
+        android:singleLine="false"
+        android:textColor="@color/clickableColor" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/docentWelearnContent" />
-    </LinearLayout>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Location:"
+        android:id="@+id/docentPlaceLabel"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/docentPlaceContent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Conustation time:"
+        android:id="@+id/docentConsultationLabel"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/docentConsultationContent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Welearn:"
+        android:id="@+id/docentWelearnLabel"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Link"
+        android:id="@+id/docentWelearnContent"
+        android:layout_marginLeft="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/txtselector"
+        android:singleLine="false"
+        android:textColor="@color/clickableColor" />
+
 </LinearLayout>
