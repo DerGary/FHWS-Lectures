@@ -13,12 +13,8 @@ Fragments
 Dozenten Details View
 	- Bilder speichern (+ autoanimation)
 
-<<<<<<< Updated upstream
 weitere Views anlegen (Monatsansicht, Hinzufügen)
 
 Email Intent filtern nach Email App
-=======
-weitere Views anlegen (Monatsansicht, Dozentansicht, Hinzufügen)
 
 Fragment übergabeparameter mittels bundles (crash fix)
->>>>>>> Stashed changes
