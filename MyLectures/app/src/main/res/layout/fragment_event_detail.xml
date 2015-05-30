@@ -1,7 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/event_card_view"
+    android:orientation="horizontal"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    card_view:cardElevation="2dp"
+    card_view:cardCornerRadius="3dp"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="5dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -14,17 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventLectureRow"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Lecture:"
                 android:id="@+id/eventLectureLabel"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:textSize="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,11 +52,62 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/eventTypeRow"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Type:"
+                android:id="@+id/eventTypeLabel"
+                android:layout_marginRight="5dp"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/eventTypeContent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventDocentRow"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Docents:"
+                android:id="@+id/eventDocentLabel"
+                android:layout_marginRight="5dp"
+                android:textSize="16dp" />
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/eventDocentsContent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventStartRow"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <TextView
                 android:layout_width="80dp"
@@ -51,7 +115,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Start:"
                 android:id="@+id/eventStartLabel"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:textSize="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,8 +132,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/eventEndRow"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <TextView
                 android:layout_width="80dp"
@@ -76,7 +141,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="End:"
                 android:id="@+id/eventEndLabel"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:textSize="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,8 +158,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/eventPlaceRow"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="80dp"
@@ -101,7 +168,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Place:"
                 android:id="@+id/eventPlaceLabel"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:textSize="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -111,29 +179,5 @@
                 android:id="@+id/eventPlaceContent" />
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventDocentRow"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Docents:"
-                android:id="@+id/eventDocentLabel"
-                android:layout_marginRight="5dp" />
-
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/eventDocentsContent" />
-
-        </LinearLayout>
-
     </LinearLayout>
-</FrameLayout>
+</android.support.v7.widget.CardView>

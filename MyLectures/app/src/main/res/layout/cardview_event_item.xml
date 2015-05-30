@@ -4,7 +4,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/event_card_view"
+    android:id="@+id/sharedCardView"
     android:orientation="horizontal"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"

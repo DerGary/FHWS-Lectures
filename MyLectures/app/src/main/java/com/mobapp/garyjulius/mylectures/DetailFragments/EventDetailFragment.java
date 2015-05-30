@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
+import java.text.SimpleDateFormat;
+
 
 public class EventDetailFragment extends Fragment {
 
@@ -22,6 +24,7 @@ public class EventDetailFragment extends Fragment {
     TextView eventPlaceContent;
     ListView eventDocentsContent;
     TextView eventLectureContent;
+    TextView eventTypeContent;
 
     private Event actualEvent;
 
@@ -40,6 +43,7 @@ public class EventDetailFragment extends Fragment {
         eventPlaceContent = (TextView)rootView.findViewById(R.id.eventPlaceContent);
         eventDocentsContent = (ListView)rootView.findViewById(R.id.eventDocentsContent);
         eventLectureContent = (TextView)rootView.findViewById(R.id.eventLectureContent);
+        eventTypeContent = (TextView)rootView.findViewById(R.id.eventTypeContent);
 
         setData();
 
@@ -74,10 +78,11 @@ public class EventDetailFragment extends Fragment {
 
     private void setData()
     {
-        eventStartContent.setText(actualEvent.get_beginTime().getTime().toString());
-        eventEndContent.setText(actualEvent.get_endTime().getTime().toString());
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd.MM.yyyy");
+        eventStartContent.setText(format.format(actualEvent.get_beginTime().getTime()));
+        eventEndContent.setText(format.format(actualEvent.get_endTime().getTime()));
         eventPlaceContent.setText(actualEvent.get_room());
-
+        eventTypeContent.setText(actualEvent.get_type().toString());
         eventLectureContent.setText(actualEvent.get_lecture().get_title());
     }
 

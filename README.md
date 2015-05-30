@@ -8,7 +8,8 @@ Action Bar
 	- Beschriftung je nach Fragment ändern
 
 Fragments
-	- Views allgemein schöner gestalten (Material Design)-> Event Detail und Lecture Detail
+	- Views allgemein schöner gestalten (Material Design)-> Lecture Detail
+	-> Shared element transition zwischen event in RecyclerView und event detail einbauen
 
 Dozenten Details View
 	- Bilder speichern (+ autoanimation)
