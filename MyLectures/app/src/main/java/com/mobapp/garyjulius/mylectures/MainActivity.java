@@ -7,24 +7,66 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
 import com.mobapp.garyjulius.mylectures.DocentRecyclerView.DocentListFragment;
-import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
+import com.mobapp.garyjulius.mylectures.Model.Docent;
+import com.mobapp.garyjulius.mylectures.Model.Event;
+import com.mobapp.garyjulius.mylectures.Model.Lecture;
+import com.mobapp.garyjulius.mylectures.Model.DataBase;
+import com.mobapp.garyjulius.mylectures.RestAsyncTasks.GetListAsyncTask;
 import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
     private ViewPagerFragment _viewPagerFragment;
     private DocentListFragment _docentListFragment;
-    DemoData _demoData;
+    ArrayList<Docent> _docentList;
+    ArrayList<Lecture> _lectureList;
+    ArrayList<Event> _eventList;
+    private DataBase _dataBase;
+
+    private GetListAsyncTask<Docent> _getDocents = new GetListAsyncTask<Docent>(this)
+    {
+        @Override
+        protected void onPostExecute(ArrayList<Docent> result) {
+            super.onPostExecute(result);
+            _docentList = result;
+            _getLectures.execute("lectures");
+        }
+    };
+
+    private GetListAsyncTask<Lecture> _getLectures = new GetListAsyncTask<Lecture>(this)
+    {
+        @Override
+        protected void onPostExecute(ArrayList<Lecture> result) {
+            super.onPostExecute(result);
+            _lectureList = result;
+
+
+            _dataBase = new DataBase(_docentList,_lectureList,_eventList);
+            _viewPagerFragment.setData(_dataBase);
+            getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
+        }
+    };
+
+    private GetListAsyncTask<Event> _getEvents = new GetListAsyncTask<Event>(this)
+    {
+        @Override
+        protected void onPostExecute(ArrayList<Event> result) {
+            super.onPostExecute(result);
+            _eventList = result;
+            _getDocents.execute("docents");
+        }
+    };
+
     private Menu _menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        _demoData = new DemoData(getApplicationContext());
+        //_demoData = new DemoData(getApplicationContext());
         _viewPagerFragment = new ViewPagerFragment();
-        _viewPagerFragment.setData(_demoData);
-        getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
+        _getEvents.execute("events");
     }
 
     @Override
@@ -48,7 +90,7 @@ public class MainActivity extends ActionBarActivity {
         }else if(id == R.id.action_docents){
             if(_docentListFragment== null){
                 _docentListFragment = new DocentListFragment();
-                _docentListFragment.setData(_demoData);
+                _docentListFragment.setData(_dataBase);
             }
             item.setVisible(false);
             MenuItem events = _menu.findItem(R.id.action_events);
@@ -57,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
         }else if(id == R.id.action_events){
             if(_viewPagerFragment== null){
                 _viewPagerFragment = new ViewPagerFragment();
-                _viewPagerFragment.setData(_demoData);
+                _viewPagerFragment.setData(_dataBase);
             }
             item.setVisible(false);
             MenuItem events = _menu.findItem(R.id.action_docents);

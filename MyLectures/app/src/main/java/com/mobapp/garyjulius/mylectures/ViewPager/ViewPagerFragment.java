@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
 import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventListFragment;
+import com.mobapp.garyjulius.mylectures.Model.DataBase;
 import com.mobapp.garyjulius.mylectures.R;
 
 import java.util.ArrayList;
@@ -25,13 +25,13 @@ public class ViewPagerFragment extends Fragment {
     private ViewPagerAdapter _pagerAdapter;
     private View _view;
     private List<EventListFragment> _list;
-    private DemoData _data;
+    private DataBase _data;
 
     public ViewPagerFragment() {
         // Required empty public constructor
     }
 
-    public void setData(DemoData data){
+    public void setData(DataBase data){
         this._data = data;
         _list = new ArrayList<>();
         for (int i = 0; i < 7; i ++){

@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mobapp.garyjulius.mylectures.DemoData.DemoData;
 import com.mobapp.garyjulius.mylectures.DetailFragments.DocentDetailFragment;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
+import com.mobapp.garyjulius.mylectures.Model.DataBase;
 import com.mobapp.garyjulius.mylectures.R;
 
 import java.util.List;
@@ -22,8 +22,8 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
         // Required empty public constructor
     }
 
-    public void setData(DemoData data){
-        _docentsToDisplay = data.demoDocents;
+    public void setData(DataBase data){
+        _docentsToDisplay = data.get_docentList();
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.net.URL;
  * Created by Stefan on 11-05-15.
  */
 public class Docent {
+    private int _id;
     private String _name;
     private String _phoneNumber;
     private String _faxNumber;
@@ -14,10 +15,11 @@ public class Docent {
     private String _location;
     private String _consultationHour;
     private String _function;
-    private URL _picture;
+    private String _picture;
     private String _linkWeLearn;
 
-    public Docent(String _name, String _phoneNumber, String _faxNumber, String _email, String _room, String _location, String _consultationHour, String _function, URL _picture, String _linkWeLearn) {
+    public Docent(int _id, String _name, String _phoneNumber, String _faxNumber, String _email, String _room, String _location, String _consultationHour, String _function, String _picture, String _linkWeLearn) {
+        this._id = _id;
         this._name = _name;
         this._phoneNumber = _phoneNumber;
         this._faxNumber = _faxNumber;
@@ -94,11 +96,11 @@ public class Docent {
         this._function = _function;
     }
 
-    public URL get_picture() {
+    public String get_picture() {
         return _picture;
     }
 
-    public void set_picture(URL _picture) {
+    public void set_picture(String _picture) {
         this._picture = _picture;
     }
 
@@ -108,5 +110,13 @@ public class Docent {
 
     public void set_linkWeLearn(String _linkWeLearn) {
         this._linkWeLearn = _linkWeLearn;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 }

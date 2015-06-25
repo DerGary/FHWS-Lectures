@@ -22,10 +22,11 @@ import java.util.GregorianCalendar;
  * Created by Julius on 11.05.2015.
  */
 public class DemoData {
-    public ArrayList<Docent> demoDocents;
+    /*public ArrayList<Docent> demoDocents;
     public ArrayList<Lecture> demoLectures;
     public ArrayList<Event> demoEvents;
     Context context;
+    int docentId = 0;
     public DemoData(Context context){
         this.context = context;
         demoDocents = new ArrayList<>();
@@ -162,7 +163,7 @@ public class DemoData {
 
         demoEvents.add(new Event(demoLectures.get(2),schreibmannList,   new GregorianCalendar(2015,Calendar.MAY ,27,13,30,0),new GregorianCalendar(2015,Calendar.MAY ,27,15,0,0),LectureType.LabClass,"I 2.15"));
 
-    }
+    }*/
 
 
 }

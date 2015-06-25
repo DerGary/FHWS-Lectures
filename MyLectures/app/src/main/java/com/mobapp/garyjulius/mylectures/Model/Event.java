@@ -1,21 +1,22 @@
 package com.mobapp.garyjulius.mylectures.Model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
  * Created by Stefan on 11-05-15.
  */
 public class Event {
-    private Lecture _lecture;
-    private ArrayList<Docent> _docent;
+    private int _id;
+    private int _lecture;
+    private ArrayList<Integer> _docent;
     private GregorianCalendar _beginTime;
     private GregorianCalendar _endTime;
     private LectureType _type;
     private String _room;
 
-    public Event(Lecture _lecture, ArrayList<Docent> _docent, GregorianCalendar _beginTime, GregorianCalendar _endTime, LectureType _type, String _room) {
+    public Event(int _id, int _lecture, ArrayList<Integer> _docent, GregorianCalendar _beginTime, GregorianCalendar _endTime, LectureType _type, String _room) {
+        this._id = _id;
         this._lecture = _lecture;
         this._docent = _docent;
         this._beginTime = _beginTime;
@@ -24,19 +25,19 @@ public class Event {
         this._room = _room;
     }
 
-    public Lecture get_lecture() {
+    public int get_lecture() {
         return _lecture;
     }
 
-    public void set_lecture(Lecture _lecture) {
+    public void set_lecture(int _lecture) {
         this._lecture = _lecture;
     }
 
-    public ArrayList<Docent> get_docent() {
+    public ArrayList<Integer> get_docent() {
         return _docent;
     }
 
-    public void set_docent(ArrayList<Docent> _docent) {
+    public void set_docent(ArrayList<Integer> _docent) {
         this._docent = _docent;
     }
 
@@ -70,5 +71,13 @@ public class Event {
 
     public void set_room(String _room) {
         this._room = _room;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 }

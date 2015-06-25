@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.R;
 
@@ -20,6 +21,7 @@ public class LectureDetailFragment extends Fragment {
 
     private TextView lectureNameContent, lecturePlaceContent, lectureDescriptionContent;
     private ListView lectureDocentsContent;
+    private DataBaseSingleton dataBase;
 
 
     Lecture actualLecture;
@@ -32,6 +34,7 @@ public class LectureDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        dataBase = DataBaseSingleton.getInstance();
         // Inflate the layout for this fragment
        final View rootView = inflater.inflate(R.layout.fragment_lecture_detail,container,false);
 
@@ -46,7 +49,7 @@ public class LectureDetailFragment extends Fragment {
 
         for(int i = 0;i < actualLecture.get_docents().size(); i++)
         {
-            listAdapter.add(actualLecture.get_docents().get(i).get_name());
+            listAdapter.add(dataBase.get_docentList().get(actualLecture.get_docents().get(i)).get_name());
         }
         lectureDocentsContent.setAdapter(listAdapter);
         lectureDocentsContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,7 +82,7 @@ public class LectureDetailFragment extends Fragment {
     }
 
     public void changeFragment(Fragment fragment, int docentPosition) {
-        ((DocentDetailFragment) fragment).setActualDocent(actualLecture.get_docents().get(docentPosition));
+        ((DocentDetailFragment) fragment).setActualDocent(dataBase.get_docentList().get(actualLecture.get_docents().get(docentPosition)));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();

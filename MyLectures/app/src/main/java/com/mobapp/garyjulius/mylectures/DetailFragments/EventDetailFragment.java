@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
@@ -26,6 +27,8 @@ public class EventDetailFragment extends Fragment {
     TextView eventLectureContent;
     TextView eventTypeContent;
 
+    private DataBaseSingleton dataBase;
+
     private Event actualEvent;
 
     public void EventDetailFragment()
@@ -36,6 +39,7 @@ public class EventDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        dataBase = DataBaseSingleton.getInstance();
         // Inflate the layout for this fragment
        final View rootView = inflater.inflate(R.layout.fragment_event_detail,container,false);
         eventStartContent = (TextView)rootView.findViewById(R.id.eventStartContent);
@@ -51,7 +55,7 @@ public class EventDetailFragment extends Fragment {
 
         for(int i = 0;i < actualEvent.get_docent().size(); i++)
         {
-            listAdapter.add(actualEvent.get_docent().get(i).get_name());
+            listAdapter.add(dataBase.get_docentList().get(i).get_name());
         }
         eventDocentsContent.setAdapter(listAdapter);
         eventDocentsContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,7 +87,7 @@ public class EventDetailFragment extends Fragment {
         eventEndContent.setText(format.format(actualEvent.get_endTime().getTime()));
         eventPlaceContent.setText(actualEvent.get_room());
         eventTypeContent.setText(actualEvent.get_type().toString());
-        eventLectureContent.setText(actualEvent.get_lecture().get_title());
+        eventLectureContent.setText(dataBase.get_lectureList().get(actualEvent.get_lecture()).get_title());
     }
 
 
@@ -102,14 +106,14 @@ public class EventDetailFragment extends Fragment {
     }
 
     public void changeFragment(Fragment fragment) {
-        ((LectureDetailFragment) fragment).setLecture(actualEvent.get_lecture());
+        ((LectureDetailFragment) fragment).setLecture(dataBase.get_lectureList().get(actualEvent.get_lecture()));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 
     public void changeToDocentFragment(Fragment fragment,int position) {
-        ((DocentDetailFragment) fragment).setActualDocent(actualEvent.get_docent().get(position));
+        ((DocentDetailFragment) fragment).setActualDocent(dataBase.get_docentList().get(position));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();

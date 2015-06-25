@@ -7,21 +7,23 @@ import java.util.ArrayList;
  */
 
 public class Lecture {
+    private int _id;
     private String _title;
-    private Docent _responsiblePerson;
-    private ArrayList<Docent> _docents;
+    private int _responsiblePerson;
+    private ArrayList<Integer> _docents;
     private Language _language;
     private int _swh;
     private ArrayList<LectureType> _type;
     private int _creditPoints;
     private ArrayList<ExamType> _examType;
     private int _semester;
-    private ArrayList<Course> _courses;
+    private ArrayList<Integer> _courses;
     private String _description;
     private Place _place;
 
-    public Lecture(String _title,Docent _responsiblePerson, ArrayList<Docent> _docents, Language _language, int _swh, ArrayList<LectureType> _type,
-                   int _creditPoints, ArrayList<ExamType> _examType, int _semester, ArrayList<Course> _courses, String _description,Place _place) {
+    public Lecture(int _id,String _title,int _responsiblePerson, ArrayList<Integer> _docents, Language _language, int _swh, ArrayList<LectureType> _type,
+                   int _creditPoints, ArrayList<ExamType> _examType, int _semester, ArrayList<Integer> _courses, String _description,Place _place) {
+        this._id = _id;
         this._title = _title;
         this._responsiblePerson = _responsiblePerson;
         this._docents = _docents;
@@ -37,19 +39,19 @@ public class Lecture {
     }
 
 
-    public Docent get_responsiblePerson() {
+    public int get_responsiblePerson() {
         return _responsiblePerson;
     }
 
-    public void set_responsiblePerson(Docent _responsiblePerson) {
+    public void set_responsiblePerson(int _responsiblePerson) {
         this._responsiblePerson = _responsiblePerson;
     }
 
-    public ArrayList<Docent> get_docents() {
+    public ArrayList<Integer> get_docents() {
         return _docents;
     }
 
-    public void set_docents(ArrayList<Docent> _docents) {
+    public void set_docents(ArrayList<Integer> _docents) {
         this._docents = _docents;
     }
 
@@ -101,11 +103,11 @@ public class Lecture {
         this._semester = _semester;
     }
 
-    public ArrayList<Course> get_courses() {
+    public ArrayList<Integer> get_courses() {
         return _courses;
     }
 
-    public void set_courses(ArrayList<Course> _courses) {
+    public void set_courses(ArrayList<Integer> _courses) {
         this._courses = _courses;
     }
 
@@ -131,5 +133,13 @@ public class Lecture {
 
     public void set_place(Place _place) {
         this._place = _place;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 }

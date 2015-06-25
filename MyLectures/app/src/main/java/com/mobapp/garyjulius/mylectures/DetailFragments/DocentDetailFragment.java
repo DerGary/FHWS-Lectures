@@ -23,6 +23,9 @@ import com.mobapp.garyjulius.mylectures.R;
 
 import org.w3c.dom.Text;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class DocentDetailFragment extends Fragment {
 
@@ -64,7 +67,11 @@ public class DocentDetailFragment extends Fragment {
         setData();
 
         DownloadPictureTask downloadPictureTask = new DownloadPictureTask();
-        docentPictureView.setTag(actualDocent.get_picture());
+        try {
+            docentPictureView.setTag(new URL(actualDocent.get_picture()));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         downloadPictureTask.execute(docentPictureView);
 
         docentTelephoneContent.setOnClickListener(new View.OnClickListener() {
