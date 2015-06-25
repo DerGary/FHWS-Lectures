@@ -19,3 +19,9 @@ weitere Views anlegen (Monatsansicht, Hinzufügen)
 Email Intent filtern nach Email App
 
 Fragment übergabeparameter mittels bundles (crash fix)
+
+Server HTTP eigener (get und post)
+
+Service Notification
+
+
