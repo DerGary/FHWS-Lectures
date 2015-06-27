@@ -12,10 +12,14 @@ import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
+import com.mobapp.garyjulius.mylectures.Model.LectureType;
 import com.mobapp.garyjulius.mylectures.RestAsyncTasks.GetListAsyncTask;
+import com.mobapp.garyjulius.mylectures.RestAsyncTasks.PostAsyncTask;
 import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
@@ -66,6 +70,12 @@ public class MainActivity extends ActionBarActivity {
         //_demoData = new DemoData(getApplicationContext());
         _viewPagerFragment = new ViewPagerFragment();
         _getEvents.execute("events");
+        /*ArrayList<Integer> testDocents = new ArrayList<Integer>();
+        testDocents.add(4);
+        Event testEvent = new Event(0,2,testDocents,new GregorianCalendar(2015, Calendar.JUNE,27,16,0,0),
+                new GregorianCalendar(2015, Calendar.JUNE,27,15,0,0), LectureType.Lecture,"I.2.15");
+        PostAsyncTask<Event> testEventTask = new PostAsyncTask<Event>(this);
+        testEventTask.execute(testEvent);*/
     }
 
     @Override

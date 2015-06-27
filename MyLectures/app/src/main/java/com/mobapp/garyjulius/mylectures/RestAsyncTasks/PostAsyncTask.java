@@ -15,7 +15,9 @@ import java.net.URL;
  * Created by Julius on 30.05.2015.
  */
 public class PostAsyncTask<T> extends AsyncTask<Object,Void,String> {
+    static final String TAG = "PostAsyncTask";
     Activity context;
+
 
     public PostAsyncTask(Activity context) {
         this.context = context;
@@ -25,7 +27,7 @@ public class PostAsyncTask<T> extends AsyncTask<Object,Void,String> {
     protected String doInBackground(Object... params) {
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://staging.applab.fhws.de:8080/fhwslectures/api/");
+            URL url = new URL("http://staging.applab.fhws.de:8080/fhwslectures/api/events");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type","application/json");
@@ -36,7 +38,7 @@ public class PostAsyncTask<T> extends AsyncTask<Object,Void,String> {
             Log.d("URL", "" + urlConnection.getHeaderField("Location"));
             Log.d("Code", "" + urlConnection.getResponseCode());
             return "Code: " + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
-        } catch (Exception ex) { Log.e("TAG", "" + ex.getMessage()); }
+        } catch (Exception ex) { Log.e(TAG, "" + ex.toString()); }
         finally {
             urlConnection.disconnect();
         }

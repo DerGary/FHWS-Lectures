@@ -74,7 +74,7 @@ public class GetListAsyncTask<T> extends AsyncTask<String,Void,ArrayList> {
 
                 return objectList;
             }
-        } catch (Exception ex) { Log.e("TAG", "" + ex.getMessage()); }
+        } catch (Exception ex) { Log.e(TAG, "" + ex.getMessage()); }
         finally {
             urlConnection.disconnect();
         }

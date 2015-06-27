@@ -55,7 +55,7 @@ public class EventDetailFragment extends Fragment {
 
         for(int i = 0;i < actualEvent.get_docent().size(); i++)
         {
-            listAdapter.add(dataBase.get_docentList().get(i).get_name());
+            listAdapter.add(dataBase.getDocentFromID(actualEvent.get_docent().get(i)).get_name());
         }
         eventDocentsContent.setAdapter(listAdapter);
         eventDocentsContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -87,7 +87,7 @@ public class EventDetailFragment extends Fragment {
         eventEndContent.setText(format.format(actualEvent.get_endTime().getTime()));
         eventPlaceContent.setText(actualEvent.get_room());
         eventTypeContent.setText(actualEvent.get_type().toString());
-        eventLectureContent.setText(dataBase.get_lectureList().get(actualEvent.get_lecture()).get_title());
+        eventLectureContent.setText(dataBase.getLectureFromId(actualEvent.get_lecture()).get_title());
     }
 
 
@@ -106,14 +106,14 @@ public class EventDetailFragment extends Fragment {
     }
 
     public void changeFragment(Fragment fragment) {
-        ((LectureDetailFragment) fragment).setLecture(dataBase.get_lectureList().get(actualEvent.get_lecture()));
+        ((LectureDetailFragment) fragment).setLecture(dataBase.getLectureFromId(actualEvent.get_lecture()));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
     }
 
     public void changeToDocentFragment(Fragment fragment,int position) {
-        ((DocentDetailFragment) fragment).setActualDocent(dataBase.get_docentList().get(position));
+        ((DocentDetailFragment) fragment).setActualDocent(dataBase.getDocentFromID(actualEvent.get_docent().get(position)));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();

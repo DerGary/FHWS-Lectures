@@ -16,7 +16,7 @@ import java.net.URL;
  * Created by Julius on 30.05.2015.
  */
 public class DeleteAsyncTask<T> extends AsyncTask<Object,Void,String> {
-
+    final static String TAG = "DeleteAsyncTask";
     Activity context;
     public DeleteAsyncTask(Activity context)
     {
@@ -37,7 +37,7 @@ public class DeleteAsyncTask<T> extends AsyncTask<Object,Void,String> {
             Log.d("URL", "" + urlConnection.getHeaderField("Location"));
             Log.d("Code", "" + urlConnection.getResponseCode());
             return "Code: " + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
-        } catch (Exception ex) { Log.e("TAG", "" + ex.getMessage()); }
+        } catch (Exception ex) { Log.e(TAG, "" + ex.getMessage()); }
         finally {
             urlConnection.disconnect();
         }

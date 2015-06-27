@@ -31,13 +31,13 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
 
     public void assignData(Event data) {
         event = data;
-        this._lectureName.setText(_dataBase.get_lectureList().get(data.get_lecture()).get_title());
+        this._lectureName.setText(_dataBase.getLectureFromId(data.get_lecture()).get_title());
         this._lectureType.setText(data.get_type() + "");
         String docents = "";
         ArrayList<Docent> tempDocents = new ArrayList<Docent>();
         for(int i = 0; i < event.get_docent().size(); i++)
         {
-            tempDocents.add(_dataBase.get_docentList().get(i));
+            tempDocents.add(_dataBase.getDocentFromID(event.get_docent().get(i)));
         }
         for(Docent d :tempDocents){
             docents += d.get_name()+", ";

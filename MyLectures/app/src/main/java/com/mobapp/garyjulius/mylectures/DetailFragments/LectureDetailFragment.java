@@ -49,7 +49,7 @@ public class LectureDetailFragment extends Fragment {
 
         for(int i = 0;i < actualLecture.get_docents().size(); i++)
         {
-            listAdapter.add(dataBase.get_docentList().get(actualLecture.get_docents().get(i)).get_name());
+            listAdapter.add(dataBase.getDocentFromID(actualLecture.get_docents().get(i)).get_name());
         }
         lectureDocentsContent.setAdapter(listAdapter);
         lectureDocentsContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -82,7 +82,7 @@ public class LectureDetailFragment extends Fragment {
     }
 
     public void changeFragment(Fragment fragment, int docentPosition) {
-        ((DocentDetailFragment) fragment).setActualDocent(dataBase.get_docentList().get(actualLecture.get_docents().get(docentPosition)));
+        ((DocentDetailFragment) fragment).setActualDocent(dataBase.getDocentFromID(actualLecture.get_docents().get(docentPosition)));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();

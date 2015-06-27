@@ -28,6 +28,41 @@ public class DataBaseSingleton {
         this._eventList = _eventList;
     }
 
+    public Docent getDocentFromID(int docentId)
+    {
+        for(Docent d:_docentList)
+        {
+            if(d.get_id() == docentId)
+            {
+                return d;
+            }
+        }
+        return null;
+    }
+
+    public Event getEventFromId(int eventID)
+    {
+        for(Event e:_eventList)
+        {
+            if(e.get_id() == eventID)
+            {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public Lecture getLectureFromId(int lectureID)
+    {
+        for(Lecture l:_lectureList)
+        {
+            if(l.get_id() == lectureID)
+            {
+                return l;
+            }
+        }
+        return null;
+    }
     public ArrayList<Docent> get_docentList() {
         return _docentList;
     }

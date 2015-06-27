@@ -19,6 +19,7 @@ import java.net.URL;
  * Created by Julius on 30.05.2015.
  */
 public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
+    final static String TAG = "GetAsyncTask";
     Activity context;
     public GetAsyncTask(Activity context)
     {
@@ -46,7 +47,7 @@ public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
             else {
                 return "Code: " + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
             }
-        } catch (Exception ex) { Log.e("TAG", "" + ex.getMessage()); }
+        } catch (Exception ex) { Log.e(TAG, "" + ex.getMessage()); }
         finally {
             urlConnection.disconnect();
         }
