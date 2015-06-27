@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
@@ -15,6 +17,7 @@ import com.mobapp.garyjulius.mylectures.Model.Lecture;
 //import com.owlike.genson.internal.asm.Type;
 
 import org.apache.commons.io.IOUtils;
+import org.joda.time.DateTime;
 
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
@@ -45,7 +48,7 @@ public class GetListAsyncTask<T> extends AsyncTask<String,Void,ArrayList> {
             urlConnection.setRequestMethod("GET");
             Log.d(TAG,"URL: " + urlConnection.getURL().toString());
             //urlConnection.setRequestProperty("Content-Type","application/json");
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             String response = IOUtils.toString(urlConnection.getInputStream());
             if(tClass.getName().contains("Docent"))

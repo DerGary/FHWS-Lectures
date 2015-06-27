@@ -8,8 +8,11 @@ import android.widget.EditText;
 //import com.owlike.genson.Genson;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
 
 import org.apache.commons.io.IOUtils;
+import org.joda.time.DateTime;
 
 import java.lang.reflect.ParameterizedType;
 import java.net.HttpURLConnection;
@@ -33,7 +36,7 @@ public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             //urlConnection.setRequestProperty("Content-Type","application/json");
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             String json = IOUtils.toString(urlConnection.getInputStream());
             T object = gson.fromJson(json,tClass);

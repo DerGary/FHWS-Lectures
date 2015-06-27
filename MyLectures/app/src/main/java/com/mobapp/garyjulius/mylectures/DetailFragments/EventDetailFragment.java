@@ -86,8 +86,8 @@ public class EventDetailFragment extends Fragment {
 
     private void setData()
     {
-        DateTime beginTime = actualEvent.get_beginTimeDateTime();
-        DateTime endTime = actualEvent.get_endTimeDateTime();
+        DateTime beginTime = actualEvent.getBeginDateTime();
+        DateTime endTime = actualEvent.getEndDateTime();
         DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm - dd.MM.yyyy");
         eventStartContent.setText(fmt.print(beginTime));
         eventEndContent.setText(fmt.print(endTime));

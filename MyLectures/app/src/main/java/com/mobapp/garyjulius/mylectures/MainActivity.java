@@ -2,6 +2,7 @@ package com.mobapp.garyjulius.mylectures;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,8 @@ import com.mobapp.garyjulius.mylectures.RestAsyncTasks.GetListAsyncTask;
 import com.mobapp.garyjulius.mylectures.RestAsyncTasks.PostAsyncTask;
 import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -28,7 +31,6 @@ public class MainActivity extends ActionBarActivity {
     ArrayList<Docent> _docentList;
     ArrayList<Lecture> _lectureList;
     ArrayList<Event> _eventList;
-    private DataBaseSingleton _dataBase;
 
     private GetListAsyncTask<Docent> _getDocents = new GetListAsyncTask<Docent>(this)
     {
@@ -46,8 +48,10 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _lectureList = result;
-            _dataBase = new DataBaseSingleton(_docentList,_lectureList,_eventList);
-            _viewPagerFragment.setData(_dataBase);
+            DataBaseSingleton.getInstance().set_docentList(_docentList);
+            DataBaseSingleton.getInstance().set_eventList(_eventList);
+            DataBaseSingleton.getInstance().set_lectureList(_lectureList);
+            _viewPagerFragment.setData(DataBaseSingleton.getInstance().get_eventList());
             getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
         }
     };
@@ -70,12 +74,12 @@ public class MainActivity extends ActionBarActivity {
         //_demoData = new DemoData(getApplicationContext());
         _viewPagerFragment = new ViewPagerFragment();
         _getEvents.execute("events");
-        /*ArrayList<Integer> testDocents = new ArrayList<Integer>();
-        testDocents.add(4);
-        Event testEvent = new Event(0,2,testDocents,new GregorianCalendar(2015, Calendar.JUNE,27,16,0,0),
-                new GregorianCalendar(2015, Calendar.JUNE,27,15,0,0), LectureType.Lecture,"I.2.15");
-        PostAsyncTask<Event> testEventTask = new PostAsyncTask<Event>(this);
-        testEventTask.execute(testEvent);*/
+//        ArrayList<Integer> testDocents = new ArrayList<Integer>();
+//        testDocents.add(4);
+//        Event testEvent = new Event(0,2,testDocents,new DateTime(2015, 6,27,16,0,0),
+//                new DateTime(2015, 6,27,15,0,0), LectureType.Lecture,"I.2.15");
+//        PostAsyncTask<Event> testEventTask = new PostAsyncTask<Event>(this);
+//        testEventTask.execute(testEvent);
     }
 
     @Override
@@ -99,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
         }else if(id == R.id.action_docents){
             if(_docentListFragment== null){
                 _docentListFragment = new DocentListFragment();
-                _docentListFragment.setData(_dataBase);
+                _docentListFragment.setData(DataBaseSingleton.getInstance().get_docentList());
             }
             item.setVisible(false);
             MenuItem events = _menu.findItem(R.id.action_events);
@@ -108,7 +112,7 @@ public class MainActivity extends ActionBarActivity {
         }else if(id == R.id.action_events){
             if(_viewPagerFragment== null){
                 _viewPagerFragment = new ViewPagerFragment();
-                _viewPagerFragment.setData(_dataBase);
+                _viewPagerFragment.setData(DataBaseSingleton.getInstance().get_eventList());
             }
             item.setVisible(false);
             MenuItem events = _menu.findItem(R.id.action_docents);

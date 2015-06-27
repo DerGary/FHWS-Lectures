@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class EventViewHolder extends RecyclerView.ViewHolder {
     private final TextView _lectureName, _lectureType, _docent, _time, _room;
     public Event event;
-    private DataBaseSingleton _dataBase;
 
     public EventViewHolder(View itemView) {
         super(itemView);
@@ -35,13 +34,13 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
 
     public void assignData(Event data) {
         event = data;
-        this._lectureName.setText(_dataBase.getLectureFromId(data.get_lecture()).get_title());
+        this._lectureName.setText(DataBaseSingleton.getInstance().getLectureFromId(data.get_lecture()).get_title());
         this._lectureType.setText(data.get_type() + "");
         String docents = "";
         ArrayList<Docent> tempDocents = new ArrayList<Docent>();
         for(int i = 0; i < event.get_docent().size(); i++)
         {
-            tempDocents.add(_dataBase.getDocentFromID(event.get_docent().get(i)));
+            tempDocents.add(DataBaseSingleton.getInstance().getDocentFromID(event.get_docent().get(i)));
         }
         for(Docent d :tempDocents){
             docents += d.get_name()+", ";
@@ -52,8 +51,8 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
         this._docent.setText(docents);
 
         DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
-        DateTime beginTime = data.get_beginTimeDateTime();
-        DateTime endTime = data.get_endTimeDateTime();
+        DateTime beginTime = data.getBeginDateTime();
+        DateTime endTime = data.getEndDateTime();
 
         this._time.setText(fmt.print(beginTime) + " - " + fmt.print(endTime));
         this._room.setText(data.get_room());

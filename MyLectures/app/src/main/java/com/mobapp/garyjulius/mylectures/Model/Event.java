@@ -46,7 +46,7 @@ public class Event {
     public String get_beginTime() {
         return _beginTime.toString();
     }
-    public DateTime get_beginTimeDateTime() {
+    public DateTime getBeginDateTime() {
         return _beginTime;
     }
 
@@ -57,7 +57,8 @@ public class Event {
     public String get_endTime() {
         return _endTime.toString();
     }
-    public DateTime get_endTimeDateTime() {
+
+    public DateTime getEndDateTime() {
         return _endTime;
     }
 

@@ -7,6 +7,10 @@ import android.util.Log;
 //import com.owlike.genson.Genson;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
+
+import org.joda.time.DateTime;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -31,7 +35,8 @@ public class PostAsyncTask<T> extends AsyncTask<Object,Void,String> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type","application/json");
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
+//            Gson gson = new Gson();
             String jsonOfPerson = gson.toJson((T) params[0]);
 
             urlConnection.getOutputStream().write(jsonOfPerson.getBytes());

@@ -13,20 +13,14 @@ public class DataBaseSingleton {
     }
 
     private DataBaseSingleton() {
+        this._docentList = new ArrayList<>();
+        this._lectureList = new ArrayList<>();
+        this._eventList = new ArrayList<>();
     }
 
     private ArrayList<Docent> _docentList;
     private ArrayList<Lecture> _lectureList;
     private ArrayList<Event> _eventList;
-
-    public DataBaseSingleton(ArrayList<Docent> _docentList,
-                    ArrayList<Lecture> _lectureList,
-                    ArrayList<Event> _eventList)
-    {
-        this._docentList = _docentList;
-        this._lectureList = _lectureList;
-        this._eventList = _eventList;
-    }
 
     public Docent getDocentFromID(int docentId)
     {

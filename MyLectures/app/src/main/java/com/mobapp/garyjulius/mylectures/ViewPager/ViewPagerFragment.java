@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.EventRecyclerView.EventListFragment;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
+import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
 import java.util.ArrayList;
@@ -25,20 +26,19 @@ public class ViewPagerFragment extends Fragment {
     private ViewPagerAdapter _pagerAdapter;
     private View _view;
     private List<EventListFragment> _list;
-    private DataBaseSingleton _data;
 
     public ViewPagerFragment() {
         // Required empty public constructor
     }
 
-    public void setData(DataBaseSingleton data){
-        this._data = data;
+    public void setData(List<Event> data){
+
         _list = new ArrayList<>();
         for (int i = 0; i < 7; i ++){
             EventListFragment eventListFragment = new EventListFragment();
             GregorianCalendar cal = (GregorianCalendar)GregorianCalendar.getInstance();
-            cal.add(Calendar.DAY_OF_YEAR,i);
-            eventListFragment.setData(_data, cal);
+            cal.add(Calendar.DAY_OF_YEAR, i);
+            eventListFragment.setData(data, cal);
             _list.add(eventListFragment);
         }
     }

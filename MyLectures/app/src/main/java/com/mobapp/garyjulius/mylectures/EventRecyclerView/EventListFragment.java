@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 
 public class EventListFragment extends Fragment implements EventClickListener {
@@ -31,14 +32,12 @@ public class EventListFragment extends Fragment implements EventClickListener {
         // Required empty public constructor
     }
 
-    public void setData(DataBaseSingleton data, GregorianCalendar calendar){
+    public void setData(List<Event> events, GregorianCalendar calendar){
         _eventsToDisplay = new ArrayList<>();
         this._calendar = calendar;
-        for(Event e : data.get_eventList()){
-//            GregorianCalendar begintime = e.get_beginTime();
-            DateTime beginTime = e.get_beginTimeDateTime();
-            DateTime endTime = e.get_endTimeDateTime();
-//            GregorianCalendar endtime = e.get_endTime();
+        for(Event e : events){
+            DateTime beginTime = e.getBeginDateTime();
+            DateTime endTime = e.getEndDateTime();
 
             if(beginTime.get(DateTimeFieldType.dayOfYear()) <= calendar.get(Calendar.DAY_OF_YEAR)
                 && beginTime.get(DateTimeFieldType.year()) <= calendar.get(Calendar.YEAR)

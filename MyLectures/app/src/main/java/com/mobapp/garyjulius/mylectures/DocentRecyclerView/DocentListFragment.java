@@ -23,8 +23,8 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
         // Required empty public constructor
     }
 
-    public void setData(DataBaseSingleton data){
-        _docentsToDisplay = data.get_docentList();
+    public void setData(ArrayList<Docent> data){
+        _docentsToDisplay = data;
     }
 
     @Override
