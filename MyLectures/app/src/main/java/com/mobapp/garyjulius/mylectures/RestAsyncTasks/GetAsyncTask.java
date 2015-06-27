@@ -5,7 +5,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.owlike.genson.Genson;
+//import com.owlike.genson.Genson;
+
+import com.google.gson.Gson;
+
+import org.apache.commons.io.IOUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.net.HttpURLConnection;
@@ -28,9 +32,10 @@ public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             //urlConnection.setRequestProperty("Content-Type","application/json");
-            Genson genson = new Genson();
+            Gson gson = new Gson();
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-            T object = genson.deserialize(urlConnection.getInputStream(),tClass);
+            String json = IOUtils.toString(urlConnection.getInputStream());
+            T object = gson.fromJson(json,tClass);
 
             Log.d("URL", "" + urlConnection.getHeaderField("Location"));
             Log.d("Code", "" + urlConnection.getResponseCode());

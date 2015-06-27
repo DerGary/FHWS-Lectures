@@ -4,15 +4,21 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
-import com.owlike.genson.GenericType;
-import com.owlike.genson.Genson;
-import com.owlike.genson.internal.asm.Type;
+//import com.owlike.genson.GenericType;
+//import com.owlike.genson.GenericType;
+//import com.owlike.genson.Genson;
+//import com.owlike.genson.internal.asm.Type;
+
+import org.apache.commons.io.IOUtils;
 
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,37 +45,32 @@ public class GetListAsyncTask<T> extends AsyncTask<String,Void,ArrayList> {
             urlConnection.setRequestMethod("GET");
             Log.d(TAG,"URL: " + urlConnection.getURL().toString());
             //urlConnection.setRequestProperty("Content-Type","application/json");
-            Genson genson = new Genson();
+            Gson gson = new Gson();
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+            String response = IOUtils.toString(urlConnection.getInputStream());
             if(tClass.getName().contains("Docent"))
             {
-                GenericType<ArrayList<Docent>> genericType = new GenericType<ArrayList<Docent>>() {
-                };
+                Type docentType = new TypeToken<ArrayList<Docent>>() {}.getType();
 
                 //Log.d("URL", "" + urlConnection.getHeaderField("Location"));
                 Log.d(TAG, "ResponseCode: " + urlConnection.getResponseCode());
-                ArrayList<Docent> objectList = genson.deserialize(urlConnection.getInputStream(),
-                        genericType);
+                ArrayList<Docent> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
             } else if(tClass.getName().contains("Event")) {
+                Type docentType = new TypeToken<ArrayList<Event>>() {}.getType();
 
-                GenericType<ArrayList<Event>> genericType = new GenericType<ArrayList<Event>>() {
-                };
                 //Log.d("URL", "" + urlConnection.getHeaderField("Location"));
                 Log.d(TAG, "ResponseCode: " + urlConnection.getResponseCode());
-                ArrayList<Event> objectList = genson.deserialize(urlConnection.getInputStream(),
-                        genericType);
+                ArrayList<Event> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
             } else if(tClass.getName().contains("Lecture")) {
+                Type docentType = new TypeToken<ArrayList<Lecture>>() {}.getType();
 
-                GenericType<ArrayList<Lecture>> genericType = new GenericType<ArrayList<Lecture>>() {
-                };
                 //Log.d("URL", "" + urlConnection.getHeaderField("Location"));
                 Log.d(TAG, "ResponseCode: " + urlConnection.getResponseCode());
-                ArrayList<Lecture> objectList = genson.deserialize(urlConnection.getInputStream(),
-                        genericType);
+                ArrayList<Lecture> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
             }

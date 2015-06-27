@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.owlike.genson.Genson;
+//import com.owlike.genson.Genson;
+
+import com.google.gson.Gson;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -28,8 +30,8 @@ public class DeleteAsyncTask<T> extends AsyncTask<Object,Void,String> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("DELETE");
             urlConnection.setRequestProperty("Content-Type","application/json");
-            Genson genson = new Genson();
-            String jsonOfPerson = genson.serialize((T) params[0]);
+            Gson Gson = new Gson();
+            String jsonOfPerson = Gson.toJson((T) params[0]);
 
             urlConnection.getOutputStream().write(jsonOfPerson.getBytes());
             Log.d("URL", "" + urlConnection.getHeaderField("Location"));
