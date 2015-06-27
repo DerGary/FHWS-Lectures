@@ -9,20 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.DetailFragments.DocentDetailFragment;
+import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
-import com.mobapp.garyjulius.mylectures.Model.DataBase;
 import com.mobapp.garyjulius.mylectures.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class DocentListFragment extends Fragment implements DocentClickListener {
-    List<Docent> _docentsToDisplay;
+    ArrayList<Docent> _docentsToDisplay;
     public DocentListFragment() {
         // Required empty public constructor
     }
 
-    public void setData(DataBase data){
+    public void setData(DataBaseSingleton data){
         _docentsToDisplay = data.get_docentList();
     }
 

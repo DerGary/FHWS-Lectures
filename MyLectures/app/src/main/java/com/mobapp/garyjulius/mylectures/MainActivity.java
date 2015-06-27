@@ -8,14 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobapp.garyjulius.mylectures.DocentRecyclerView.DocentListFragment;
+import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
-import com.mobapp.garyjulius.mylectures.Model.DataBase;
 import com.mobapp.garyjulius.mylectures.RestAsyncTasks.GetListAsyncTask;
 import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
     private ViewPagerFragment _viewPagerFragment;
@@ -23,12 +24,12 @@ public class MainActivity extends ActionBarActivity {
     ArrayList<Docent> _docentList;
     ArrayList<Lecture> _lectureList;
     ArrayList<Event> _eventList;
-    private DataBase _dataBase;
+    private DataBaseSingleton _dataBase;
 
     private GetListAsyncTask<Docent> _getDocents = new GetListAsyncTask<Docent>(this)
     {
         @Override
-        protected void onPostExecute(ArrayList<Docent> result) {
+        protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _docentList = result;
             _getLectures.execute("lectures");
@@ -38,12 +39,10 @@ public class MainActivity extends ActionBarActivity {
     private GetListAsyncTask<Lecture> _getLectures = new GetListAsyncTask<Lecture>(this)
     {
         @Override
-        protected void onPostExecute(ArrayList<Lecture> result) {
+        protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _lectureList = result;
-
-
-            _dataBase = new DataBase(_docentList,_lectureList,_eventList);
+            _dataBase = new DataBaseSingleton(_docentList,_lectureList,_eventList);
             _viewPagerFragment.setData(_dataBase);
             getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
         }
@@ -52,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
     private GetListAsyncTask<Event> _getEvents = new GetListAsyncTask<Event>(this)
     {
         @Override
-        protected void onPostExecute(ArrayList<Event> result) {
+        protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _eventList = result;
             _getDocents.execute("docents");
@@ -125,5 +124,10 @@ public class MainActivity extends ActionBarActivity {
             getFragmentManager().popBackStack();
         else
             super.onBackPressed();
+    }
+
+    public void parseResultList(String type,ArrayList<Map> result)
+    {
+        //TODO
     }
 }

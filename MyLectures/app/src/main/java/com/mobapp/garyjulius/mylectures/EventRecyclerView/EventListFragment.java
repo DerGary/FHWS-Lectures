@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
+import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Event;
-import com.mobapp.garyjulius.mylectures.Model.DataBase;
 import com.mobapp.garyjulius.mylectures.R;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +27,7 @@ public class EventListFragment extends Fragment implements EventClickListener {
         // Required empty public constructor
     }
 
-    public void setData(DataBase data, GregorianCalendar calendar){
+    public void setData(DataBaseSingleton data, GregorianCalendar calendar){
         _eventsToDisplay = new ArrayList<>();
         this._calendar = calendar;
         for(Event e : data.get_eventList()){

@@ -9,15 +9,16 @@ import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Stefan on 18-05-15.
  */
 public class DocentRecycleViewAdapter extends RecyclerView.Adapter<DocentViewHolder> {
-    private List<Docent> list;
+    private ArrayList<Docent> list;
     private DocentClickListener clickListener;
-    public DocentRecycleViewAdapter(List<Docent> docentList, DocentListFragment clickListener){
+    public DocentRecycleViewAdapter(ArrayList<Docent> docentList, DocentListFragment clickListener){
         list = docentList;
         this.clickListener = clickListener;
     }

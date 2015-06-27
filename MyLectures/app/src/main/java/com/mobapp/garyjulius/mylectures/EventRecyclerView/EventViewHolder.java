@@ -4,11 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 /**
  * Created by Stefan on 18-05-15.
@@ -16,6 +18,7 @@ import java.text.SimpleDateFormat;
 public class EventViewHolder extends RecyclerView.ViewHolder {
     private final TextView _lectureName, _lectureType, _docent, _time, _room;
     public Event event;
+    private DataBaseSingleton _dataBase;
 
     public EventViewHolder(View itemView) {
         super(itemView);
@@ -28,10 +31,15 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
 
     public void assignData(Event data) {
         event = data;
-        this._lectureName.setText(data.get_lecture().get_title());
+        this._lectureName.setText(_dataBase.get_lectureList().get(data.get_lecture()).get_title());
         this._lectureType.setText(data.get_type() + "");
         String docents = "";
-        for(Docent d : data.get_docent()){
+        ArrayList<Docent> tempDocents = new ArrayList<Docent>();
+        for(int i = 0; i < event.get_docent().size(); i++)
+        {
+            tempDocents.add(_dataBase.get_docentList().get(i));
+        }
+        for(Docent d :tempDocents){
             docents += d.get_name()+", ";
         }
         if(docents.length() > 2)
