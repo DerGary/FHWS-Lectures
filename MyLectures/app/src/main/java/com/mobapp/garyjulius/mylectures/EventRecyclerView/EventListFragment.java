@@ -13,6 +13,10 @@ import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeField;
+import org.joda.time.DateTimeFieldType;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,12 +35,15 @@ public class EventListFragment extends Fragment implements EventClickListener {
         _eventsToDisplay = new ArrayList<>();
         this._calendar = calendar;
         for(Event e : data.get_eventList()){
-            GregorianCalendar begintime = e.get_beginTime();
-            GregorianCalendar endtime = e.get_endTime();
-            if(begintime.get(Calendar.DAY_OF_YEAR) <= calendar.get(Calendar.DAY_OF_YEAR)
-                && begintime.get(Calendar.YEAR) <= calendar.get(Calendar.YEAR)
-                && endtime.get(Calendar.DAY_OF_YEAR) >= calendar.get(Calendar.DAY_OF_YEAR)
-                && endtime.get(Calendar.YEAR) >= calendar.get(Calendar.DAY_OF_YEAR))
+//            GregorianCalendar begintime = e.get_beginTime();
+            DateTime beginTime = e.get_beginTimeDateTime();
+            DateTime endTime = e.get_endTimeDateTime();
+//            GregorianCalendar endtime = e.get_endTime();
+
+            if(beginTime.get(DateTimeFieldType.dayOfYear()) <= calendar.get(Calendar.DAY_OF_YEAR)
+                && beginTime.get(DateTimeFieldType.year()) <= calendar.get(Calendar.YEAR)
+                && endTime.get(DateTimeFieldType.dayOfYear()) >= calendar.get(Calendar.DAY_OF_YEAR)
+                && endTime.get(DateTimeFieldType.year()) >= calendar.get(Calendar.DAY_OF_YEAR))
             {
                 _eventsToDisplay.add(e);
             }

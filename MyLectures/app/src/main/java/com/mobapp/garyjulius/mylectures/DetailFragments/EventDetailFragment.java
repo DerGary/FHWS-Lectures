@@ -15,6 +15,10 @@ import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.text.SimpleDateFormat;
 
 
@@ -82,9 +86,11 @@ public class EventDetailFragment extends Fragment {
 
     private void setData()
     {
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd.MM.yyyy");
-        eventStartContent.setText(format.format(actualEvent.get_beginTime().getTime()));
-        eventEndContent.setText(format.format(actualEvent.get_endTime().getTime()));
+        DateTime beginTime = actualEvent.get_beginTimeDateTime();
+        DateTime endTime = actualEvent.get_endTimeDateTime();
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm - dd.MM.yyyy");
+        eventStartContent.setText(fmt.print(beginTime));
+        eventEndContent.setText(fmt.print(endTime));
         eventPlaceContent.setText(actualEvent.get_room());
         eventTypeContent.setText(actualEvent.get_type().toString());
         eventLectureContent.setText(dataBase.getLectureFromId(actualEvent.get_lecture()).get_title());

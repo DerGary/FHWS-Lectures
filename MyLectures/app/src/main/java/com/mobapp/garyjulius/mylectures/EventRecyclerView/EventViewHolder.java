@@ -9,6 +9,10 @@ import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -46,8 +50,12 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
             docents = docents.substring(0,docents.length()-2);
 
         this._docent.setText(docents);
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        this._time.setText(format.format(data.get_beginTime().getTime()) + " - " + format.format(data.get_endTime().getTime()));
+
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
+        DateTime beginTime = data.get_beginTimeDateTime();
+        DateTime endTime = data.get_endTimeDateTime();
+
+        this._time.setText(fmt.print(beginTime) + " - " + fmt.print(endTime));
         this._room.setText(data.get_room());
     }
 }

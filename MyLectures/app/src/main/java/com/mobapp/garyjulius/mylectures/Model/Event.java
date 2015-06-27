@@ -1,5 +1,7 @@
 package com.mobapp.garyjulius.mylectures.Model;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -10,12 +12,12 @@ public class Event {
     private int _id;
     private int _lecture;
     private ArrayList<Integer> _docent;
-    private GregorianCalendar _beginTime;
-    private GregorianCalendar _endTime;
+    private DateTime _beginTime;
+    private DateTime _endTime;
     private LectureType _type;
     private String _room;
 
-    public Event(int _id, int _lecture, ArrayList<Integer> _docent, GregorianCalendar _beginTime, GregorianCalendar _endTime, LectureType _type, String _room) {
+    public Event(int _id, int _lecture, ArrayList<Integer> _docent, DateTime _beginTime, DateTime _endTime, LectureType _type, String _room) {
         this._id = _id;
         this._lecture = _lecture;
         this._docent = _docent;
@@ -41,20 +43,27 @@ public class Event {
         this._docent = _docent;
     }
 
-    public GregorianCalendar get_beginTime() {
+    public String get_beginTime() {
+        return _beginTime.toString();
+    }
+    public DateTime get_beginTimeDateTime() {
         return _beginTime;
     }
 
-    public void set_beginTime(GregorianCalendar _beginTime) {
-        this._beginTime = _beginTime;
+    public void set_beginTime(String _beginTime) {
+        this._beginTime = DateTime.parse(_beginTime);
     }
 
-    public GregorianCalendar get_endTime() {
+    public String get_endTime() {
+        return _endTime.toString();
+    }
+    public DateTime get_endTimeDateTime() {
         return _endTime;
     }
 
-    public void set_endTime(GregorianCalendar _endTime) {
-        this._endTime = _endTime;
+
+    public void set_endTime(String _endTime) {
+        this._endTime = DateTime.parse(_endTime);
     }
 
     public LectureType get_type() {
