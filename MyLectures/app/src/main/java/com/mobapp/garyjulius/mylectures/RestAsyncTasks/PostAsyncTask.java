@@ -35,6 +35,8 @@ public class PostAsyncTask<T> extends AsyncTask<Object,Void,String> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type","application/json");
+            urlConnection.setConnectTimeout(10*1000);
+
             Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
 //            Gson gson = new Gson();
             String jsonOfPerson = gson.toJson((T) params[0]);

@@ -33,6 +33,8 @@ public class PutAsyncTask<T> extends AsyncTask<Object,Void,String> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("PUT");
             urlConnection.setRequestProperty("Content-Type","application/json");
+            urlConnection.setConnectTimeout(10*1000);
+
             Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
             String jsonOfPerson = gson.toJson((T) params[0]);
 

@@ -35,6 +35,8 @@ public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
             URL url = new URL("http://staging.applab.fhws.de:8080/fhwslectures/api/" + id[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
+            urlConnection.setConnectTimeout(10*1000);
+            urlConnection.setReadTimeout(10*1000);
             //urlConnection.setRequestProperty("Content-Type","application/json");
             Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
