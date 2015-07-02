@@ -1,5 +1,9 @@
 package com.mobapp.garyjulius.mylectures.Model;
 
+import android.content.Context;
+
+import com.mobapp.garyjulius.mylectures.SharedPreferences.SharedPrefManager;
+
 import java.util.ArrayList;
 
 /**
@@ -79,5 +83,19 @@ public class DataBaseSingleton {
 
     public void set_eventList(ArrayList<Event> _eventList) {
         this._eventList = _eventList;
+    }
+
+    public void saveDataBase(Context context){
+        SharedPrefManager manager = new SharedPrefManager(context);
+        manager.saveDataBase();
+    }
+    private static boolean loaded = false;
+    public void loadDataBase(Context context){
+        if(loaded)
+            return;
+
+        SharedPrefManager manager = new SharedPrefManager(context);
+        manager.loadDataBase();
+        loaded = true;
     }
 }

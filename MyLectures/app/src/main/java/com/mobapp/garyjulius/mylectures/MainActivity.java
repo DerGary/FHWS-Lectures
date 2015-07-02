@@ -1,19 +1,27 @@
 package com.mobapp.garyjulius.mylectures;
 
+import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.DocentRecyclerView.DocentListFragment;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.Model.LectureType;
+import com.mobapp.garyjulius.mylectures.Notifications.BackgroundNotificationService;
+import com.mobapp.garyjulius.mylectures.Notifications.NotificationBroadCastReceiver;
 import com.mobapp.garyjulius.mylectures.RestAsyncTasks.GetListAsyncTask;
 import com.mobapp.garyjulius.mylectures.RestAsyncTasks.PostAsyncTask;
 import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
@@ -48,11 +56,19 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _lectureList = result;
-            DataBaseSingleton.getInstance().set_docentList(_docentList);
-            DataBaseSingleton.getInstance().set_eventList(_eventList);
-            DataBaseSingleton.getInstance().set_lectureList(_lectureList);
+            DataBaseSingleton.getInstance().loadDataBase(getBaseContext());
+            if(_docentList != null)
+                DataBaseSingleton.getInstance().set_docentList(_docentList);
+            if(_eventList != null)
+                DataBaseSingleton.getInstance().set_eventList(_eventList);
+            if(_lectureList != null)
+                DataBaseSingleton.getInstance().set_lectureList(_lectureList);
+
+            DataBaseSingleton.getInstance().saveDataBase(getBaseContext());
+
             _viewPagerFragment.setData(DataBaseSingleton.getInstance().get_eventList());
             getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
+            checkIntentForEventID();
         }
     };
 
@@ -67,10 +83,14 @@ public class MainActivity extends ActionBarActivity {
     };
 
     private Menu _menu;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         //_demoData = new DemoData(getApplicationContext());
         _viewPagerFragment = new ViewPagerFragment();
         _getEvents.execute("events");
@@ -80,6 +100,26 @@ public class MainActivity extends ActionBarActivity {
 //                new DateTime(2015, 6,27,15,0,0), LectureType.Lecture,"I.2.15");
 //        PostAsyncTask<Event> testEventTask = new PostAsyncTask<Event>(this);
 //        testEventTask.execute(testEvent);
+
+    }
+
+
+    public void checkIntentForEventID(){
+        Intent intent = new Intent( this, BackgroundNotificationService.class );
+        startService( intent );
+
+        Intent callingIntent = getIntent();
+        int eventId = 0;
+        if(callingIntent != null){
+            eventId = callingIntent.getIntExtra("eventId",0);
+        }
+
+        if(eventId > 0 ){
+
+            EventDetailFragment detailFragment = new EventDetailFragment();
+            detailFragment.setActualEvent(DataBaseSingleton.getInstance().getEventFromId(eventId));
+            changeFragment(detailFragment, true);
+        }
     }
 
     @Override
@@ -144,4 +184,5 @@ public class MainActivity extends ActionBarActivity {
     {
         //TODO
     }
+
 }

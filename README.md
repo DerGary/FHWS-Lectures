@@ -13,12 +13,4 @@ Fragments
 
 weitere Views anlegen (Monatsansicht, Hinzufügen)
 
-Queransicht ausschalten (crash fix)
-
-Service Notification
-
 Facebook einbauen
-
-Maps einbauen (für Location eine Map bei der Event sicht einbauen die User Location und Location des Events anzeigt)
-
-Daten abspeichern

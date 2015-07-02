@@ -9,9 +9,14 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <service android:name=".Notifications.BackgroundNotificationService" android:enabled="true"> </service>
+        <receiver android:name=".Notifications.NotificationBroadCastReceiver"></receiver>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="locked">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
