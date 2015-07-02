@@ -3,6 +3,10 @@
     package="com.mobapp.garyjulius.mylectures" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +15,9 @@
         android:theme="@style/AppTheme" >
         <service android:name=".Notifications.BackgroundNotificationService" android:enabled="true"> </service>
         <receiver android:name=".Notifications.NotificationBroadCastReceiver"></receiver>
+        <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyB2VVmbWx_RUQYc8ap5S5tZDny5plcHtZI"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
