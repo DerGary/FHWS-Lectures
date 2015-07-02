@@ -179,5 +179,11 @@
                 android:id="@+id/eventPlaceContent" />
         </LinearLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/container"
+            android:layout_margin="10dp"></FrameLayout>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
