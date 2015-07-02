@@ -11,19 +11,14 @@ Fragments
 	- Views allgemein schöner gestalten (Material Design)-> Lecture Detail
 	-> Shared element transition zwischen event in RecyclerView und event detail einbauen
 
-Dozenten Details View
-	- Bilder speichern (+ autoanimation)
-
 weitere Views anlegen (Monatsansicht, Hinzufügen)
 
-Email Intent filtern nach Email App
-
-Fragment übergabeparameter mittels bundles (crash fix)
-
-Server HTTP eigener (get und post)
+Queransicht ausschalten (crash fix)
 
 Service Notification
 
 Facebook einbauen
 
-Maps einbauen
+Maps einbauen (für Location eine Map bei der Event sicht einbauen die User Location und Location des Events anzeigt)
+
+Daten abspeichern
