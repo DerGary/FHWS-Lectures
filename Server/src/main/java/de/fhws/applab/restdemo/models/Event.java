@@ -1,6 +1,10 @@
 package de.fhws.applab.restdemo.models;
 
+import com.owlike.genson.annotation.JsonDateFormat;
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Stefan on 25-06-15.
@@ -9,8 +13,11 @@ public class Event {
     private int _id;
     private int _lecture;
     private ArrayList<Integer> _docent;
-    private String _beginTime;
-    private String _endTime;
+    @JsonDateFormat
+    private DateTime _beginTime;
+    @JsonDateFormat
+    private DateTime _endTime;
+
     private LectureType _type;
     private String _room;
 
@@ -39,19 +46,23 @@ public class Event {
     }
 
     public String get_beginTime() {
-        return _beginTime;
+        return _beginTime.toString();
+        //return _beginTime;
     }
 
     public void set_beginTime(String _beginTime) {
-        this._beginTime = _beginTime;
+        this._beginTime = DateTime.parse(_beginTime);
+        //this._beginTime = _beginTime;
     }
 
     public String get_endTime() {
-        return _endTime;
+        return _endTime.toString();
+        //return _endTime;
     }
 
     public void set_endTime(String _endTime) {
-        this._endTime = _endTime;
+        this._endTime = DateTime.parse(_endTime);
+        //this._endTime = _endTime;
     }
 
     public LectureType get_type() {

@@ -1,13 +1,12 @@
 package de.fhws.applab.restdemo.api;
 
-import de.fhws.applab.restdemo.models.Event;
 import de.fhws.applab.restdemo.models.Lecture;
-import de.fhws.applab.restdemo.models.database.EventDatabase;
 import de.fhws.applab.restdemo.models.database.LectureDatabase;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.Collection;
 
@@ -25,13 +24,27 @@ public class LectureService
 		return LectureDatabase.getInstance().Database.getAll();
 	}
 
+
 	@POST
 	@Consumes( MediaType.APPLICATION_JSON )
-	public Lecture post( Lecture lecture )
+	public Response post( Lecture lecture )
 	{
-		lecture.set_id(LectureDatabase.getInstance().Database.getNextKey());
-		LectureDatabase.getInstance().Database.setValue(lecture.get_id(),lecture);
-		return lecture;
+		if(lecture != null) {
+			lecture.set_id(LectureDatabase.getInstance().Database.getNextKey());
+			LectureDatabase.getInstance().Database.setValue(lecture.get_id(), lecture);
+			return Response.status(Response.Status.CREATED).type(MediaType.APPLICATION_JSON).entity(lecture).build();
+		}
+		return Response.status(Response.Status.NO_CONTENT).build();
+	}
+	@DELETE
+	@Path("/{id}")
+	@Consumes( MediaType.APPLICATION_JSON )
+	public Response delete( @PathParam("id") int id )
+	{
+		boolean b = LectureDatabase.getInstance().Database.removeValue(id);
+		if(b)
+			return Response.ok().build();
+		return Response.status(Response.Status.NOT_MODIFIED).build();
 	}
 
 }

@@ -35,4 +35,9 @@ public class Database<T> {
     public int getNextKey(){
         return id++;
     }
+    public boolean removeValue(int key){
+        if (dictionary.remove(key) == null)
+            return false;
+        return true;
+    }
 }
