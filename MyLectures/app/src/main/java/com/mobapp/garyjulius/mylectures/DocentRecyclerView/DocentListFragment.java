@@ -2,6 +2,7 @@ package com.mobapp.garyjulius.mylectures.DocentRecyclerView;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,6 +26,12 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
 
     public void setData(ArrayList<Docent> data){
         _docentsToDisplay = data;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Docents");
     }
 
     @Override

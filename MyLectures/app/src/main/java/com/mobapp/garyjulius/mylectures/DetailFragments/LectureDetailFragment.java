@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,12 @@ public class LectureDetailFragment extends Fragment {
             layout.addView(text);
         }
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Lecture detail");
     }
 
     private void setData()

@@ -2,13 +2,16 @@ package com.mobapp.garyjulius.mylectures.EventRecyclerView;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
+import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
@@ -30,6 +33,19 @@ public class EventListFragment extends Fragment implements EventClickListener {
 
     public EventListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("EventListFragment", "OnStart() called");
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Events");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("EventListFragment", "OnResume() called");
     }
 
     public void setData(List<Event> events, GregorianCalendar calendar){
@@ -70,6 +86,9 @@ public class EventListFragment extends Fragment implements EventClickListener {
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout,detailFragment).addToBackStack(null).commit();
+
+        ((MainActivity)getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
+        ((MainActivity)getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
     }
 
     public String getTitle(){

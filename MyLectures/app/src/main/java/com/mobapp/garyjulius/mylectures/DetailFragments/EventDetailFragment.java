@@ -14,12 +14,15 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.provider.Settings;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,7 +36,9 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
+import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Place;
 import com.mobapp.garyjulius.mylectures.R;
@@ -51,7 +56,6 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     TextView eventStartContent;
     TextView eventEndContent;
     TextView eventPlaceContent;
-    ListView eventDocentsContent;
     TextView eventLectureContent;
     TextView eventTypeContent;
     boolean positionSet = false;
@@ -79,11 +83,29 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         eventStartContent = (TextView)rootView.findViewById(R.id.eventStartContent);
         eventEndContent = (TextView) rootView.findViewById(R.id.eventEndContent);
         eventPlaceContent = (TextView)rootView.findViewById(R.id.eventPlaceContent);
-        eventDocentsContent = (ListView)rootView.findViewById(R.id.eventDocentsContent);
         eventLectureContent = (TextView)rootView.findViewById(R.id.eventLectureContent);
         eventTypeContent = (TextView)rootView.findViewById(R.id.eventTypeContent);
 
         setData();
+
+        LinearLayout layout = (LinearLayout)rootView.findViewById(R.id.EventDocentLayout);
+
+        for(int i : actualEvent.get_docent())
+        {
+            TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.text_view, null);
+            final Docent docent = DataBaseSingleton.getInstance().getDocentFromID(i);
+            text.setText(docent.get_name());
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
+                    docentDetailFragment.setActualDocent(docent);
+                    changeFragment(docentDetailFragment);
+                }
+            });
+
+            layout.addView(text);
+        }
 
         ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(),R.layout.row);
 
@@ -91,19 +113,12 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         {
             listAdapter.add(dataBase.getDocentFromID(actualEvent.get_docent().get(i)).get_name());
         }
-        eventDocentsContent.setAdapter(listAdapter);
-        eventDocentsContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
-                changeToDocentFragment(docentDetailFragment, position);
-            }
-        });
 
         eventLectureContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LectureDetailFragment lectureDetailFragment = new LectureDetailFragment();
+                lectureDetailFragment.setLecture(dataBase.getLectureFromId(actualEvent.get_lecture()));
                 changeFragment(lectureDetailFragment);
             }
         });
@@ -144,6 +159,17 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        locationManager.removeUpdates(this);
+        Log.d("EventDetailFragment", "onDestroy called");
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Events");
+        ((MainActivity)getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
+        ((MainActivity)getActivity()).getMenu().findItem(R.id.action_docents).setVisible(true);
+    }
+
+
+    @Override
     public void onStart() {
         super.onStart();
 
@@ -152,6 +178,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
                 .replace( R.id.container, this.mapFragment )
                 .commit();
         mapFragment.getMapAsync(this); //get map asynchron
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Event detail");
     }
 
     private void setData()
@@ -181,23 +208,9 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     }
 
     public void changeFragment(Fragment fragment) {
-        ((LectureDetailFragment) fragment).setLecture(dataBase.getLectureFromId(actualEvent.get_lecture()));
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
-    }
-
-    public void changeToDocentFragment(Fragment fragment,int position) {
-        ((DocentDetailFragment) fragment).setActualDocent(dataBase.getDocentFromID(actualEvent.get_docent().get(position)));
-        getFragmentManager().beginTransaction().setCustomAnimations(
-                R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
-        ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        locationManager.removeUpdates(this);
     }
 
     @Override
