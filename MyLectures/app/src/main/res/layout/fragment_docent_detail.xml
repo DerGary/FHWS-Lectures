@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,7 +64,8 @@
         android:focusableInTouchMode="false"
         android:background="@drawable/txtselector"
         android:singleLine="false"
-        android:textColor="@color/clickableColor" />
+        android:textColor="@color/clickableColor"
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="100dp"
@@ -89,7 +91,8 @@
         android:focusableInTouchMode="false"
         android:background="@drawable/txtselector"
         android:singleLine="false"
-        android:textColor="@color/clickableColor" />
+        android:textColor="@color/clickableColor"
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="100dp"
@@ -109,7 +112,8 @@
         android:text="Medium Text"
         android:id="@+id/docentPlaceContent"
         android:layout_marginLeft="40dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -129,7 +133,8 @@
         android:text="Medium Text"
         android:id="@+id/docentConsultationContent"
         android:layout_marginLeft="40dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="100dp"
@@ -154,6 +159,7 @@
         android:focusableInTouchMode="false"
         android:background="@drawable/txtselector"
         android:singleLine="false"
-        android:textColor="@color/clickableColor" />
+        android:textColor="@color/clickableColor"
+        android:textSize="18dp" />
 
 </LinearLayout>

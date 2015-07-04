@@ -13,13 +13,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
+import com.mobapp.garyjulius.mylectures.DetailFragments.LectureDetailFragment;
 import com.mobapp.garyjulius.mylectures.DocentRecyclerView.DocentListFragment;
+import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
+import com.mobapp.garyjulius.mylectures.Model.Course;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
+import com.mobapp.garyjulius.mylectures.Model.ExamType;
+import com.mobapp.garyjulius.mylectures.Model.Language;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.Model.LectureType;
+import com.mobapp.garyjulius.mylectures.Model.Place;
 import com.mobapp.garyjulius.mylectures.Notifications.BackgroundNotificationService;
 import com.mobapp.garyjulius.mylectures.Notifications.NotificationBroadCastReceiver;
 import com.mobapp.garyjulius.mylectures.RestAsyncTasks.GetListAsyncTask;
@@ -28,6 +37,7 @@ import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
 import org.joda.time.DateTime;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -104,10 +114,31 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String lectures = "[{ \"_id\":1, \"_title\":\"Vertiefung 1: Computergrafik\", \"_responsiblePerson\":4, \"_docents\":[4], \"_language\":\"german\", \"_swh\":4, \"_type\":[\"Seminar\"], \"_creditPoints\":5, \"_examType\":[\"OralExam\"], \"_semester\":6, \"_courses\":[\"BIN\"], \"_description\":\"Die Studierenden erweitern und vertiefen ihre Kenntnisse in Richtung „Computergrafik“ und erwerben die Fertigkeit zur Analyse und Strukturierung komplexer Aufgabenstellungen. Die Studierenden lernen Aufgabenstellungen aus dem Bereich „Computergrafik“ zu beschreiben und zu lösen. Im Rahmen ihrer Aufgabenstellung erwerben die Studierenden Kenntnisse zum praktischen Einsatz von Techniken und Methoden der „Computergrafik“. Die Studierenden erwerben die Fähigkeit zur Realisierung performanter Computergrafik-Applikationen.\", \"_place\":\"SHL\" }, { \"_id\":2, \"_title\":\"Tontechnik und Audioprogrammierung\", \"_responsiblePerson\":4, \"_docents\":[4], \"_language\":\"german\", \"_swh\":4, \"_type\":[\"Seminar\"], \"_creditPoints\":5, \"_examType\":[\"OralExam\"], \"_semester\":6, \"_courses\":[\"BIN\", \"BWI\", \"EC\"], \"_description\":\"Die Studierenden erweitern und vertiefen ihre Kenntnisse in Richtung \\\"Tontechnik\\\" bzw. \\\"Audioprogrammierung\\\" und erwerben die Fertigkeit zur Analyse und Strukturierung komplexer Aufgabenstellungen. Die Studierenden lernen Aufgabenstellungen aus dem Bereich „Audioprogrammierung“ zu beschreiben und zu lösen. Im Rahmen ihrer Aufgabenstellung erwerben die Studierenden Kenntnisse zum praktischen Einsatz von Audio-Techniken. Die Studierenden erwerben die Fähigkeit zur Realisierung performanter Audio-Applikationen.\", \"_place\":\"SHL\" }, { \"_id\":3, \"_title\":\"Mobile Applikations\", \"_responsiblePerson\":3, \"_docents\":[3,5], \"_language\":\"english\", \"_swh\":4, \"_type\":[\"Seminar\", \"LabClass\"], \"_creditPoints\":5, \"_examType\":[\"OralExam\"], \"_semester\":6, \"_courses\":[\"BIN\", \"BWI\", \"EC\"], \"_description\":\"Grundlagen der Informatik: Die Studierenden lernen die Grundlagen der Programmierung von mobilen Applikationen am Beispiel von Android kennen. Fachspezifische Vertiefungen: Die Studierenden lernen die besonderen Herausforderungen bei der Programmierung von mobilen Endgeräten kennen. Insbesondere erlernen die Studierenden die Grundlagen der Gestaltung mobiler Nutzeroberflächen, Konzepte der asynchronen Programmierung und vertiefen die Kenntnisse der Thread-Programmierung in Java. Fertigkeit zur Analyse und Strukturierung technischer Problemstellungen: An Beispielen erlernen die Studenten Architekturkonzepte für mobile Lösungen, insbesondere die Verteilung zwischen Client und Server und spezifische Kommunikationskonzepte zwischen mobilen Endgeräten. Die Studierenden erlernen die strukturierte Programmierung von Nutzeroberflächen auf der Basis von wiederverwendbaren SoftwareKomponenten. Kenntnisse von praxisrelevanten Aufgabenstellungen: Der Einsatz von Methoden und Techniken wird anhand von praxisrelevanten Aufgabenstellungen dargestellt und eingeübt. Die Studierenden haben ein grundlegendes Verständnis zum Aufbau und zur Architektur von mobilen Applikationen. Sie sind in der Lage, eine Aufgabenstellung mit einer mobilen Applikation für das Betriebssystem Android zu lösen. Insbesondere können die Studierenden mobile Nutzeroberflächen gestalten, Sensordaten auswerten und ein Kommunikatonsprotokoll zu enem Server implementieren.\", \"_place\":\"SHL\" } ] ";
+        String docents = "[{ \"_id\":1, \"_name\": \"Prof. Dr. Tobias Aubele\", \"_phoneNumber\": \"0931/3511-8986\", \"_faxNumber\": \"none\", \"_email\":\"tobias.aubele@fhws.de\",  \"_room\":\"I.3.42\",  \"_location\":\"SHL\",  \"_consultationHour\":\"agreement\",  \"_function\":\"Praktikantenbeauftragter EC\",  \"_picture\":\"http://www.welearn.de/typo3temp/pics/a71b033fe9.jpg\",  \"_linkWeLearn\":\"http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-tobias-aubele.html\" }, { \"_id\":2, \"_name\": \"Prof. Dr. Arndt Balzer\", \"_phoneNumber\": \"0931/3511-8362\", \"_faxNumber\": \"0931/3511-9410\", \"_email\":\"arndt.balzer@fhws.de\",  \"_room\":\"I.3.26\",  \"_location\":\"SHL\",  \"_consultationHour\":\"agreement\",  \"_function\":\"Studienfachberater/in: Bachelor Informatik\\nVerantwortlicher für das Vertiefungsmodul: Smart Systems (SmS)\",  \"_picture\":\"http://www.welearn.de/typo3temp/pics/349b32b4e6.jpg\",  \"_linkWeLearn\":\"http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-arndt-balzer.html\" }, { \"_id\":3, \"_name\": \"Prof. Dr. Peter Braun\", \"_phoneNumber\": \"0931/3511-8971\", \"_faxNumber\": \"none\", \"_email\":\"peter.braun@fhws.de\",  \"_room\":\"I.3.26\",  \"_location\":\"SHL\",  \"_consultationHour\":\"thursday 12-14 o'clock and agreement\",  \"_function\":\"Prodekan\\nInternationales\\nIndia-Gateway-Program (IGP)\\nVerantwortlicher für das Vertiefungsmodul: Smart Systems (SmS)\",  \"_picture\":\"http://www.welearn.de/typo3temp/pics/8c69900f16.jpg\",  \"_linkWeLearn\":\"http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-peter-braun.html\" }, { \"_id\":4, \"_name\": \"Prof. Dr. Frank Deinzer\", \"_phoneNumber\": \"0931/3511-7774\", \"_faxNumber\": \"none\", \"_email\":\"frank.deinzer@fhws.de\",  \"_room\":\"I.3.26\",  \"_location\":\"SHL\",  \"_consultationHour\":\"monday 14-15 o'clock\",  \"_function\":\"Verantwortlicher für das Vertiefungsmodul: Medieninformatik (MI)\",  \"_picture\":\"http://www.welearn.de/typo3temp/pics/517bf0a67a.jpg\",  \"_linkWeLearn\":\"http://www.welearn.de/fakultaet-iw/personen/professoren-dozenten/details/person/prof-dr-frank-deinzer.html\" }, { \"_id\":5, \"_name\": \"M.Sc. Vitaliy Schreibmann\", \"_phoneNumber\": \"0931/3511-8303\", \"_faxNumber\": \"none\", \"_email\":\"vitaliy.schreibmann@fhws.de\",  \"_room\":\"I.2.37\",  \"_location\":\"SHL\",  \"_consultationHour\":\"agreement\",  \"_function\":\"\",  \"_picture\":\"http://www.welearn.de/fileadmin/bildmaterial/image/dummy_profil.jpg\",  \"_linkWeLearn\":\"http://www.welearn.de/fakultaet-iw/personen/details/person/schreibmann.html\" } ]";
+        String events = "[{ \"_id\":1, \"_lecture\":3, \"_docent\":[3], \"_beginTime\":\"2015-07-03T01:01:01.000+01:00\", \"_endTime\":\"2015-07-03T02:01:01.000+01:00\", \"_type\":\"Lecture\", \"_room\":\"room\" }]";
+                Type eventType = new TypeToken<ArrayList<Event>>() {}.getType();
+        Type docentType = new TypeToken<ArrayList<Docent>>() {}.getType();
+        Type lectureType = new TypeToken<ArrayList<Lecture>>() {}.getType();
+        Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
+
+        ArrayList<Event> eventList = gson.fromJson(events, eventType);
+        ArrayList<Docent> docentList = gson.fromJson(docents, docentType);
+        ArrayList<Lecture> lectureList = gson.fromJson(lectures, lectureType);
+
+        DataBaseSingleton.getInstance().set_lectureList(lectureList);
+        DataBaseSingleton.getInstance().set_docentList(docentList);
+        DataBaseSingleton.getInstance().set_eventList(eventList);
+
+//        LectureDetailFragment frag = new LectureDetailFragment();
+//        frag.setLecture(lectureList.get(2));
+//        changeFragment(frag, false);
+
+        DataBaseSingleton.getInstance().saveDataBase(getBaseContext());
+        createPage();
 
         //_demoData = new DemoData(getApplicationContext());
-        _viewPagerFragment = new ViewPagerFragment();
-        _getEvents.execute("events");
+        //_getEvents.execute("events");
 //        ArrayList<Integer> testDocents = new ArrayList<Integer>();
 //        testDocents.add(4);
 //        Event testEvent = new Event(0,2,testDocents,new DateTime(2015, 6,27,16,0,0),
@@ -202,7 +233,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void createPage(){
         DataBaseSingleton.getInstance().loadDataBase(getBaseContext());
-
+        _viewPagerFragment = new ViewPagerFragment();
         _viewPagerFragment.setData(DataBaseSingleton.getInstance().get_eventList());
         getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
         checkIntentForEventID();

@@ -2,29 +2,27 @@ package com.mobapp.garyjulius.mylectures.DetailFragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
+import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.R;
 
 
 public class LectureDetailFragment extends Fragment {
-
-
     private TextView lectureNameContent, lecturePlaceContent, lectureDescriptionContent;
-    private ListView lectureDocentsContent;
     private DataBaseSingleton dataBase;
-
-
-    Lecture actualLecture;
+    private Lecture actualLecture;
 
     public void LectureDetailFragment()
     {
@@ -40,26 +38,28 @@ public class LectureDetailFragment extends Fragment {
 
         lectureNameContent = (TextView) rootView.findViewById(R.id.lectureNameContent);
         lecturePlaceContent = (TextView) rootView.findViewById(R.id.lecturePlaceContent);
-        lectureDocentsContent = (ListView) rootView.findViewById(R.id.lectureDocentsContent);
         lectureDescriptionContent = (TextView) rootView.findViewById(R.id.lectureDescTextfield);
 
         setData();
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(),R.layout.row);
+        LinearLayout layout = (LinearLayout)rootView.findViewById(R.id.lectureDocentLayout);
 
-        for(int i = 0;i < actualLecture.get_docents().size(); i++)
+        for(int i : actualLecture.get_docents())
         {
-            listAdapter.add(dataBase.getDocentFromID(actualLecture.get_docents().get(i)).get_name());
-        }
-        lectureDocentsContent.setAdapter(listAdapter);
-        lectureDocentsContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
-                changeFragment(docentDetailFragment, position);
-            }
-        });
+            TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.text_view, null);
+            final Docent docent = DataBaseSingleton.getInstance().getDocentFromID(i);
+            text.setText(docent.get_name());
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
+                    docentDetailFragment.setActualDocent(docent);
+                    changeFragment(docentDetailFragment);
+                }
+            });
 
+            layout.addView(text);
+        }
         return rootView;
     }
 
@@ -81,8 +81,7 @@ public class LectureDetailFragment extends Fragment {
         this.actualLecture = actualLecture;
     }
 
-    public void changeFragment(Fragment fragment, int docentPosition) {
-        ((DocentDetailFragment) fragment).setActualDocent(dataBase.getDocentFromID(actualLecture.get_docents().get(docentPosition)));
+    public void changeFragment(Fragment fragment) {
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment).addToBackStack(null).commit();
