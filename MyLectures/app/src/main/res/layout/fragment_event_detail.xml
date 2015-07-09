@@ -26,7 +26,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:textSize="22dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/clickableColor" />
 
             <TextView
                 android:layout_width="80dp"
@@ -48,7 +49,8 @@
                 android:id="@+id/eventTypeContent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="5dp"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="80dp"
@@ -91,7 +93,8 @@
                     android:id="@+id/eventStartContent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="5dp"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="80dp"
@@ -113,7 +116,8 @@
                     android:id="@+id/eventEndContent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="5dp"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="80dp"
@@ -135,7 +139,8 @@
                     android:id="@+id/eventPlaceContent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="5dp"
+                android:textSize="18dp" />
         </LinearLayout>
 
     <FrameLayout

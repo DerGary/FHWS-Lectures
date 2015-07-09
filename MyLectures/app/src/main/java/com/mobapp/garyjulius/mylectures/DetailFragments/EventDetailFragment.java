@@ -164,6 +164,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         locationManager.removeUpdates(this);
         Log.d("EventDetailFragment", "onDestroy called");
         ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Events");
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((MainActivity)getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
         ((MainActivity)getActivity()).getMenu().findItem(R.id.action_docents).setVisible(true);
     }
@@ -179,6 +180,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
                 .commit();
         mapFragment.getMapAsync(this); //get map asynchron
         ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Event detail");
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setData()
