@@ -39,6 +39,7 @@ public class ViewPagerFragment extends Fragment {
         _list = new ArrayList<>();
         for (int i = 0; i < 7; i ++){
             EventListFragment eventListFragment = new EventListFragment();
+            eventListFragment.setHasOptionsMenu(true);
             GregorianCalendar cal = (GregorianCalendar)GregorianCalendar.getInstance();
             cal.add(Calendar.DAY_OF_YEAR, i);
             eventListFragment.setContext(context);
