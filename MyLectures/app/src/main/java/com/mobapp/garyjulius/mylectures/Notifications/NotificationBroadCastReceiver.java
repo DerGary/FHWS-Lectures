@@ -37,14 +37,14 @@ public class NotificationBroadCastReceiver extends BroadcastReceiver {
                 DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
 
                 Intent startIntent = new Intent(context, MainActivity.class);
-                startIntent.putExtra("eventId", e.get_id());
+                startIntent.putExtra(context.getString(R.string.pref_eventid), e.get_id());
 
                 PendingIntent pendingIntent = PendingIntent.getActivity(context,0,startIntent,PendingIntent.FLAG_CANCEL_CURRENT);
 
                 Notification.Builder mBuilder = new Notification.Builder(context)
                         .setSmallIcon(android.R.drawable.ic_menu_recent_history)
                         .setContentTitle(lecname)
-                        .setContentText("Raum: "+e.get_room() + ", Start: "+ fmt.print(e.getBeginDateTime()) + ", Ende: "+ fmt.print(e.getEndDateTime()))
+                        .setContentText(context.getString(R.string.notification_room)+e.get_room() + context.getString(R.string.notification_start)+ fmt.print(e.getBeginDateTime()) + context.getString(R.string.notification_end)+ fmt.print(e.getEndDateTime()))
                         .setContentIntent(pendingIntent);
                 Notification n = mBuilder.build();
 

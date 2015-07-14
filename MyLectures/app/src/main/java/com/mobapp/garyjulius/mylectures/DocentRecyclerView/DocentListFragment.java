@@ -6,10 +6,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.DetailFragments.DocentDetailFragment;
+import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.R;
@@ -31,7 +34,20 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
     @Override
     public void onStart() {
         super.onStart();
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Docents");
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.docents_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -51,6 +67,7 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
     @Override
     public void OnDocentItemClick(Docent data) {
         DocentDetailFragment detailFragment = new DocentDetailFragment();
+        detailFragment.setHasOptionsMenu(true);
         detailFragment.setActualDocent(data);
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right

@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
+import com.mobapp.garyjulius.mylectures.R;
 
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
@@ -32,9 +33,9 @@ public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
     protected Object doInBackground(Integer... id) {
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://staging.applab.fhws.de:8080/fhwslectures/api/" + id[0]);
+            URL url = new URL(context.getString(R.string.server_basepath + id[0]));
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestMethod(context.getString(R.string.http_get));
             urlConnection.setConnectTimeout(10*1000);
             urlConnection.setReadTimeout(10*1000);
             //urlConnection.setRequestProperty("Content-Type","application/json");
@@ -43,20 +44,20 @@ public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
             String json = IOUtils.toString(urlConnection.getInputStream());
             T object = gson.fromJson(json,tClass);
 
-            Log.d("URL", "" + urlConnection.getHeaderField("Location"));
+            Log.d("URL", "" + urlConnection.getHeaderField(context.getString(R.string.header_location)));
             Log.d("Code", "" + urlConnection.getResponseCode());
             if(object != null)
             {
                return object;
             }
             else {
-                return "Code: " + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
+                return context.getString(R.string.http_errorcode_title) + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
             }
         } catch (Exception ex) { Log.e(TAG, "" + ex.getMessage()); }
         finally {
             urlConnection.disconnect();
         }
-        return "Error";
+        return context.getString(R.string.asynctask_returnerror);
     }
 
     @Override

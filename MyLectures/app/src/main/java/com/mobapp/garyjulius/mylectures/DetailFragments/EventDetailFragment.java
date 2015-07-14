@@ -17,6 +17,8 @@ import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,11 @@ import java.util.List;
 
 public class EventDetailFragment extends Fragment implements LocationListener, OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
 
+    private static final String TAG = "EventDetailFragment";
+    private final LatLng FHWSSHL = new LatLng(49.777694, 9.963250);
+    private final LatLng FHWSMUENZ = new LatLng(49.787590, 9.932718);
+
+
     TextView eventStartContent;
     TextView eventEndContent;
     TextView eventPlaceContent;
@@ -61,8 +68,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     boolean positionSet = false;
 
     private DataBaseSingleton dataBase;
-    private final LatLng FHWSSHL = new LatLng(49.777694, 9.963250);
-    private final LatLng FHWSMUENZ = new LatLng(49.787590, 9.932718);
+
 
     private Event actualEvent;
     private LocationManager locationManager;
@@ -99,6 +105,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
                 @Override
                 public void onClick(View v) {
                     DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
+                    docentDetailFragment.setHasOptionsMenu(true);
                     docentDetailFragment.setActualDocent(docent);
                     changeFragment(docentDetailFragment);
                 }
@@ -132,22 +139,22 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         if ( enabled == false ) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 // Add the buttons
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(getResources().getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     // User clicked OK button
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivity(intent);
                 }
             });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(getResources().getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     // User cancelled the dialog
                     locationManager.removeUpdates(EventDetailFragment.this);
                 }
             });
 // Set other dialog properties
-            builder.setMessage("Location is not enabled. Open settings now?")
-                    .setTitle("Info");
+            builder.setMessage(getResources().getString(R.string.location_off_info))
+                    .setTitle(getResources().getString(R.string.dialog_info));
 
 // Create the AlertDialog
             AlertDialog dialog = builder.create();
@@ -158,12 +165,13 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         return rootView;
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         locationManager.removeUpdates(this);
-        Log.d("EventDetailFragment", "onDestroy called");
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Events");
+        Log.d(TAG, getResources().getString(R.string.onDestroy_called));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events_title));
         ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((MainActivity)getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
         ((MainActivity)getActivity()).getMenu().findItem(R.id.action_docents).setVisible(true);
@@ -179,8 +187,10 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
                 .replace( R.id.container, this.mapFragment )
                 .commit();
         mapFragment.getMapAsync(this); //get map asynchron
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Event detail");
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events_title));
         ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
     }
 
     private void setData()
@@ -221,7 +231,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             final Marker mark2 = this.theMap.addMarker(new MarkerOptions() //set marker with actual position
                     .position(new LatLng(location.getLatitude(), location.getLongitude()))
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                    .title("My position"));
+                    .title(getResources().getString(R.string.position)));
                     positionSet = true;
                     locationManager.removeUpdates(this);
         }
@@ -250,7 +260,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         {
             final Marker mark1 = theMap.addMarker( new MarkerOptions( )
                     .position(FHWSMUENZ)
-                    .title("Muenzstraﬂe"));
+                    .title(getResources().getString(R.string.location_muenz)));
             CameraUpdateFactory.newLatLng(FHWSMUENZ);
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(FHWSMUENZ).zoom(16).bearing(270).tilt(30).build();
@@ -260,7 +270,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             CameraUpdateFactory.newLatLng(FHWSSHL);
             final Marker mark1 = theMap.addMarker(new MarkerOptions()
                     .position(FHWSSHL)
-                    .title("SHL"));
+                    .title(getResources().getString(R.string.location_shl)));
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(FHWSSHL).zoom(16).bearing(270).tilt(30).build();
             theMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
@@ -274,8 +284,8 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             List<Address> a = coder.getFromLocation(latLng.latitude,latLng.longitude, 10);
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-            builder.setMessage(""+ a.get(0).getAddressLine(0) + "\n" + a.get(0).getAddressLine(1))
-                    .setTitle("Location:");
+            builder.setMessage("" + a.get(0).getAddressLine(0) + "\n" + a.get(0).getAddressLine(1))
+                    .setTitle(getResources().getString(R.string.geocoder_title));
 
             AlertDialog dialog = builder.create();
             dialog.show();

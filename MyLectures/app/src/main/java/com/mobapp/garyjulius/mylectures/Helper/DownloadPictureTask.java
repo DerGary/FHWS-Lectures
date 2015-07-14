@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class DownloadPictureTask extends AsyncTask<ImageView, Void, Bitmap> {
+    private static final String TAG = "DownloadPictureTask";
 
     ImageView imageView = null;
 
@@ -45,7 +46,7 @@ public class DownloadPictureTask extends AsyncTask<ImageView, Void, Bitmap> {
             bis.close();
             is.close();
         } catch (IOException e) {
-            Log.e("Hub", "Error getting the image from server : " + e.getMessage().toString());
+            Log.e(TAG, "Error getting the image from server : " + e.getMessage().toString());
         }
         return bm;
     }

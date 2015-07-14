@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Helper.DownloadPictureTask;
+import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.R;
@@ -79,7 +82,7 @@ public class DocentDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + actualDocent.get_phoneNumber()));
+                intent.setData(Uri.parse(getResources().getString(R.string.tel) + actualDocent.get_phoneNumber()));
                 startActivity(intent);
             }
         });
@@ -90,18 +93,19 @@ public class DocentDetailFragment extends Fragment {
 
                 //checkTelephonyStatus(); -> later
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"" + actualDocent.get_email()});
+                intent.setType(getResources().getString(R.string.email_message_type));
+                intent.putExtra(Intent.EXTRA_EMAIL, actualDocent.get_email().toString());
                 //intent.putExtra(Intent.EXTRA_SUBJECT, subject);
                 //intent.putExtra(Intent.EXTRA_TEXT, message);
                 Intent mailer = Intent.createChooser(intent, null);
-                startActivity(mailer);            }
+                startActivity(mailer);
+            }
         });
 
         docentWelearnContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("" + actualDocent.get_linkWeLearn()));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(actualDocent.get_linkWeLearn().toString()));
                 startActivity(browserIntent);
             }
         });
@@ -112,7 +116,15 @@ public class DocentDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("Docent detail");
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.docent_list_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
     }
 
     /*private void checkTelephonyStatus()

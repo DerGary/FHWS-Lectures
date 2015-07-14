@@ -9,6 +9,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
+import com.mobapp.garyjulius.mylectures.R;
 
 import org.joda.time.DateTime;
 
@@ -31,10 +32,10 @@ public class PostAsyncTask<T> extends AsyncTask<Object,Void,String> {
     protected String doInBackground(Object... params) {
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://staging.applab.fhws.de:8080/fhwslectures/api/events");
+            URL url = new URL(context.getString(R.string.server_basepath) + "events");
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Content-Type","application/json");
+            urlConnection.setRequestMethod(context.getString(R.string.http_post));
+            urlConnection.setRequestProperty(context.getString(R.string.content_type_title),context.getString(R.string.type_json));
             urlConnection.setConnectTimeout(10*1000);
 
             Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
@@ -44,12 +45,12 @@ public class PostAsyncTask<T> extends AsyncTask<Object,Void,String> {
             urlConnection.getOutputStream().write(jsonOfPerson.getBytes());
             Log.d("URL", "" + urlConnection.getHeaderField("Location"));
             Log.d("Code", "" + urlConnection.getResponseCode());
-            return "Code: " + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
+            return context.getString(R.string.http_errorcode_title) + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
         } catch (Exception ex) { Log.e(TAG, "" + ex.toString()); }
         finally {
             urlConnection.disconnect();
         }
-        return "Error";
+        return context.getString(R.string.asynctask_returnerror);
     }
 
     @Override

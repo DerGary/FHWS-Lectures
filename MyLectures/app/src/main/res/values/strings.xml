@@ -51,5 +51,44 @@ Aufgabenstellung mit einer mobilen Applikation für das Betriebssystem
 Android zu lösen. Insbesondere können die Studierenden mobile Nutzeroberflächen
         gestalten, Sensordaten auswerten und ein
 Kommunikatonsprotokoll zu enem Server implementieren.
+
 </string>
+    <string name="tel">tel:</string>
+    <string name="email_message_type">message/rfc822</string>
+    <string name="docent_list_title">Docent detail</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+    <string name="location_off_info">Location is not enabled. Open settings now?</string>
+    <string name="dialog_info">Info</string>
+    <string name="onDestroy_called">onDestroy called</string>
+    <string name="events_title">Events</string>
+    <string name="position">My position</string>
+    <string name="location_muenz">Muenzstraße</string>
+    <string name="location_shl">SHL</string>
+    <string name="geocoder_title">Location:</string>
+    <string name="lecture_detail_title">Lecture detail</string>
+    <string name="docents_title">Docents</string>
+    <string name="log_onStart_called">OnStart() called</string>
+    <string name="log_onDestroy_called">OnResume() called</string>
+    <string name="heute">"Heute, "</string>
+    <string name="morgen">"Morgen, "</string>
+    <string name="pref_eventid">eventId</string>
+    <string name="notification_room">"Raum: "</string>
+    <string name="notification_start">", Start: "</string>
+    <string name="notification_end">", Ende: "</string>
+    <string name="server_basepath">http://staging.applab.fhws.de:8080/fhwslectures/api/</string>
+    <string name="http_delete">DELETE</string>
+    <string name="content_type_title">Content-Type</string>
+    <string name="type_json">application/json</string>
+    <string name="header_location">Location</string>
+    <string name="http_errorcode_title">"Code: "</string>
+    <string name="asynctask_returnerror">Error</string>
+    <string name="http_get">GET</string>
+    <string name="http_post">POST</string>
+    <string name="http_put">PUT</string>
+    <string name="prefs_events">events</string>
+    <string name="prefs_docents">docents</string>
+    <string name="prefs_lectures">lectures</string>
+    <string name="prefs_nonote">No note</string>
+    <string name="callingintent_eventID">eventId</string>
 </resources>

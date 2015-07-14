@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _docentList = result;
-            _getLectures.execute("lectures");
+            _getLectures.execute(getString(R.string.prefs_lectures));
         }
 
         @Override
@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _eventList = result;
-            _getDocents.execute("docents");
+            _getDocents.execute(getString(R.string.prefs_docents));
         }
 
         @Override
@@ -129,7 +129,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         //_demoData = new DemoData(getApplicationContext());
-        _getEvents.execute("events");
+        _getEvents.execute(getString(R.string.prefs_events));
 //        ArrayList<Integer> testDocents = new ArrayList<Integer>();
 //        testDocents.add(4);
 //        Event testEvent = new Event(0,2,testDocents,new DateTime(2015, 6,27,16,0,0),
@@ -147,7 +147,7 @@ public class MainActivity extends ActionBarActivity {
         Intent callingIntent = getIntent();
         int eventId = 0;
         if(callingIntent != null){
-            eventId = callingIntent.getIntExtra("eventId",0);
+            eventId = callingIntent.getIntExtra(getString(R.string.callingintent_eventID),0);
         }
 
         if(eventId > 0 ){
@@ -181,20 +181,22 @@ public class MainActivity extends ActionBarActivity {
         }else if(id == R.id.action_docents){
             if(_docentListFragment== null){
                 _docentListFragment = new DocentListFragment();
+                _docentListFragment.setHasOptionsMenu(true);
                 _docentListFragment.setData(DataBaseSingleton.getInstance().get_docentList());
             }
-            getSupportActionBar().setTitle("Docents");
-            item.setVisible(false);
-            eventItem.setVisible(true);
+            //getSupportActionBar().setTitle("Docents");
+            //item.setVisible(false);
+            //eventItem.setVisible(true);
             changeFragment(_docentListFragment, false);
         }else if(id == R.id.action_events){
             if(_viewPagerFragment== null){
                 _viewPagerFragment = new ViewPagerFragment();
-                _viewPagerFragment.setData(DataBaseSingleton.getInstance().get_eventList());
+                _viewPagerFragment.setHasOptionsMenu(true);
+                _viewPagerFragment.setData(getBaseContext(),DataBaseSingleton.getInstance().get_eventList());
             }
-            getSupportActionBar().setTitle("Events");
-            item.setVisible(false);
-            docentItem.setVisible(true);
+            //getSupportActionBar().setTitle("Events");
+            //item.setVisible(false);
+            //docentItem.setVisible(true);
             changeFragment(_viewPagerFragment,false);
         } else if(id == android.R.id.home)
         {
@@ -231,7 +233,7 @@ public class MainActivity extends ActionBarActivity {
     public void createPage(){
         DataBaseSingleton.getInstance().loadDataBase(getBaseContext());
         _viewPagerFragment = new ViewPagerFragment();
-        _viewPagerFragment.setData(DataBaseSingleton.getInstance().get_eventList());
+        _viewPagerFragment.setData(getBaseContext(),DataBaseSingleton.getInstance().get_eventList());
         getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
         checkIntentForEventID();
     }

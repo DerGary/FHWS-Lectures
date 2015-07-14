@@ -11,6 +11,7 @@ import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
+import com.mobapp.garyjulius.mylectures.R;
 //import com.owlike.genson.GenericType;
 //import com.owlike.genson.GenericType;
 //import com.owlike.genson.Genson;
@@ -43,9 +44,9 @@ public class GetListAsyncTask<T> extends AsyncTask<String,Void,ArrayList> {
     protected ArrayList doInBackground(String... ext) {
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://staging.applab.fhws.de:8080/fhwslectures/api/" + ext[0]);
+            URL url = new URL(context.getString(R.string.server_basepath) + ext[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestMethod(context.getString(R.string.http_get));
             urlConnection.setConnectTimeout(10*1000);
             urlConnection.setReadTimeout(10*1000);
             Log.d(TAG,"URL: " + urlConnection.getURL().toString());

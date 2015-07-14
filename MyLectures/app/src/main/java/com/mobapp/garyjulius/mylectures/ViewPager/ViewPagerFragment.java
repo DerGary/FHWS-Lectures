@@ -1,6 +1,7 @@
 package com.mobapp.garyjulius.mylectures.ViewPager;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -26,18 +27,21 @@ public class ViewPagerFragment extends Fragment {
     private ViewPagerAdapter _pagerAdapter;
     private View _view;
     private List<EventListFragment> _list;
+    private Context context;
 
     public ViewPagerFragment() {
         // Required empty public constructor
     }
 
-    public void setData(List<Event> data){
+    public void setData(Context context,List<Event> data){
 
+        this.context = context;
         _list = new ArrayList<>();
         for (int i = 0; i < 7; i ++){
             EventListFragment eventListFragment = new EventListFragment();
             GregorianCalendar cal = (GregorianCalendar)GregorianCalendar.getInstance();
             cal.add(Calendar.DAY_OF_YEAR, i);
+            eventListFragment.setContext(context);
             eventListFragment.setData(data, cal);
             _list.add(eventListFragment);
         }
