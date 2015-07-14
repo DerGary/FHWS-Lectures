@@ -1,6 +1,5 @@
 package com.mobapp.garyjulius.mylectures.DetailFragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,45 +7,43 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Helper.DownloadPictureTask;
 import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
-import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.R;
-
-import org.w3c.dom.Text;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 
 public class DocentDetailFragment extends Fragment {
+    private TextView _docentNameContent;
+    private TextView _docentTelephoneContent;
+    private TextView _docentMailContent;
+    private TextView _docentPlaceContent;
+    private TextView _docentConsultaitonContent;
+    private TextView _docentWelearnContent;
+    private ImageView _docentPictureView;
 
-
-    TextView docentNameContent;
-    TextView docentTelephoneContent;
-    TextView docentMailContent;
-    TextView docentPlaceContent;
-    TextView docentConsultaitonContent;
-    TextView docentWelearnContent;
-    ImageView docentPictureView;
-
-    Docent actualDocent;
+    private Docent _actualDocent;
 
     public void LectureDetailFragment()
     {
         //Required empty constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -55,67 +52,60 @@ public class DocentDetailFragment extends Fragment {
         // Inflate the layout for this fragment
        final View rootView = inflater.inflate(R.layout.fragment_docent_detail,container,false);
 
-        docentNameContent = (TextView)rootView.findViewById(R.id.docentNameContent);
-        docentTelephoneContent = (TextView)rootView.findViewById(R.id.docentTelContent);
-        docentMailContent = (TextView)rootView.findViewById(R.id.docentMailContent);
-        docentPlaceContent = (TextView)rootView.findViewById(R.id.docentPlaceContent);
-        docentConsultaitonContent = (TextView)rootView.findViewById(R.id.docentConsultationContent);
-        docentWelearnContent = (TextView)rootView.findViewById(R.id.docentWelearnContent);
-        docentPictureView = (ImageView)rootView.findViewById(R.id.docentPictureView);
+        _docentNameContent = (TextView)rootView.findViewById(R.id.docentNameContent);
+        _docentTelephoneContent = (TextView)rootView.findViewById(R.id.docentTelContent);
+        _docentMailContent = (TextView)rootView.findViewById(R.id.docentMailContent);
+        _docentPlaceContent = (TextView)rootView.findViewById(R.id.docentPlaceContent);
+        _docentConsultaitonContent = (TextView)rootView.findViewById(R.id.docentConsultationContent);
+        _docentWelearnContent = (TextView)rootView.findViewById(R.id.docentWelearnContent);
+        _docentPictureView = (ImageView)rootView.findViewById(R.id.docentPictureView);
         Bitmap placeholder = BitmapFactory.decodeResource(getResources(), R.drawable.profilepictureplaceholder);
-        docentPictureView.setImageBitmap(placeholder);
-        docentPictureView.setAdjustViewBounds(true);
-        docentPictureView.setMinimumHeight(150);
-        docentPictureView.setMinimumWidth(placeholder.getWidth() / 150);
+        _docentPictureView.setImageBitmap(placeholder);
+        _docentPictureView.setAdjustViewBounds(true);
+        _docentPictureView.setMinimumHeight(150);
+        _docentPictureView.setMinimumWidth(placeholder.getWidth() / 150);
 
         setData();
 
         DownloadPictureTask downloadPictureTask = new DownloadPictureTask();
         try {
-            docentPictureView.setTag(new URL(actualDocent.get_picture()));
+            _docentPictureView.setTag(new URL(_actualDocent.get_picture()));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        downloadPictureTask.execute(docentPictureView);
+        downloadPictureTask.execute(_docentPictureView);
 
-        docentTelephoneContent.setOnClickListener(new View.OnClickListener() {
+        _docentTelephoneContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse(getResources().getString(R.string.tel) + actualDocent.get_phoneNumber()));
+                intent.setData(Uri.parse(getResources().getString(R.string.tel) + _actualDocent.get_phoneNumber()));
                 startActivity(intent);
             }
         });
 
-        docentMailContent.setOnClickListener(new View.OnClickListener() {
+        _docentMailContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //checkTelephonyStatus(); -> later
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType(getResources().getString(R.string.email_message_type));
-                intent.putExtra(Intent.EXTRA_EMAIL, actualDocent.get_email().toString());
-                //intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-                //intent.putExtra(Intent.EXTRA_TEXT, message);
+                intent.putExtra(Intent.EXTRA_EMAIL, _actualDocent.get_email());
                 Intent mailer = Intent.createChooser(intent, null);
                 startActivity(mailer);
             }
         });
 
-        docentWelearnContent.setOnClickListener(new View.OnClickListener() {
+        _docentWelearnContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(actualDocent.get_linkWeLearn().toString()));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(_actualDocent.get_linkWeLearn()));
                 startActivity(browserIntent);
             }
         });
 
         return rootView;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
     }
 
     @Override
@@ -125,33 +115,20 @@ public class DocentDetailFragment extends Fragment {
         ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(false);
     }
-
-    /*private void checkTelephonyStatus()
-    {
-        TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        return tm != null && tm.getSimState()==TelephonyManager.SIM_STATE_READY;
-    }*/
-
 
     private void setData()
     {
-        docentNameContent.setText(actualDocent.get_name());
-        docentTelephoneContent.setText(actualDocent.get_phoneNumber());
-        docentMailContent.setText(actualDocent.get_email());
-        docentPlaceContent.setText(actualDocent.get_location() + ", " + actualDocent.get_room());
-        docentConsultaitonContent.setText((actualDocent.get_consultationHour()));
-        //docentWelearnContent.setText(actualDocent.get_linkWeLearn());
-    }
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+        _docentNameContent.setText(_actualDocent.get_name());
+        _docentTelephoneContent.setText(_actualDocent.get_phoneNumber());
+        _docentMailContent.setText(_actualDocent.get_email());
+        _docentPlaceContent.setText(_actualDocent.get_location() + ", " + _actualDocent.get_room());
+        _docentConsultaitonContent.setText((_actualDocent.get_consultationHour()));
     }
 
-    public void setActualDocent(Docent actualDocent)
+    public void set_actualDocent(Docent _actualDocent)
     {
-        this.actualDocent = actualDocent;
+        this._actualDocent = _actualDocent;
     }
-
-
 }

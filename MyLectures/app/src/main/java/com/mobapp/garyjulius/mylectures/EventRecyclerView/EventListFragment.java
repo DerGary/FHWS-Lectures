@@ -1,9 +1,8 @@
 package com.mobapp.garyjulius.mylectures.EventRecyclerView;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.MainActivity;
-import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
@@ -42,6 +40,12 @@ public class EventListFragment extends Fragment implements EventClickListener {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         Log.d(TAG, getResources().getString(R.string.log_onStart_called));
@@ -57,8 +61,10 @@ public class EventListFragment extends Fragment implements EventClickListener {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(true);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(true);
     }
 
     @Override

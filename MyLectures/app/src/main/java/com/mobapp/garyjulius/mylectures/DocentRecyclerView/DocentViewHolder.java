@@ -5,10 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Model.Docent;
-import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
-
-import java.text.SimpleDateFormat;
 
 /**
  * Created by Stefan on 18-05-15.

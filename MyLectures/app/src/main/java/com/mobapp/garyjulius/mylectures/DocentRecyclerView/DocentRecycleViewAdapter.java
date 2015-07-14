@@ -6,11 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.Model.Docent;
-import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Stefan on 18-05-15.

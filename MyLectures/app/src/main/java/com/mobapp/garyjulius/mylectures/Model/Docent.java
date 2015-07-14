@@ -1,7 +1,5 @@
 package com.mobapp.garyjulius.mylectures.Model;
 
-import java.net.URL;
-
 /**
  * Created by Stefan on 11-05-15.
  */

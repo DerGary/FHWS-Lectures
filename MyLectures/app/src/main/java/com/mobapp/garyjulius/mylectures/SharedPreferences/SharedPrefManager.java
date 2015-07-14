@@ -16,7 +16,6 @@ import com.mobapp.garyjulius.mylectures.R;
 
 import org.joda.time.DateTime;
 
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +27,13 @@ public class SharedPrefManager {
     private final Context context;
     private final static String My_PREFS_NAME = "SHARED_USER_PREFERENCES";
     private final static String LECTURE_TAG = "lecture";
-    SharedPreferences pref;
-    SharedPreferences.Editor prefEditor;
+    private SharedPreferences _pref;
+    private SharedPreferences.Editor _prefEditor;
 
     public SharedPrefManager(Context context){
         this.context = context;
-        pref = context.getSharedPreferences(My_PREFS_NAME, Context.MODE_PRIVATE);
-        prefEditor = pref.edit();
+        _pref = context.getSharedPreferences(My_PREFS_NAME, Context.MODE_PRIVATE);
+        _prefEditor = _pref.edit();
     }
 
     public boolean saveDataBase(){
@@ -48,15 +47,16 @@ public class SharedPrefManager {
         String docentJson = gson.toJson(docentList);
         String lectureJson = gson.toJson(lectureList);
 
-        prefEditor.putString(context.getString(R.string.prefs_events), eventJson);
-        prefEditor.putString(context.getString(R.string.prefs_docents), docentJson);
-        prefEditor.putString(context.getString(R.string.prefs_lectures), lectureJson);
-        return prefEditor.commit();
+        _prefEditor.putString(context.getString(R.string.prefs_events), eventJson);
+        _prefEditor.putString(context.getString(R.string.prefs_docents), docentJson);
+        _prefEditor.putString(context.getString(R.string.prefs_lectures), lectureJson);
+        return _prefEditor.commit();
     }
+
     public void loadDataBase(){
-        String eventJson = pref.getString(context.getString(R.string.prefs_events), "").toString();
-        String docentJson = pref.getString(context.getString(R.string.prefs_docents), "").toString();
-        String lectureJson = pref.getString(context.getString(R.string.prefs_lectures), "").toString();
+        String eventJson = _pref.getString(context.getString(R.string.prefs_events), "").toString();
+        String docentJson = _pref.getString(context.getString(R.string.prefs_docents), "").toString();
+        String lectureJson = _pref.getString(context.getString(R.string.prefs_lectures), "").toString();
         Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class,new DateTimeSerializer()).create();
         if(!TextUtils.isEmpty(eventJson)){
             Type listType = new TypeToken<ArrayList<Event>>() {}.getType();
@@ -82,19 +82,20 @@ public class SharedPrefManager {
             }
         }
     }
+
     public void delete(){
-        prefEditor.clear();
-        prefEditor.commit();
+        _prefEditor.clear();
+        _prefEditor.commit();
     }
 
     public void saveNote(int lectureID, String note)
     {
-        prefEditor.putString(LECTURE_TAG + lectureID,note);
-        prefEditor.commit();
+        _prefEditor.putString(LECTURE_TAG + lectureID, note);
+        _prefEditor.commit();
     }
 
     public String getNote(int lectureID)
     {
-        return pref.getString(LECTURE_TAG + lectureID, context.getString(R.string.prefs_nonote));
+        return _pref.getString(LECTURE_TAG + lectureID, context.getString(R.string.prefs_nonote));
     }
 }

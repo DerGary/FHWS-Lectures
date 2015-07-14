@@ -2,21 +2,17 @@ package com.mobapp.garyjulius.mylectures.DetailFragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
@@ -33,6 +29,12 @@ public class LectureDetailFragment extends Fragment {
     public void LectureDetailFragment()
     {
         //Required empty constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class LectureDetailFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
-                    docentDetailFragment.setActualDocent(docent);
+                    docentDetailFragment.set_actualDocent(docent);
                     changeFragment(docentDetailFragment);
                 }
             });
@@ -72,17 +74,21 @@ public class LectureDetailFragment extends Fragment {
         return rootView;
     }
 
-
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
         ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.lecture_detail_title));
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(false);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        prefs.saveNote(actualLecture.get_id(),lectureNoteContent.getText().toString());
+        prefs.saveNote(actualLecture.get_id(), lectureNoteContent.getText().toString());
     }
 
     private void setData()

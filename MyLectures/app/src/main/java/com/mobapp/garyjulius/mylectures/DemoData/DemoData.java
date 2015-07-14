@@ -1,23 +1,5 @@
 package com.mobapp.garyjulius.mylectures.DemoData;
 
-import android.content.Context;
-
-import com.mobapp.garyjulius.mylectures.Model.Course;
-import com.mobapp.garyjulius.mylectures.Model.Docent;
-import com.mobapp.garyjulius.mylectures.Model.Event;
-import com.mobapp.garyjulius.mylectures.Model.ExamType;
-import com.mobapp.garyjulius.mylectures.Model.Language;
-import com.mobapp.garyjulius.mylectures.Model.Lecture;
-import com.mobapp.garyjulius.mylectures.Model.LectureType;
-import com.mobapp.garyjulius.mylectures.Model.Place;
-import com.mobapp.garyjulius.mylectures.R;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 /**
  * Created by Julius on 11.05.2015.
  */

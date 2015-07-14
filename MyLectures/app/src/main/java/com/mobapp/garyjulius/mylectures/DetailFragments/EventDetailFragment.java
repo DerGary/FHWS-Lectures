@@ -1,37 +1,31 @@
 package com.mobapp.garyjulius.mylectures.DetailFragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -49,7 +43,6 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -81,6 +74,12 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         dataBase = DataBaseSingleton.getInstance();
@@ -105,8 +104,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
                 @Override
                 public void onClick(View v) {
                     DocentDetailFragment docentDetailFragment = new DocentDetailFragment();
-                    docentDetailFragment.setHasOptionsMenu(true);
-                    docentDetailFragment.setActualDocent(docent);
+                    docentDetailFragment.set_actualDocent(docent);
                     changeFragment(docentDetailFragment);
                 }
             });
@@ -171,10 +169,6 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         super.onDestroy();
         locationManager.removeUpdates(this);
         Log.d(TAG, getResources().getString(R.string.onDestroy_called));
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events_title));
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((MainActivity)getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
-        ((MainActivity)getActivity()).getMenu().findItem(R.id.action_docents).setVisible(true);
     }
 
 
@@ -183,14 +177,20 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         super.onStart();
 
         this.mapFragment = MapFragment.newInstance();
-        getFragmentManager( ).beginTransaction( )
-                .replace( R.id.container, this.mapFragment )
+        getFragmentManager( ).beginTransaction()
+                .replace(R.id.container, this.mapFragment)
                 .commit();
         mapFragment.getMapAsync(this); //get map asynchron
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
         ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.events_title));
         ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(false);
     }
 
     private void setData()
@@ -205,11 +205,6 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         eventLectureContent.setText(dataBase.getLectureFromId(actualEvent.get_lecture()).get_title());
     }
 
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
 
     public Event getActualEvent() {
         return actualEvent;
@@ -265,7 +260,8 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(FHWSMUENZ).zoom(16).bearing(270).tilt(30).build();
             theMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        } else if (dataBase.getLectureFromId(actualEvent.get_lecture()).get_place() == Place.SHL)
+        }
+        else if (dataBase.getLectureFromId(actualEvent.get_lecture()).get_place() == Place.SHL)
         {
             CameraUpdateFactory.newLatLng(FHWSSHL);
             final Marker mark1 = theMap.addMarker(new MarkerOptions()

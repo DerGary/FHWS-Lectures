@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 
 import com.mobapp.garyjulius.mylectures.DetailFragments.DocentDetailFragment;
 import com.mobapp.garyjulius.mylectures.MainActivity;
-import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class DocentListFragment extends Fragment implements DocentClickListener {
@@ -32,9 +30,16 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -43,6 +48,7 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
         ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(true);
+        ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(false);
     }
 
     @Override
@@ -68,7 +74,7 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
     public void OnDocentItemClick(Docent data) {
         DocentDetailFragment detailFragment = new DocentDetailFragment();
         detailFragment.setHasOptionsMenu(true);
-        detailFragment.setActualDocent(data);
+        detailFragment.set_actualDocent(data);
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout,detailFragment).addToBackStack(null).commit();

@@ -3,7 +3,6 @@ package com.mobapp.garyjulius.mylectures.Model;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 /**
  * Created by Stefan on 11-05-15.

@@ -5,29 +5,20 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
+import com.mobapp.garyjulius.mylectures.Helper.ExtendedGson;
 import com.mobapp.garyjulius.mylectures.Model.Docent;
 import com.mobapp.garyjulius.mylectures.Model.Event;
 import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.R;
-//import com.owlike.genson.GenericType;
-//import com.owlike.genson.GenericType;
-//import com.owlike.genson.Genson;
-//import com.owlike.genson.internal.asm.Type;
 
 import org.apache.commons.io.IOUtils;
-import org.joda.time.DateTime;
 
-import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 /**
@@ -35,62 +26,47 @@ import java.util.List;
  */
 public class GetListAsyncTask<T> extends AsyncTask<String,Void,ArrayList> {
     final String TAG = "GetListAsyncTask_ " + ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-    Activity context;
+    private Activity _context;
     public GetListAsyncTask(Activity context)
     {
-        this.context = context;
+        this._context = context;
     }
     @Override
     protected ArrayList doInBackground(String... ext) {
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL(context.getString(R.string.server_basepath) + ext[0]);
+            URL url = new URL(_context.getString(R.string.server_basepath) + ext[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod(context.getString(R.string.http_get));
+            urlConnection.setRequestMethod(_context.getString(R.string.http_get));
             urlConnection.setConnectTimeout(10*1000);
             urlConnection.setReadTimeout(10*1000);
-            Log.d(TAG,"URL: " + urlConnection.getURL().toString());
-            //urlConnection.setRequestProperty("Content-Type","application/json");
-            Gson gson = new GsonBuilder().registerTypeAdapter(DateTime.class, new DateTimeSerializer()).create();
+
+            Gson gson = ExtendedGson.getInstance();
+
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             String response = IOUtils.toString(urlConnection.getInputStream());
-            if(tClass.getName().contains("Docent"))
-            {
+            if(tClass.getName().contains("Docent")) {
                 Type docentType = new TypeToken<ArrayList<Docent>>() {}.getType();
-
-                //Log.d("URL", "" + urlConnection.getHeaderField("Location"));
-                Log.d(TAG, "ResponseCode: " + urlConnection.getResponseCode());
                 ArrayList<Docent> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
             } else if(tClass.getName().contains("Event")) {
                 Type docentType = new TypeToken<ArrayList<Event>>() {}.getType();
-
-                //Log.d("URL", "" + urlConnection.getHeaderField("Location"));
-                Log.d(TAG, "ResponseCode: " + urlConnection.getResponseCode());
                 ArrayList<Event> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
             } else if(tClass.getName().contains("Lecture")) {
                 Type docentType = new TypeToken<ArrayList<Lecture>>() {}.getType();
-
-                //Log.d("URL", "" + urlConnection.getHeaderField("Location"));
-                Log.d(TAG, "ResponseCode: " + urlConnection.getResponseCode());
                 ArrayList<Lecture> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
             }
-        } catch (Exception ex) { Log.e(TAG, "" + ex.getMessage()); }
-        finally {
+        } catch (Exception ex) {
+            Log.e(TAG, "" + ex.getMessage());
+        } finally {
             urlConnection.disconnect();
         }
         return new ArrayList();
-    }
-
-    @Override
-    protected void onPostExecute(ArrayList result) {
-        super.onPostExecute(result);
-        //Gets overridden!
     }
 }
 
