@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.mobapp.garyjulius.mylectures.AddPage.AddPageFragment;
 import com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment;
 import com.mobapp.garyjulius.mylectures.DocentRecyclerView.DocentListFragment;
 import com.mobapp.garyjulius.mylectures.Helper.DateTimeSerializer;
@@ -33,6 +34,7 @@ import java.util.Map;
 public class MainActivity extends ActionBarActivity {
     private ViewPagerFragment _viewPagerFragment;
     private DocentListFragment _docentListFragment;
+    private AddPageFragment _addPageFragment;
     ArrayList<Docent> _docentList;
     ArrayList<Lecture> _lectureList;
     ArrayList<Event> _eventList;
@@ -202,6 +204,13 @@ public class MainActivity extends ActionBarActivity {
         {
             onBackPressed();
             return true;
+        }
+        else if(id == R.id.action_add){
+            if(_addPageFragment == null){
+                _addPageFragment = new AddPageFragment();
+                _addPageFragment.setHasOptionsMenu(true);
+            }
+            changeFragment(_addPageFragment, true);
         }
         return super.onOptionsItemSelected(item);
     }

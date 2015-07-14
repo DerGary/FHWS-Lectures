@@ -7,4 +7,6 @@
         android:orderInCategory="100" app:showAsAction="ifRoom" />
     <item android:id="@+id/action_events" android:title="Termine"
         android:orderInCategory="100" app:showAsAction="ifRoom" android:visible="false" />
+    <item android:id="@+id/action_add" android:title="Termin hinzufügen"
+        android:orderInCategory="100" app:showAsAction="ifRoom"/>
 </menu>
