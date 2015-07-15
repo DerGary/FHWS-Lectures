@@ -23,14 +23,17 @@ import org.joda.time.format.DateTimeFormatter;
  */
 public class NotificationBroadCastReceiver extends BroadcastReceiver {
     public final static int REQUEST_CODE = 1;
+    public static boolean registered = false;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         DataBaseSingleton.getInstance().loadDataBase(context);
-        for(Event e : DataBaseSingleton.getInstance().get_eventList()){
+
+        for (Event e : DataBaseSingleton.getInstance().get_eventList()) {
             DateTime beginTime = e.getBeginDateTime();
             DateTime now = DateTime.now();
-            if(beginTime.isAfter(now) && beginTime.isBefore(now.plusMinutes(16)))
-            {
+
+            if (beginTime.isAfter(now) && beginTime.isBefore(now.plusMinutes(16))) {
                 int lecture = e.get_lecture();
                 Lecture lec = DataBaseSingleton.getInstance().getLectureFromId(lecture);
                 String lecname = lec != null ? lec.get_title() : "";
@@ -39,22 +42,20 @@ public class NotificationBroadCastReceiver extends BroadcastReceiver {
                 Intent startIntent = new Intent(context, MainActivity.class);
                 startIntent.putExtra(context.getString(R.string.pref_eventid), e.get_id());
 
-                PendingIntent pendingIntent = PendingIntent.getActivity(context,0,startIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, startIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
                 Notification.Builder mBuilder = new Notification.Builder(context)
                         .setSmallIcon(android.R.drawable.ic_menu_recent_history)
                         .setContentTitle(lecname)
-                        .setContentText(context.getString(R.string.notification_room)+e.get_room() + context.getString(R.string.notification_start)+ fmt.print(e.getBeginDateTime()) + context.getString(R.string.notification_end)+ fmt.print(e.getEndDateTime()))
+                        .setContentText(context.getString(R.string.notification_room) + e.get_room() + context.getString(R.string.notification_start) + fmt.print(e.getBeginDateTime()) + context.getString(R.string.notification_end) + fmt.print(e.getEndDateTime()))
                         .setContentIntent(pendingIntent);
                 Notification n = mBuilder.build();
 
-                NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-                manager.notify(e.get_id(),n);
+                NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                manager.notify(e.get_id(), n);
             }
         }
     }
-
-    public static boolean registered = false;
 
     public static void registerAlarm(Context context) {
         if (registered)
@@ -65,7 +66,7 @@ public class NotificationBroadCastReceiver extends BroadcastReceiver {
         PendingIntent sender = PendingIntent.getBroadcast(context, NotificationBroadCastReceiver.REQUEST_CODE, i, 0);
 
         long firstTime = System.currentTimeMillis();
-        int minutesInMillis = 15*60*1000;
+        int minutesInMillis = 15 * 60 * 1000;
         firstTime = firstTime - (firstTime % minutesInMillis) + minutesInMillis;
 
         // Schedule the alarm!

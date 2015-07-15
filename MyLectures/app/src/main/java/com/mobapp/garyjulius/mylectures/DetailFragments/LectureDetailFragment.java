@@ -21,13 +21,11 @@ import com.mobapp.garyjulius.mylectures.SharedPreferences.SharedPrefManager;
 
 
 public class LectureDetailFragment extends Fragment {
-    private TextView lectureNameContent, lecturePlaceContent, lectureDescriptionContent,lectureNoteContent;
-    private DataBaseSingleton dataBase;
-    private Lecture actualLecture;
-    private SharedPrefManager prefs;
+    private TextView _lectureNameContent, _lecturePlaceContent, _lectureDescriptionContent, _lectureNoteContent;
+    private Lecture _actualLecture;
+    private SharedPrefManager _prefs;
 
-    public void LectureDetailFragment()
-    {
+    public void LectureDetailFragment() {
         //Required empty constructor
     }
 
@@ -38,25 +36,22 @@ public class LectureDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        dataBase = DataBaseSingleton.getInstance();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       final View rootView = inflater.inflate(R.layout.fragment_lecture_detail,container,false);
+        final View rootView = inflater.inflate(R.layout.fragment_lecture_detail, container, false);
 
-        prefs = new SharedPrefManager(getActivity());
+        _prefs = new SharedPrefManager(getActivity());
 
-        lectureNameContent = (TextView) rootView.findViewById(R.id.lectureNameContent);
-        lecturePlaceContent = (TextView) rootView.findViewById(R.id.lecturePlaceContent);
-        lectureDescriptionContent = (TextView) rootView.findViewById(R.id.lectureDescTextfield);
-        lectureNoteContent = (TextView) rootView.findViewById(R.id.lectureNotesTextfield);
+        _lectureNameContent = (TextView) rootView.findViewById(R.id.lectureNameContent);
+        _lecturePlaceContent = (TextView) rootView.findViewById(R.id.lecturePlaceContent);
+        _lectureDescriptionContent = (TextView) rootView.findViewById(R.id.lectureDescTextfield);
+        _lectureNoteContent = (TextView) rootView.findViewById(R.id.lectureNotesTextfield);
 
         setData();
 
-        LinearLayout layout = (LinearLayout)rootView.findViewById(R.id.lectureDocentLayout);
+        LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.lectureDocentLayout);
 
-        for(int i : actualLecture.get_docents())
-        {
+        for (int i : _actualLecture.get_docents()) {
             TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.text_view, null);
             final Docent docent = DataBaseSingleton.getInstance().getDocentFromID(i);
             text.setText(docent.get_name());
@@ -82,32 +77,23 @@ public class LectureDetailFragment extends Fragment {
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_docents).setVisible(false);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_events).setVisible(false);
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(false);
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        prefs.saveNote(actualLecture.get_id(), lectureNoteContent.getText().toString());
+        _prefs.saveNote(_actualLecture.get_id(), _lectureNoteContent.getText().toString());
     }
 
-    private void setData()
-    {
-        lectureNameContent.setText(actualLecture.get_title());
-        lecturePlaceContent.setText(actualLecture.get_place().toString());
-        lectureDescriptionContent.setText(actualLecture.get_description());
-        lectureNoteContent.setText(prefs.getNote(actualLecture.get_id()));
+    private void setData() {
+        _lectureNameContent.setText(_actualLecture.get_title());
+        _lecturePlaceContent.setText(_actualLecture.get_place().toString());
+        _lectureDescriptionContent.setText(_actualLecture.get_description());
+        _lectureNoteContent.setText(_prefs.getNote(_actualLecture.get_id()));
     }
 
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    public void setLecture(Lecture actualLecture)
-    {
-        this.actualLecture = actualLecture;
+    public void setLecture(Lecture actualLecture) {
+        this._actualLecture = actualLecture;
     }
 
     public void changeFragment(Fragment fragment) {

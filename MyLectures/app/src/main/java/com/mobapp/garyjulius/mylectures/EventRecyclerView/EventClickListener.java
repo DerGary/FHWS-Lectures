@@ -5,7 +5,6 @@ import com.mobapp.garyjulius.mylectures.Model.Event;
 /**
  * Created by Stefan on 18-05-15.
  */
-public interface EventClickListener
-{
+public interface EventClickListener {
     void OnEventItemClick(Event data);
 }

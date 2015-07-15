@@ -16,7 +16,6 @@ import java.lang.reflect.Type;
  * Created by Stefan on 27-06-15.
  */
 public class DateTimeSerializer implements JsonDeserializer<DateTime>, JsonSerializer<DateTime> {
-
     @Override
     public DateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         return DateTime.parse(json.getAsString());

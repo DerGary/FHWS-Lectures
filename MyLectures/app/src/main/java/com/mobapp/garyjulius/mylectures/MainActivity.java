@@ -32,8 +32,7 @@ public class MainActivity extends ActionBarActivity {
     private MenuItem _docentItem;
     private Menu _menu;
 
-    private GetListAsyncTask<Docent> _getDocents = new GetListAsyncTask<Docent>(this)
-    {
+    private GetListAsyncTask<Docent> _getDocents = new GetListAsyncTask<Docent>(this) {
         @Override
         protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
@@ -48,17 +47,16 @@ public class MainActivity extends ActionBarActivity {
         }
     };
 
-    private GetListAsyncTask<Lecture> _getLectures = new GetListAsyncTask<Lecture>(this)
-    {
+    private GetListAsyncTask<Lecture> _getLectures = new GetListAsyncTask<Lecture>(this) {
         @Override
         protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
             _lectureList = result;
-            if(_docentList != null)
+            if (_docentList != null)
                 DataBaseSingleton.getInstance().set_docentList(_docentList);
-            if(_eventList != null)
+            if (_eventList != null)
                 DataBaseSingleton.getInstance().set_eventList(_eventList);
-            if(_lectureList != null)
+            if (_lectureList != null)
                 DataBaseSingleton.getInstance().set_lectureList(_lectureList);
             DataBaseSingleton.getInstance().saveDataBase(getBaseContext());
             createPage();
@@ -71,8 +69,7 @@ public class MainActivity extends ActionBarActivity {
         }
     };
 
-    private GetListAsyncTask<Event> _getEvents = new GetListAsyncTask<Event>(this)
-    {
+    private GetListAsyncTask<Event> _getEvents = new GetListAsyncTask<Event>(this) {
         @Override
         protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
@@ -86,9 +83,6 @@ public class MainActivity extends ActionBarActivity {
             createPage();
         }
     };
-
-
-
 
 
     @Override
@@ -124,18 +118,18 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    public void checkIntentForEventID(){
-        Intent intent = new Intent( this, BackgroundNotificationService.class );
-        startService( intent );
+    public void checkIntentForEventID() {
+        Intent intent = new Intent(this, BackgroundNotificationService.class);
+        startService(intent);
 
         Intent callingIntent = getIntent();
         int eventId = 0;
-        if(callingIntent != null){
-            eventId = callingIntent.getIntExtra(getString(R.string.callingintent_eventID),0);
+        if (callingIntent != null) {
+            eventId = callingIntent.getIntExtra(getString(R.string.callingintent_eventID), 0);
         }
-        if(eventId > 0 ){
+        if (eventId > 0) {
             EventDetailFragment detailFragment = new EventDetailFragment();
-            detailFragment.setActualEvent(DataBaseSingleton.getInstance().getEventFromId(eventId));
+            detailFragment.set_actualEvent(DataBaseSingleton.getInstance().getEventFromId(eventId));
             changeFragment(detailFragment, true);
         }
     }
@@ -160,25 +154,23 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }else if(id == R.id.action_docents){
-            if(_docentListFragment== null){
+        } else if (id == R.id.action_docents) {
+            if (_docentListFragment == null) {
                 _docentListFragment = new DocentListFragment();
                 _docentListFragment.setData(DataBaseSingleton.getInstance().get_docentList());
             }
             changeFragment(_docentListFragment, false);
-        }else if(id == R.id.action_events){
-            if(_viewPagerFragment== null){
+        } else if (id == R.id.action_events) {
+            if (_viewPagerFragment == null) {
                 _viewPagerFragment = new ViewPagerFragment();
-                _viewPagerFragment.setData(getBaseContext(),DataBaseSingleton.getInstance().get_eventList());
+                _viewPagerFragment.setData(getBaseContext(), DataBaseSingleton.getInstance().get_eventList());
             }
-            changeFragment(_viewPagerFragment,false);
-        } else if(id == android.R.id.home)
-        {
+            changeFragment(_viewPagerFragment, false);
+        } else if (id == android.R.id.home) {
             onBackPressed();
             return true;
-        }
-        else if(id == R.id.action_add){
-            if(_addPageFragment == null){
+        } else if (id == R.id.action_add) {
+            if (_addPageFragment == null) {
                 _addPageFragment = new AddPageFragment();
             }
             changeFragment(_addPageFragment, true);
@@ -186,12 +178,11 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void changeFragment(Fragment fragment, boolean addToBackStack)
-    {
+    public void changeFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
         ).replace(R.id.main_layout, fragment);
-        if(addToBackStack){
+        if (addToBackStack) {
             transaction.addToBackStack(null);
         }
         transaction.commit();
@@ -199,22 +190,21 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        if(getFragmentManager().getBackStackEntryCount() > 0)
+        if (getFragmentManager().getBackStackEntryCount() > 0)
             getFragmentManager().popBackStack();
         else
             super.onBackPressed();
     }
 
-    public void createPage(){
+    public void createPage() {
         DataBaseSingleton.getInstance().loadDataBase(getBaseContext());
         _viewPagerFragment = new ViewPagerFragment();
-        _viewPagerFragment.setData(getBaseContext(),DataBaseSingleton.getInstance().get_eventList());
+        _viewPagerFragment.setData(getBaseContext(), DataBaseSingleton.getInstance().get_eventList());
         getFragmentManager().beginTransaction().replace(R.id.main_layout, _viewPagerFragment).commit();
         checkIntentForEventID();
     }
 
-    public Menu getMenu()
-    {
+    public Menu getMenu() {
         return _menu;
     }
 }

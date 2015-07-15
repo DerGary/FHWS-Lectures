@@ -35,8 +35,7 @@ public class DocentDetailFragment extends Fragment {
 
     private Docent _actualDocent;
 
-    public void LectureDetailFragment()
-    {
+    public void LectureDetailFragment() {
         //Required empty constructor
     }
 
@@ -47,18 +46,18 @@ public class DocentDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       final View rootView = inflater.inflate(R.layout.fragment_docent_detail,container,false);
+        final View rootView = inflater.inflate(R.layout.fragment_docent_detail, container, false);
 
-        _docentNameContent = (TextView)rootView.findViewById(R.id.docentNameContent);
-        _docentTelephoneContent = (TextView)rootView.findViewById(R.id.docentTelContent);
-        _docentMailContent = (TextView)rootView.findViewById(R.id.docentMailContent);
-        _docentPlaceContent = (TextView)rootView.findViewById(R.id.docentPlaceContent);
-        _docentConsultaitonContent = (TextView)rootView.findViewById(R.id.docentConsultationContent);
-        _docentWelearnContent = (TextView)rootView.findViewById(R.id.docentWelearnContent);
-        _docentPictureView = (ImageView)rootView.findViewById(R.id.docentPictureView);
+        _docentNameContent = (TextView) rootView.findViewById(R.id.docentNameContent);
+        _docentTelephoneContent = (TextView) rootView.findViewById(R.id.docentTelContent);
+        _docentMailContent = (TextView) rootView.findViewById(R.id.docentMailContent);
+        _docentPlaceContent = (TextView) rootView.findViewById(R.id.docentPlaceContent);
+        _docentConsultaitonContent = (TextView) rootView.findViewById(R.id.docentConsultationContent);
+        _docentWelearnContent = (TextView) rootView.findViewById(R.id.docentWelearnContent);
+        _docentPictureView = (ImageView) rootView.findViewById(R.id.docentPictureView);
+
         Bitmap placeholder = BitmapFactory.decodeResource(getResources(), R.drawable.profilepictureplaceholder);
         _docentPictureView.setImageBitmap(placeholder);
         _docentPictureView.setAdjustViewBounds(true);
@@ -87,8 +86,6 @@ public class DocentDetailFragment extends Fragment {
         _docentMailContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //checkTelephonyStatus(); -> later
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType(getResources().getString(R.string.email_message_type));
                 intent.putExtra(Intent.EXTRA_EMAIL, _actualDocent.get_email());
@@ -118,8 +115,7 @@ public class DocentDetailFragment extends Fragment {
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(false);
     }
 
-    private void setData()
-    {
+    private void setData() {
         _docentNameContent.setText(_actualDocent.get_name());
         _docentTelephoneContent.setText(_actualDocent.get_phoneNumber());
         _docentMailContent.setText(_actualDocent.get_email());
@@ -127,8 +123,7 @@ public class DocentDetailFragment extends Fragment {
         _docentConsultaitonContent.setText((_actualDocent.get_consultationHour()));
     }
 
-    public void set_actualDocent(Docent _actualDocent)
-    {
+    public void set_actualDocent(Docent _actualDocent) {
         this._actualDocent = _actualDocent;
     }
 }

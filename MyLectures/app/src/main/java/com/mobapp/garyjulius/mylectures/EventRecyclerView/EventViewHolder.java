@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class EventViewHolder extends RecyclerView.ViewHolder {
     private final TextView _lectureName, _lectureType, _docent, _time, _room;
-    public Event event;
+    private Event _data;
 
     public EventViewHolder(View itemView) {
         super(itemView);
@@ -32,18 +32,22 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void assignData(Event data) {
-        event = data;
+        _data = data;
         this._lectureName.setText(DataBaseSingleton.getInstance().getLectureFromId(data.get_lecture()).get_title());
         this._lectureType.setText(data.get_type().toString());
+
         String docents = "";
         ArrayList<Docent> tempDocents = new ArrayList<Docent>();
-        for(int i = 0; i < event.get_docent().size(); i++)
+
+        for(int i = 0; i < data.get_docent().size(); i++)
         {
-            tempDocents.add(DataBaseSingleton.getInstance().getDocentFromID(event.get_docent().get(i)));
+            tempDocents.add(DataBaseSingleton.getInstance().getDocentFromID(data.get_docent().get(i)));
         }
+
         for(Docent d :tempDocents){
             docents += d.get_name()+", ";
         }
+
         if(docents.length() > 2)
             docents = docents.substring(0,docents.length()-2);
 
@@ -56,4 +60,9 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
         this._time.setText(fmt.print(beginTime) + " - " + fmt.print(endTime));
         this._room.setText(data.get_room());
     }
+
+    public Event get_data() {
+        return _data;
+    }
+
 }

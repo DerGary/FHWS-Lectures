@@ -12,17 +12,21 @@ import com.mobapp.garyjulius.mylectures.R;
  */
 public class DocentViewHolder extends RecyclerView.ViewHolder {
     private final TextView _name, _room;
-    public Docent docent;
+    private Docent _data;
 
     public DocentViewHolder(View itemView) {
         super(itemView);
-        _name = (TextView)itemView.findViewById(R.id.docent_name);
-        _room = (TextView)itemView.findViewById(R.id.docent_room);
+        _name = (TextView) itemView.findViewById(R.id.docent_name);
+        _room = (TextView) itemView.findViewById(R.id.docent_room);
     }
 
     public void assignData(Docent data) {
-        docent = data;
+        _data = data;
         _name.setText(data.get_name());
         _room.setText(data.get_room());
+    }
+
+    public Docent get_data() {
+        return _data;
     }
 }

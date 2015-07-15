@@ -11,6 +11,10 @@ import java.util.ArrayList;
  */
 public class DataBaseSingleton {
     private static DataBaseSingleton ourInstance = new DataBaseSingleton();
+    private ArrayList<Docent> _docentList;
+    private ArrayList<Lecture> _lectureList;
+    private ArrayList<Event> _eventList;
+    private static boolean loaded = false;
 
     public static DataBaseSingleton getInstance() {
         return ourInstance;
@@ -22,45 +26,33 @@ public class DataBaseSingleton {
         this._eventList = new ArrayList<>();
     }
 
-    private ArrayList<Docent> _docentList;
-    private ArrayList<Lecture> _lectureList;
-    private ArrayList<Event> _eventList;
-
-    public Docent getDocentFromID(int docentId)
-    {
-        for(Docent d:_docentList)
-        {
-            if(d.get_id() == docentId)
-            {
+    public Docent getDocentFromID(int docentId) {
+        for (Docent d : _docentList) {
+            if (d.get_id() == docentId) {
                 return d;
             }
         }
         return null;
     }
 
-    public Event getEventFromId(int eventID)
-    {
-        for(Event e:_eventList)
-        {
-            if(e.get_id() == eventID)
-            {
+    public Event getEventFromId(int eventID) {
+        for (Event e : _eventList) {
+            if (e.get_id() == eventID) {
                 return e;
             }
         }
         return null;
     }
 
-    public Lecture getLectureFromId(int lectureID)
-    {
-        for(Lecture l:_lectureList)
-        {
-            if(l.get_id() == lectureID)
-            {
+    public Lecture getLectureFromId(int lectureID) {
+        for (Lecture l : _lectureList) {
+            if (l.get_id() == lectureID) {
                 return l;
             }
         }
         return null;
     }
+
     public ArrayList<Docent> get_docentList() {
         return _docentList;
     }
@@ -85,13 +77,13 @@ public class DataBaseSingleton {
         this._eventList = _eventList;
     }
 
-    public void saveDataBase(Context context){
+    public void saveDataBase(Context context) {
         SharedPrefManager manager = new SharedPrefManager(context);
         manager.saveDataBase();
     }
-    private static boolean loaded = false;
-    public void loadDataBase(Context context){
-        if(loaded)
+
+    public void loadDataBase(Context context) {
+        if (loaded)
             return;
 
         SharedPrefManager manager = new SharedPrefManager(context);

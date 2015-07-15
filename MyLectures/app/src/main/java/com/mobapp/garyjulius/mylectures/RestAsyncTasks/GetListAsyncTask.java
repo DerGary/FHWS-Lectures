@@ -24,13 +24,14 @@ import java.util.ArrayList;
 /**
  * Created by Julius on 25.06.2015.
  */
-public class GetListAsyncTask<T> extends AsyncTask<String,Void,ArrayList> {
+public class GetListAsyncTask<T> extends AsyncTask<String, Void, ArrayList> {
     final String TAG = "GetListAsyncTask_ " + ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
     private Activity _context;
-    public GetListAsyncTask(Activity context)
-    {
+
+    public GetListAsyncTask(Activity context) {
         this._context = context;
     }
+
     @Override
     protected ArrayList doInBackground(String... ext) {
         HttpURLConnection urlConnection = null;
@@ -38,25 +39,28 @@ public class GetListAsyncTask<T> extends AsyncTask<String,Void,ArrayList> {
             URL url = new URL(_context.getString(R.string.server_basepath) + ext[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod(_context.getString(R.string.http_get));
-            urlConnection.setConnectTimeout(10*1000);
-            urlConnection.setReadTimeout(10*1000);
+            urlConnection.setConnectTimeout(10 * 1000);
+            urlConnection.setReadTimeout(10 * 1000);
 
             Gson gson = ExtendedGson.getInstance();
 
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             String response = IOUtils.toString(urlConnection.getInputStream());
-            if(tClass.getName().contains("Docent")) {
-                Type docentType = new TypeToken<ArrayList<Docent>>() {}.getType();
+            if (tClass.getName().contains("Docent")) {
+                Type docentType = new TypeToken<ArrayList<Docent>>() {
+                }.getType();
                 ArrayList<Docent> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
-            } else if(tClass.getName().contains("Event")) {
-                Type docentType = new TypeToken<ArrayList<Event>>() {}.getType();
+            } else if (tClass.getName().contains("Event")) {
+                Type docentType = new TypeToken<ArrayList<Event>>() {
+                }.getType();
                 ArrayList<Event> objectList = gson.fromJson(response, docentType);
 
                 return objectList;
-            } else if(tClass.getName().contains("Lecture")) {
-                Type docentType = new TypeToken<ArrayList<Lecture>>() {}.getType();
+            } else if (tClass.getName().contains("Lecture")) {
+                Type docentType = new TypeToken<ArrayList<Lecture>>() {
+                }.getType();
                 ArrayList<Lecture> objectList = gson.fromJson(response, docentType);
 
                 return objectList;

@@ -1,120 +1,129 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.mobapp.garyjulius.mylectures.AddPage.AddPageFragment">
+    android:orientation="vertical">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="6dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:hapticFeedbackEnabled="true"
-            android:background="@drawable/rippleeffect"
             android:id="@+id/eventLectureLayout"
-            android:paddingBottom="6dp"
-            android:layout_marginTop="20dp">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Lecture:"
-                android:id="@+id/eventLectureLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/eventLectureText"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="18dp" />
-        </LinearLayout>
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="6dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rippleeffect"
             android:clickable="true"
             android:focusable="true"
             android:hapticFeedbackEnabled="true"
-            android:background="@drawable/rippleeffect"
-            android:id="@+id/eventTypeLayout"
-            android:paddingBottom="6dp">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Type:"
-                android:id="@+id/eventTypeLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
 
             <TextView
+                android:id="@+id/eventLectureLabel"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:text="Lecture:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/eventLectureText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/eventTypeText"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
+                android:text="Tap to set"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="18dp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/eventTypeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rippleeffect"
+            android:clickable="true"
+            android:focusable="true"
+            android:hapticFeedbackEnabled="true"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/eventTypeLabel"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:text="Type:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/eventTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:text="Tap to set"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="18dp" />
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/eventDocentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="6dp"
+            android:background="@drawable/rippleeffect"
             android:clickable="true"
             android:focusable="true"
             android:hapticFeedbackEnabled="true"
-            android:background="@drawable/rippleeffect"
-            android:paddingBottom="6dp">
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
+
             <TextView
+                android:id="@+id/eventDocentLabel"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Docents:"
-                android:id="@+id/eventDocentLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
                 android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:layout_marginRight="5dp"
+                android:text="Docents:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
             <LinearLayout
+                android:id="@+id/eventDocentLayoutContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:id="@+id/eventDocentLayoutContent">
+                android:layout_marginRight="40dp">
+
                 <TextView
+                    android:id="@+id/eventDocentText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/eventDocentText"
                     android:layout_marginBottom="5dp"
+                    android:text="Tap to set"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="18dp" />
             </LinearLayout>
-
         </LinearLayout>
 
 
@@ -122,34 +131,35 @@
             android:id="@+id/eventStartLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="6dp"
+            android:background="@drawable/rippleeffect"
             android:clickable="true"
             android:focusable="true"
             android:hapticFeedbackEnabled="true"
-            android:background="@drawable/rippleeffect"
-            android:paddingBottom="6dp">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Start:"
-                android:id="@+id/eventStartLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
 
             <TextView
+                android:id="@+id/eventStartLabel"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:text="Start:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/eventStartContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/eventStartContent"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
+                android:text="Tap to set"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="18dp" />
         </LinearLayout>
 
@@ -157,79 +167,80 @@
             android:id="@+id/eventEndLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:background="@drawable/rippleeffect"
             android:clickable="true"
             android:focusable="true"
             android:hapticFeedbackEnabled="true"
-            android:background="@drawable/rippleeffect"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="End:"
-                android:id="@+id/eventEndLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/eventEndContent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="18dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/eventRoomLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:hapticFeedbackEnabled="true"
-            android:background="@drawable/rippleeffect"
             android:paddingBottom="6dp"
             android:paddingTop="6dp">
 
             <TextView
+                android:id="@+id/eventEndLabel"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Room:"
-                android:id="@+id/eventRoomLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
                 android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:layout_marginRight="5dp"
+                android:text="End:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/eventEndContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/eventRoomText"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
+                android:text="Tap to set"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/eventRoomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rippleeffect"
+            android:clickable="true"
+            android:focusable="true"
+            android:hapticFeedbackEnabled="true"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/eventRoomLabel"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:text="Room:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/eventRoomText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:text="Tab to set"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="18dp" />
 
         </LinearLayout>
 
-        <Button android:layout_width="match_parent"
+        <Button
+            android:id="@+id/eventSend"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Send"
-            android:id="@+id/eventSend">
-
-        </Button>
+            android:text="Send"/>
     </LinearLayout>
 </ScrollView>

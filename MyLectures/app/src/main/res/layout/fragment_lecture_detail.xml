@@ -1,153 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:isScrollContainer="true">
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.mobapp.garyjulius.mylectures.DetailFragments.EventDetailFragment"
-    android:background="@color/white"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/scrollView2"
-    android:fillViewport="true"
-    android:layout_gravity="fill"
-    android:foregroundGravity="fill_horizontal|fill_vertical|fill">
-<RelativeLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="fill">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView2"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top"
-        android:gravity="fill_horizontal|fill_vertical|fill"
-        android:layout_marginBottom="40dp">
+        android:layout_gravity="fill"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:foregroundGravity="fill_horizontal|fill_vertical|fill">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="12dp">
+            android:gravity="fill">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/lectureNameContent"
-                android:layout_gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textSize="22dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Place:"
-            android:id="@+id/lecturePlaceLabel"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/lecturePlaceContent"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="40dp"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Docents:"
-            android:id="@+id/lectureDocentLabel"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:orientation="vertical"
-            android:id="@+id/lectureDocentLayout"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp">
-            <!--
-            <ListView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/lectureDocentsContent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="40dp"
-                android:scrollbars="none"/>
-                -->
-        </LinearLayout>
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Notes:"
-            android:id="@+id/lectureNotesLabel"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginBottom="40dp"
+                android:gravity="fill_horizontal|fill_vertical|fill"
+                android:orientation="vertical">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/lectureNotesTextfield"
-            android:text="Das ist ein Beispieltext"
-            android:layout_marginLeft="36dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="40dp"
-            android:textSize="18dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Description:"
-            android:id="@+id/lectureDescLabel"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/lectureNameContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        android:text="Medium Text"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/lectureDescTextfield"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="40dp"
-            android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/lecturePlaceLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Place:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/lecturePlaceContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="18dp" />
 
-    </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+                <TextView
+                    android:id="@+id/lectureDocentLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Docents:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/lectureDocentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/lectureNotesLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Notes:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/lectureNotesTextfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginRight="40dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:text="Das ist ein Beispieltext"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/lectureDescLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Description:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lectureDescTextfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="6dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:textSize="14dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>

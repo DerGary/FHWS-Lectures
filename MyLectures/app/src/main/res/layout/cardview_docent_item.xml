@@ -2,36 +2,37 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/docent_card_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/docent_card_view"
-    android:orientation="horizontal"
-    android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
-    card_view:cardElevation="2dp"
-    card_view:cardCornerRadius="3dp">
+    android:layout_marginTop="5dp"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="3dp"
+    card_view:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="top|left"
         android:elevation="0dp"
+        android:gravity="top|left"
+        android:orientation="vertical"
         android:padding="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Docent Name"
-            android:padding="3dp"
-            android:id="@+id/docent_name"
-            android:layout_gravity="left|center_horizontal" />
 
         <TextView
+            android:id="@+id/docent_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Docent Room"
+            android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
+            android:text="Docent Name" />
+
+        <TextView
             android:id="@+id/docent_room"
-            android:layout_gravity="left|center_horizontal" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_horizontal"
+            android:padding="3dp"
+            android:text="Docent Room" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

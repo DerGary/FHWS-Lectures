@@ -59,15 +59,7 @@ public class AddPageFragment extends Fragment {
     private View _rootLayout;
 
     private Event _ev;
-    private PostAsyncTask<Event> _sendEvent = new PostAsyncTask<Event>(getActivity())
-    {
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            DataBaseSingleton.getInstance().get_eventList().add(_ev);
-            getActivity().onBackPressed();
-        }
-    };
+    private PostAsyncTask<Event> _sendEvent;
 
 
     public AddPageFragment() {
@@ -87,16 +79,16 @@ public class AddPageFragment extends Fragment {
         _rootLayout = inflater.inflate(R.layout.fragment_add_page, container, false);
 
 
-        for(LectureType t : LectureType.values()){
+        for (LectureType t : LectureType.values()) {
             _lectureTypes.add(t.toString());
         }
-        for(Docent d : DataBaseSingleton.getInstance().get_docentList()){
+        for (Docent d : DataBaseSingleton.getInstance().get_docentList()) {
             _docents.add(d.get_name());
         }
         _checkedDocentsTemp = new boolean[_docents.size()];
         _checkedDocents = new boolean[_docents.size()];
 
-        for(Lecture l : DataBaseSingleton.getInstance().get_lectureList()){
+        for (Lecture l : DataBaseSingleton.getInstance().get_lectureList()) {
             _lectures.add(l.get_title());
         }
 
@@ -183,7 +175,7 @@ public class AddPageFragment extends Fragment {
         builder.create().show();
     }
 
-    private void onLectureTypeClicked(){
+    private void onLectureTypeClicked() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setSingleChoiceItems(_lectureTypes.toArray(new String[_lectureTypes.size()]), _checkedLectureType, new DialogInterface.OnClickListener() {
             @Override
@@ -204,7 +196,7 @@ public class AddPageFragment extends Fragment {
         builder.create().show();
     }
 
-    private void onDocentTypeClicked(){
+    private void onDocentTypeClicked() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         _checkedDocentsTemp = _checkedDocents.clone();
         builder.setMultiChoiceItems(_docents.toArray(new String[_docents.size()]), _checkedDocentsTemp, new DialogInterface.OnMultiChoiceClickListener() {
@@ -224,7 +216,7 @@ public class AddPageFragment extends Fragment {
                         s += _docents.get(i) + "\r\n";
                     }
                 }
-                if (s.length() > 3){
+                if (s.length() > 3) {
                     s = s.substring(0, s.length() - 2);
                 }
                 LinearLayout layout = (LinearLayout) _rootLayout.findViewById(R.id.eventDocentLayoutContent);
@@ -253,7 +245,7 @@ public class AddPageFragment extends Fragment {
                         _startYear = _startYearTemp;
                         _startMonth = _startMonthTemp;
                         _startDay = _startDayTemp;
-                        DateTime endTime = new DateTime(_startYear, _startMonth +1, _startDay, _startHour, _startMinute);
+                        DateTime endTime = new DateTime(_startYear, _startMonth + 1, _startDay, _startHour, _startMinute);
                         DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm - dd.MM.yyyy");
 
                         TextView text = (TextView) _rootLayout.findViewById(R.id.eventStartContent);
@@ -279,7 +271,7 @@ public class AddPageFragment extends Fragment {
                         _endYear = _endYearTemp;
                         _endMonth = _endMonthTemp;
                         _endDay = _endDayTemp;
-                        DateTime endTime = new DateTime(_endYear, _endMonth +1, _endDay, _endHour, _endMinute);
+                        DateTime endTime = new DateTime(_endYear, _endMonth + 1, _endDay, _endHour, _endMinute);
                         DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm - dd.MM.yyyy");
 
                         TextView text = (TextView) _rootLayout.findViewById(R.id.eventEndContent);
@@ -291,10 +283,11 @@ public class AddPageFragment extends Fragment {
     }
 
     private EditText _edit;
+
     private void onPlaceClicked() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LinearLayout layout = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.dialog_edittext, null);
-        _edit = (EditText)layout.findViewById(R.id.dialogEditText);
+        _edit = (EditText) layout.findViewById(R.id.dialogEditText);
         _edit.setText(_room);
         builder.setView(layout);
         builder.setTitle("Choose Room");
@@ -310,7 +303,7 @@ public class AddPageFragment extends Fragment {
         builder.create().show();
     }
 
-    private void showDatePicker(DatePickerDialog.OnDateSetListener listener){
+    private void showDatePicker(DatePickerDialog.OnDateSetListener listener) {
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -320,42 +313,54 @@ public class AddPageFragment extends Fragment {
         dialog.show();
     }
 
-    private void showTimePicker(TimePickerDialog.OnTimeSetListener listener){
+    private void showTimePicker(TimePickerDialog.OnTimeSetListener listener) {
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = c.get(Calendar.MINUTE);
 
-        TimePickerDialog dialog = new TimePickerDialog(getActivity(), listener, hour, minute,DateFormat.is24HourFormat(getActivity()));
+        TimePickerDialog dialog = new TimePickerDialog(getActivity(), listener, hour, minute, DateFormat.is24HourFormat(getActivity()));
         dialog.show();
     }
 
-    private void sendEvent(){
+    private void sendEvent() {
         ArrayList<Integer> docentIds = new ArrayList<>();
-        for(int i = 0 ; i < _checkedDocents.length;i++){
-            if(_checkedDocents[i]) {
-                docentIds.add(i);
+        ArrayList<Docent> docents = DataBaseSingleton.getInstance().get_docentList();
+        for (int i = 0; i < _checkedDocents.length; i++) {
+            if (_checkedDocents[i]) {
+                docentIds.add(docents.get(i).get_id());
             }
         }
-        if(_checkedLectureType >= 0
-            && docentIds.size() > 0
-            && _room.length() > 0
-            && _startDay >= 0
-            && _startHour >= 0
-            && _startMinute >= 0
-            && _startMonth >= 0
-            && _startYear >= 0
-            && _endDay >= 0
-            && _endHour >= 0
-            && _endMinute >= 0
-            && _endMonth >= 0
-            && _endYear >= 0){
-            _ev = new Event(-1,_checkedLecture,docentIds,new DateTime(_startYear,_startMonth+1,_startDay,_startHour,_startMinute), new DateTime(_endYear,_endMonth+1, _endDay,_endHour,_endMinute),LectureType.valueOf(_lectureTypes.get(_checkedLectureType)),_room);
+        if (_checkedLectureType >= 0
+                && docentIds.size() > 0
+                && _room.length() > 0
+                && _startDay >= 0
+                && _startHour >= 0
+                && _startMinute >= 0
+                && _startMonth >= 0
+                && _startYear >= 0
+                && _endDay >= 0
+                && _endHour >= 0
+                && _endMinute >= 0
+                && _endMonth >= 0
+                && _endYear >= 0) {
+            if (_sendEvent == null) {
+                _sendEvent = new PostAsyncTask<Event>(getActivity()) {
+                    @Override
+                    protected void onPostExecute(String result) {
+                        super.onPostExecute(result);
+                        DataBaseSingleton.getInstance().get_eventList().add(_ev);
+                        getActivity().onBackPressed();
+                    }
+                };
+            }
+            int lectureID = DataBaseSingleton.getInstance().get_lectureList().get(_checkedLecture).get_id();
+            _ev = new Event(-1, lectureID, docentIds, new DateTime(_startYear, _startMonth + 1, _startDay, _startHour, _startMinute), new DateTime(_endYear, _endMonth + 1, _endDay, _endHour, _endMinute), LectureType.valueOf(_lectureTypes.get(_checkedLectureType)), _room);
             _sendEvent.execute(_ev);
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage("All fields must be filled");
             builder.setTitle("Error");
-            builder.setPositiveButton("OK",null);
+            builder.setPositiveButton("OK", null);
             builder.create().show();
         }
     }

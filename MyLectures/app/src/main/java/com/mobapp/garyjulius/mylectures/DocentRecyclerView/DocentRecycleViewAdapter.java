@@ -14,11 +14,12 @@ import java.util.ArrayList;
  * Created by Stefan on 18-05-15.
  */
 public class DocentRecycleViewAdapter extends RecyclerView.Adapter<DocentViewHolder> {
-    private ArrayList<Docent> list;
-    private DocentClickListener clickListener;
-    public DocentRecycleViewAdapter(ArrayList<Docent> docentList, DocentListFragment clickListener){
-        list = docentList;
-        this.clickListener = clickListener;
+    private ArrayList<Docent> _list;
+    private DocentClickListener _clickListener;
+
+    public DocentRecycleViewAdapter(ArrayList<Docent> docentList, DocentListFragment clickListener) {
+        _list = docentList;
+        this._clickListener = clickListener;
     }
 
     @Override
@@ -29,11 +30,11 @@ public class DocentRecycleViewAdapter extends RecyclerView.Adapter<DocentViewHol
 
     @Override
     public void onBindViewHolder(final DocentViewHolder holder, int position) {
-        holder.assignData(list.get(position));
+        holder.assignData(_list.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.OnDocentItemClick(holder.docent);
+                _clickListener.OnDocentItemClick(holder.get_data());
             }
         });
     }
@@ -45,7 +46,7 @@ public class DocentRecycleViewAdapter extends RecyclerView.Adapter<DocentViewHol
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return _list.size();
     }
 
     @Override

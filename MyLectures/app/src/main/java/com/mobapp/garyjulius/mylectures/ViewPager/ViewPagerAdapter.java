@@ -1,7 +1,5 @@
 package com.mobapp.garyjulius.mylectures.ViewPager;
 
-
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -14,25 +12,25 @@ import java.util.List;
  * Created by Stefan on 21-05-15.
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
-    private List<EventListFragment> list;
+    private List<EventListFragment> _list;
 
     public ViewPagerAdapter(FragmentManager fm, List<EventListFragment> list) {
         super(fm);
-        this.list = list;
+        this._list = list;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return list.get(position);
+        return _list.get(position);
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return _list.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return list.get(position).getTitle();
+        return _list.get(position).getTitle();
     }
 }

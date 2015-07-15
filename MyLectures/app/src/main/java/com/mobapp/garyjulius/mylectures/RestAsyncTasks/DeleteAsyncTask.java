@@ -14,12 +14,11 @@ import java.net.URL;
 /**
  * Created by Julius on 30.05.2015.
  */
-public class DeleteAsyncTask<T> extends AsyncTask<Object,Void,String> {
+public class DeleteAsyncTask<T> extends AsyncTask<Object, Void, String> {
     final static String TAG = "DeleteAsyncTask";
     private Activity _context;
 
-    public DeleteAsyncTask(Activity context)
-    {
+    public DeleteAsyncTask(Activity context) {
         this._context = context;
     }
 

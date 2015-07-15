@@ -20,12 +20,13 @@ import java.util.ArrayList;
 
 
 public class DocentListFragment extends Fragment implements DocentClickListener {
-    ArrayList<Docent> _docentsToDisplay;
+    private ArrayList<Docent> _docentsToDisplay;
+
     public DocentListFragment() {
         // Required empty public constructor
     }
 
-    public void setData(ArrayList<Docent> data){
+    public void setData(ArrayList<Docent> data) {
         _docentsToDisplay = data;
     }
 
@@ -34,12 +35,6 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -52,17 +47,11 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-        RecyclerView listView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        RecyclerView listView = (RecyclerView) view.findViewById(R.id.recycler_view);
         listView.setHasFixedSize(true);
         listView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         RecyclerView.Adapter adapter = new DocentRecycleViewAdapter(_docentsToDisplay, this);
@@ -77,6 +66,6 @@ public class DocentListFragment extends Fragment implements DocentClickListener 
         detailFragment.set_actualDocent(data);
         getFragmentManager().beginTransaction().setCustomAnimations(
                 R.animator.slide_in_from_right, R.animator.slide_out_to_left, R.animator.slide_in_from_left, R.animator.slide_out_to_right
-        ).replace(R.id.main_layout,detailFragment).addToBackStack(null).commit();
+        ).replace(R.id.main_layout, detailFragment).addToBackStack(null).commit();
     }
 }

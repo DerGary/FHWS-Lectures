@@ -46,30 +46,26 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.List;
 
 
-public class EventDetailFragment extends Fragment implements LocationListener, OnMapReadyCallback,GoogleMap.OnMapLongClickListener {
+public class EventDetailFragment extends Fragment implements LocationListener, OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private static final String TAG = "EventDetailFragment";
     private final LatLng FHWSSHL = new LatLng(49.777694, 9.963250);
     private final LatLng FHWSMUENZ = new LatLng(49.787590, 9.932718);
+    private static boolean _ask = true;
 
+    private TextView _eventStartContent;
+    private TextView _eventEndContent;
+    private TextView _eventPlaceContent;
+    private TextView _eventLectureContent;
+    private TextView _eventTypeContent;
+    private boolean _positionSet = false;
 
-    TextView eventStartContent;
-    TextView eventEndContent;
-    TextView eventPlaceContent;
-    TextView eventLectureContent;
-    TextView eventTypeContent;
-    boolean positionSet = false;
+    private Event _actualEvent;
+    private LocationManager _locationManager;
+    protected MapFragment _mapFragment;
+    protected GoogleMap _theMap;
 
-    private DataBaseSingleton dataBase;
-
-
-    private Event actualEvent;
-    private LocationManager locationManager;
-    protected MapFragment mapFragment;
-    protected GoogleMap theMap;
-
-    public void EventDetailFragment()
-    {
+    public void EventDetailFragment() {
         //Required empty constructor
     }
 
@@ -82,21 +78,19 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        dataBase = DataBaseSingleton.getInstance();
         // Inflate the layout for this fragment
-       final View rootView = inflater.inflate(R.layout.fragment_event_detail,container,false);
-        eventStartContent = (TextView)rootView.findViewById(R.id.eventStartContent);
-        eventEndContent = (TextView) rootView.findViewById(R.id.eventEndContent);
-        eventPlaceContent = (TextView)rootView.findViewById(R.id.eventPlaceContent);
-        eventLectureContent = (TextView)rootView.findViewById(R.id.eventLectureContent);
-        eventTypeContent = (TextView)rootView.findViewById(R.id.eventTypeContent);
+        final View rootView = inflater.inflate(R.layout.fragment_event_detail, container, false);
+        _eventStartContent = (TextView) rootView.findViewById(R.id.eventStartContent);
+        _eventEndContent = (TextView) rootView.findViewById(R.id.eventEndContent);
+        _eventPlaceContent = (TextView) rootView.findViewById(R.id.eventPlaceContent);
+        _eventLectureContent = (TextView) rootView.findViewById(R.id.eventLectureContent);
+        _eventTypeContent = (TextView) rootView.findViewById(R.id.eventTypeContent);
 
         setData();
 
-        LinearLayout layout = (LinearLayout)rootView.findViewById(R.id.EventDocentLayout);
+        LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.EventDocentLayout);
 
-        for(int i : actualEvent.get_docent())
-        {
+        for (int i : _actualEvent.get_docent()) {
             TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.text_view, null);
             final Docent docent = DataBaseSingleton.getInstance().getDocentFromID(i);
             text.setText(docent.get_name());
@@ -112,31 +106,31 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             layout.addView(text);
         }
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(),R.layout.row);
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(), R.layout.row);
 
-        for(int i = 0;i < actualEvent.get_docent().size(); i++)
-        {
-            listAdapter.add(dataBase.getDocentFromID(actualEvent.get_docent().get(i)).get_name());
+        for (int i = 0; i < _actualEvent.get_docent().size(); i++) {
+            listAdapter.add(DataBaseSingleton.getInstance().getDocentFromID(_actualEvent.get_docent().get(i)).get_name());
         }
 
-        eventLectureContent.setOnClickListener(new View.OnClickListener() {
+        _eventLectureContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LectureDetailFragment lectureDetailFragment = new LectureDetailFragment();
-                lectureDetailFragment.setLecture(dataBase.getLectureFromId(actualEvent.get_lecture()));
+                lectureDetailFragment.setLecture(DataBaseSingleton.getInstance().getLectureFromId(_actualEvent.get_lecture()));
                 changeFragment(lectureDetailFragment);
             }
         });
 
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        _locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         String provider = LocationManager.NETWORK_PROVIDER;
-        locationManager.requestLocationUpdates(provider, 0, 0, this);
+        _locationManager.requestLocationUpdates(provider, 0, 0, this);
 
         LocationManager service = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         boolean enabled = service.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        if ( enabled == false ) {
+        if (enabled == false && _ask) {
+            _ask = false;
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-// Add the buttons
+            // Add the buttons
             builder.setPositiveButton(getResources().getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     // User clicked OK button
@@ -147,18 +141,17 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             builder.setNegativeButton(getResources().getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     // User cancelled the dialog
-                    locationManager.removeUpdates(EventDetailFragment.this);
+                    _locationManager.removeUpdates(EventDetailFragment.this);
                 }
             });
-// Set other dialog properties
+            // Set other dialog properties
             builder.setMessage(getResources().getString(R.string.location_off_info))
                     .setTitle(getResources().getString(R.string.dialog_info));
 
-// Create the AlertDialog
+            // Create the AlertDialog
             AlertDialog dialog = builder.create();
             dialog.show();
-
-            }
+        }
 
         return rootView;
     }
@@ -167,8 +160,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     @Override
     public void onDestroy() {
         super.onDestroy();
-        locationManager.removeUpdates(this);
-        Log.d(TAG, getResources().getString(R.string.onDestroy_called));
+        _locationManager.removeUpdates(this);
     }
 
 
@@ -176,11 +168,11 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     public void onStart() {
         super.onStart();
 
-        this.mapFragment = MapFragment.newInstance();
-        getFragmentManager( ).beginTransaction()
-                .replace(R.id.container, this.mapFragment)
+        this._mapFragment = MapFragment.newInstance();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, this._mapFragment)
                 .commit();
-        mapFragment.getMapAsync(this); //get map asynchron
+        _mapFragment.getMapAsync(this); //get map asynchron
     }
 
     @Override
@@ -193,25 +185,19 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         ((MainActivity) getActivity()).getMenu().findItem(R.id.action_add).setVisible(false);
     }
 
-    private void setData()
-    {
-        DateTime beginTime = actualEvent.getBeginDateTime();
-        DateTime endTime = actualEvent.getEndDateTime();
+    private void setData() {
+        DateTime beginTime = _actualEvent.getBeginDateTime();
+        DateTime endTime = _actualEvent.getEndDateTime();
         DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm - dd.MM.yyyy");
-        eventStartContent.setText(fmt.print(beginTime));
-        eventEndContent.setText(fmt.print(endTime));
-        eventPlaceContent.setText(actualEvent.get_room());
-        eventTypeContent.setText(actualEvent.get_type().toString());
-        eventLectureContent.setText(dataBase.getLectureFromId(actualEvent.get_lecture()).get_title());
+        _eventStartContent.setText(fmt.print(beginTime));
+        _eventEndContent.setText(fmt.print(endTime));
+        _eventPlaceContent.setText(_actualEvent.get_room());
+        _eventTypeContent.setText(_actualEvent.get_type().toString());
+        _eventLectureContent.setText(DataBaseSingleton.getInstance().getLectureFromId(_actualEvent.get_lecture()).get_title());
     }
 
-
-    public Event getActualEvent() {
-        return actualEvent;
-    }
-
-    public void setActualEvent(Event actualEvent) {
-        this.actualEvent = actualEvent;
+    public void set_actualEvent(Event _actualEvent) {
+        this._actualEvent = _actualEvent;
     }
 
     public void changeFragment(Fragment fragment) {
@@ -222,13 +208,13 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
 
     @Override
     public void onLocationChanged(Location location) {
-        if(!positionSet) {
-            final Marker mark2 = this.theMap.addMarker(new MarkerOptions() //set marker with actual position
+        if (!_positionSet) {
+            this._theMap.addMarker(new MarkerOptions() //set marker with actual position
                     .position(new LatLng(location.getLatitude(), location.getLongitude()))
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                     .title(getResources().getString(R.string.position)));
-                    positionSet = true;
-                    locationManager.removeUpdates(this);
+            _positionSet = true;
+            _locationManager.removeUpdates(this);
         }
     }
 
@@ -249,27 +235,25 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        theMap = googleMap;
-        theMap.setOnMapLongClickListener(this);
-        if(dataBase.getLectureFromId(actualEvent.get_lecture()).get_place() == Place.Muenzstrasse) //Set Markers for event place
+        _theMap = googleMap;
+        _theMap.setOnMapLongClickListener(this);
+        if (DataBaseSingleton.getInstance().getLectureFromId(_actualEvent.get_lecture()).get_place() == Place.Muenzstrasse) //Set Markers for event place
         {
-            final Marker mark1 = theMap.addMarker( new MarkerOptions( )
+            _theMap.addMarker(new MarkerOptions()
                     .position(FHWSMUENZ)
                     .title(getResources().getString(R.string.location_muenz)));
             CameraUpdateFactory.newLatLng(FHWSMUENZ);
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(FHWSMUENZ).zoom(16).bearing(270).tilt(30).build();
-            theMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        }
-        else if (dataBase.getLectureFromId(actualEvent.get_lecture()).get_place() == Place.SHL)
-        {
+            _theMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        } else if (DataBaseSingleton.getInstance().getLectureFromId(_actualEvent.get_lecture()).get_place() == Place.SHL) {
             CameraUpdateFactory.newLatLng(FHWSSHL);
-            final Marker mark1 = theMap.addMarker(new MarkerOptions()
+            _theMap.addMarker(new MarkerOptions()
                     .position(FHWSSHL)
                     .title(getResources().getString(R.string.location_shl)));
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(FHWSSHL).zoom(16).bearing(270).tilt(30).build();
-            theMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            _theMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         }
     }
 
@@ -277,7 +261,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     public void onMapLongClick(LatLng latLng) {
         try {
             Geocoder coder = new Geocoder(getActivity());
-            List<Address> a = coder.getFromLocation(latLng.latitude,latLng.longitude, 10);
+            List<Address> a = coder.getFromLocation(latLng.latitude, latLng.longitude, 10);
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
             builder.setMessage("" + a.get(0).getAddressLine(0) + "\n" + a.get(0).getAddressLine(1))
@@ -285,8 +269,8 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
 
             AlertDialog dialog = builder.create();
             dialog.show();
-            } catch (Exception e) {
+        } catch (Exception e) {
             Log.e("LM", "Geocoder failed", e);
-            }
+        }
     }
 }

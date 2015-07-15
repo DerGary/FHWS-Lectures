@@ -14,11 +14,12 @@ import java.util.List;
  * Created by Stefan on 18-05-15.
  */
 public class EventRecycleViewAdapter extends RecyclerView.Adapter<EventViewHolder> {
-    private List<Event> list;
-    private EventClickListener clickListener;
-    public EventRecycleViewAdapter(List<Event> eventList, EventClickListener clickListener){
-        list = eventList;
-        this.clickListener = clickListener;
+    private List<Event> _list;
+    private EventClickListener _clickListener;
+
+    public EventRecycleViewAdapter(List<Event> eventList, EventClickListener clickListener) {
+        _list = eventList;
+        this._clickListener = clickListener;
     }
 
     @Override
@@ -29,11 +30,11 @@ public class EventRecycleViewAdapter extends RecyclerView.Adapter<EventViewHolde
 
     @Override
     public void onBindViewHolder(final EventViewHolder holder, int position) {
-        holder.assignData(list.get(position));
+        holder.assignData(_list.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.OnEventItemClick(holder.event);
+                _clickListener.OnEventItemClick(holder.get_data());
             }
         });
     }
@@ -45,7 +46,7 @@ public class EventRecycleViewAdapter extends RecyclerView.Adapter<EventViewHolde
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return _list.size();
     }
 
     @Override

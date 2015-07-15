@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowContentTransitions">true</item>
@@ -12,6 +11,7 @@
         <!--<item name="android:activatedBackgroundIndicator">@color/green</item>-->
         <!-- Customize your theme here. -->
     </style>
+
     <style name="PagerTabStripText">
         <!--<item name="android:textSize">14sp</item>-->
         <item name="android:textStyle">bold</item>

@@ -1,152 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|top"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+        android:id="@+id/eventLectureRow"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
-    android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/eventLectureContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/txtselector"
+            android:gravity="center_horizontal"
+            android:text="Tontechnik und Audioprogrammierung"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickableColor"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventTypeLabel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:text="Type:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventTypeContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/eventDocentLabel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:text="Docents:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/EventDocentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventLectureRow"
-            android:layout_marginTop="12dp">
+            android:layout_gravity="fill"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="vertical" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/eventLectureContent"
-                android:background="@drawable/txtselector"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                android:textColor="@color/clickableColor" />
+        <TextView
+            android:id="@+id/eventStartLabel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:text="Start:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Type:"
-                android:id="@+id/eventTypeLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/eventStartContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/eventTypeContent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="18dp" />
+        <TextView
+            android:id="@+id/eventEndLabel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:text="End:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Docents:"
-                android:id="@+id/eventDocentLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/eventEndContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:orientation="vertical"
-                android:id="@+id/EventDocentLayout"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp" />
+        <TextView
+            android:id="@+id/eventPlaceLabel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:text="Room:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Start:"
-                android:id="@+id/eventStartLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/eventStartContent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="End:"
-                android:id="@+id/eventEndLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/eventEndContent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Place:"
-                android:id="@+id/eventPlaceLabel"
-                android:layout_marginRight="5dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/eventPlaceContent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="18dp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/eventPlaceContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18dp" />
+    </LinearLayout>
 
     <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/container"
-            android:layout_margin="10dp"></FrameLayout>
-
-    </LinearLayout>
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" />
+</LinearLayout>

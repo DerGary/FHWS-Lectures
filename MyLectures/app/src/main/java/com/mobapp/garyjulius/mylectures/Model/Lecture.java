@@ -21,8 +21,8 @@ public class Lecture {
     private String _description;
     private Place _place;
 
-    public Lecture(int _id,String _title,int _responsiblePerson, ArrayList<Integer> _docents, Language _language, int _swh, ArrayList<LectureType> _type,
-                   int _creditPoints, ArrayList<ExamType> _examType, int _semester, ArrayList<Course> _courses, String _description,Place _place) {
+    public Lecture(int _id, String _title, int _responsiblePerson, ArrayList<Integer> _docents, Language _language, int _swh, ArrayList<LectureType> _type,
+                   int _creditPoints, ArrayList<ExamType> _examType, int _semester, ArrayList<Course> _courses, String _description, Place _place) {
         this._id = _id;
         this._title = _title;
         this._responsiblePerson = _responsiblePerson;
@@ -35,7 +35,7 @@ public class Lecture {
         this._semester = _semester;
         this._courses = _courses;
         this._description = _description;
-        this.set_place(_place);
+        this._place = _place;
     }
 
 

@@ -26,21 +26,21 @@ public class ViewPagerFragment extends Fragment {
     private ViewPagerAdapter _pagerAdapter;
     private View _view;
     private List<EventListFragment> _list;
-    private Context context;
+    private Context _context;
 
     public ViewPagerFragment() {
         // Required empty public constructor
     }
 
-    public void setData(Context context,List<Event> data){
-
-        this.context = context;
+    public void setData(Context context, List<Event> data) {
+        this._context = context;
         _list = new ArrayList<>();
-        for (int i = 0; i < 7; i ++){
+
+        for (int i = 0; i < 7; i++) {
             EventListFragment eventListFragment = new EventListFragment();
-            GregorianCalendar cal = (GregorianCalendar)GregorianCalendar.getInstance();
+            GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
             cal.add(Calendar.DAY_OF_YEAR, i);
-            eventListFragment.setContext(context);
+            eventListFragment.set_context(context);
             eventListFragment.setData(data, cal);
             _list.add(eventListFragment);
         }
@@ -49,7 +49,7 @@ public class ViewPagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(_view != null){
+        if (_view != null) {
             return _view;
         }
         View view = inflater.inflate(R.layout.fragment_view_pager, container, false);

@@ -17,13 +17,14 @@ import java.net.URL;
 /**
  * Created by Julius on 30.05.2015.
  */
-public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
+public class GetAsyncTask<T> extends AsyncTask<Integer, Void, Object> {
     final static String TAG = "GetAsyncTask";
     private Activity _context;
-    public GetAsyncTask(Activity context)
-    {
+
+    public GetAsyncTask(Activity context) {
         this._context = context;
     }
+
     @Override
     protected Object doInBackground(Integer... id) {
         HttpURLConnection urlConnection = null;
@@ -31,17 +32,17 @@ public class GetAsyncTask<T> extends AsyncTask<Integer,Void,Object> {
             URL url = new URL(_context.getString(R.string.server_basepath + id[0]));
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod(_context.getString(R.string.http_get));
-            urlConnection.setConnectTimeout(10*1000);
-            urlConnection.setReadTimeout(10*1000);
+            urlConnection.setConnectTimeout(10 * 1000);
+            urlConnection.setReadTimeout(10 * 1000);
 
             Gson gson = ExtendedGson.getInstance();
 
             Class<T> tClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             String json = IOUtils.toString(urlConnection.getInputStream());
-            T object = gson.fromJson(json,tClass);
+            T object = gson.fromJson(json, tClass);
 
-            if(object != null){
-               return object;
+            if (object != null) {
+                return object;
             } else {
                 return _context.getString(R.string.http_errorcode_title) + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage();
             }
