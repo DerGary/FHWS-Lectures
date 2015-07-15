@@ -25,7 +25,7 @@ public class ViewPagerFragment extends Fragment {
     private ViewPager _pager;
     private ViewPagerAdapter _pagerAdapter;
     private View _view;
-    private List<EventListFragment> _list;
+    private List<EventListFragment> _list = new ArrayList<>();
     private Context _context;
 
     public ViewPagerFragment() {
@@ -34,15 +34,25 @@ public class ViewPagerFragment extends Fragment {
 
     public void setData(Context context, List<Event> data) {
         this._context = context;
-        _list = new ArrayList<>();
 
-        for (int i = 0; i < 7; i++) {
-            EventListFragment eventListFragment = new EventListFragment();
-            GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
-            cal.add(Calendar.DAY_OF_YEAR, i);
-            eventListFragment.set_context(context);
-            eventListFragment.setData(data, cal);
-            _list.add(eventListFragment);
+        if(_list.size() == 0) {
+            //create new list
+            for (int i = 0; i < 7; i++) {
+
+                EventListFragment eventListFragment = new EventListFragment();
+                GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+                cal.add(Calendar.DAY_OF_YEAR, i);
+                eventListFragment.set_context(context);
+                eventListFragment.setData(data, cal);
+                _list.add(eventListFragment);
+            }
+        }else{
+            //update existing views
+            for (int i = 0; i < 7; i++) {
+                GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+                cal.add(Calendar.DAY_OF_YEAR, i);
+                _list.get(i).setData(data,cal);
+            }
         }
     }
 
@@ -52,11 +62,11 @@ public class ViewPagerFragment extends Fragment {
         if (_view != null) {
             return _view;
         }
-        View view = inflater.inflate(R.layout.fragment_view_pager, container, false);
-        _pager = (ViewPager) view.findViewById(R.id.pager);
+        _view = inflater.inflate(R.layout.fragment_view_pager, container, false);
+        _pager = (ViewPager) _view.findViewById(R.id.pager);
         _pagerAdapter = new ViewPagerAdapter(getFragmentManager(), _list);
         _pager.setAdapter(_pagerAdapter);
-        _view = view;
-        return view;
+        return _view;
     }
+
 }

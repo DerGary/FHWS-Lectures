@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity {
     private ViewPagerFragment _viewPagerFragment;
     private DocentListFragment _docentListFragment;
-    private AddPageFragment _addPageFragment;
     private ArrayList<Docent> _docentList;
     private ArrayList<Lecture> _lectureList;
     private ArrayList<Event> _eventList;
@@ -170,10 +169,9 @@ public class MainActivity extends ActionBarActivity {
             onBackPressed();
             return true;
         } else if (id == R.id.action_add) {
-            if (_addPageFragment == null) {
-                _addPageFragment = new AddPageFragment();
-            }
-            changeFragment(_addPageFragment, true);
+            AddPageFragment add = new AddPageFragment();
+            add.setCallBack(_viewPagerFragment);
+            changeFragment(add, true);
         }
         return super.onOptionsItemSelected(item);
     }

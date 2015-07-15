@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import com.mobapp.garyjulius.mylectures.Model.Lecture;
 import com.mobapp.garyjulius.mylectures.Model.LectureType;
 import com.mobapp.garyjulius.mylectures.R;
 import com.mobapp.garyjulius.mylectures.RestAsyncTasks.PostAsyncTask;
+import com.mobapp.garyjulius.mylectures.ViewPager.ViewPagerFragment;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -344,12 +346,17 @@ public class AddPageFragment extends Fragment {
                 && _endMonth >= 0
                 && _endYear >= 0) {
             if (_sendEvent == null) {
+                final Fragment f = this;
                 _sendEvent = new PostAsyncTask<Event>(getActivity()) {
                     @Override
-                    protected void onPostExecute(String result) {
+                    protected void onPostExecute(Object result) {
                         super.onPostExecute(result);
-                        DataBaseSingleton.getInstance().get_eventList().add(_ev);
-                        getActivity().onBackPressed();
+                        if(result instanceof Event) {
+                            DataBaseSingleton.getInstance().get_eventList().add((Event) result);
+                            DataBaseSingleton.getInstance().saveDataBase(getActivity());
+                            _fragment.setData(getActivity().getBaseContext(), DataBaseSingleton.getInstance().get_eventList());
+                            getActivity().onBackPressed();
+                        }
                     }
                 };
             }
@@ -363,5 +370,10 @@ public class AddPageFragment extends Fragment {
             builder.setPositiveButton("OK", null);
             builder.create().show();
         }
+    }
+
+    private ViewPagerFragment _fragment;
+    public void setCallBack(ViewPagerFragment viewPagerFragment) {
+        _fragment = viewPagerFragment;
     }
 }

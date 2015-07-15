@@ -32,6 +32,7 @@ public class EventListFragment extends Fragment implements EventClickListener {
     private ArrayList<Event> _eventsToDisplay;
     private GregorianCalendar _calendar;
     private Context _context;
+    private View _view;
 
     public EventListFragment() {
         // Required empty public constructor
@@ -67,6 +68,9 @@ public class EventListFragment extends Fragment implements EventClickListener {
                 _eventsToDisplay.add(e);
             }
         }
+        if(_view != null){
+            setAdapter();
+        }
     }
 
     @Override
@@ -77,9 +81,15 @@ public class EventListFragment extends Fragment implements EventClickListener {
         RecyclerView listView = (RecyclerView) view.findViewById(R.id.recycler_view);
         listView.setHasFixedSize(true);
         listView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        _view = view;
+        setAdapter();
+        return view;
+    }
+
+    private void setAdapter(){
+        RecyclerView listView = (RecyclerView) _view.findViewById(R.id.recycler_view);
         RecyclerView.Adapter adapter = new EventRecycleViewAdapter(_eventsToDisplay, this);
         listView.setAdapter(adapter);
-        return view;
     }
 
     @Override
