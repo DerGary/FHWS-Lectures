@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
-            android:text="Lecture Name" />
+            android:text="@string/layout_cardView_event_lecturename" />
 
         <TextView
             android:id="@+id/event_lecture_type"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
-            android:text="Lecture Type" />
+            android:text="@string/layout_cardView_event_lecturetype" />
 
         <TextView
             android:id="@+id/event_docent"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
-            android:text="Docent" />
+            android:text="@string/layout_cardView_event_docent" />
 
         <TextView
             android:id="@+id/event_time"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
-            android:text="Begin Time" />
+            android:text="@string/layout_cardView_event_begintime" />
 
 
         <TextView
@@ -58,6 +58,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
-            android:text="Room" />
+            android:text="@string/layout_cardView_event_room" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

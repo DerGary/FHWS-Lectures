@@ -6,19 +6,20 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_add"
+        android:orderInCategory="50"
+        android:title="@string/action_add_settings"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_docents"
         android:orderInCategory="100"
-        android:title="Dozenten"
+        android:title="@string/action_docents"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_events"
         android:orderInCategory="100"
-        android:title="Termine"
+        android:title="@string/action_events"
         android:visible="false"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_add"
-        android:orderInCategory="100"
-        android:title="Termin hinzufügen"
-        app:showAsAction="ifRoom" />
+
 </menu>

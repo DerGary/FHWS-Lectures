@@ -1,58 +1,6 @@
 <resources>
     <string name="app_name">MyLectures</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="CG_Description">Die Studierenden erweitern und vertiefen ihre Kenntnisse in Richtung
-„Computergrafik“ und erwerben die Fertigkeit zur Analyse und
-Strukturierung komplexer Aufgabenstellungen.
-Die Studierenden lernen Aufgabenstellungen aus dem Bereich
-„Computergrafik“ zu beschreiben und zu lösen. Im Rahmen ihrer
-Aufgabenstellung erwerben die Studierenden Kenntnisse zum praktischen
-Einsatz von Techniken und Methoden der „Computergrafik“.
-Die Studierenden erwerben die Fähigkeit zur Realisierung performanter
-Computergrafik-Applikationen.</string>
-
-
-    <string name="TTAP_Description">Die Studierenden erweitern und vertiefen ihre Kenntnisse in Richtung
-"Tontechnik" bzw. "Audioprogrammierung" und erwerben die Fertigkeit
-zur Analyse und Strukturierung komplexer Aufgabenstellungen.
-Die Studierenden lernen Aufgabenstellungen aus dem Bereich
-„Audioprogrammierung“ zu beschreiben und zu lösen. Im Rahmen ihrer
-Aufgabenstellung erwerben die Studierenden Kenntnisse zum praktischen
-Einsatz von Audio-Techniken.
-Die Studierenden erwerben die Fähigkeit zur Realisierung performanter
-Audio-Applikationen.</string>
-
-    <string name="MobApp_Description">Grundlagen der Informatik:
-Die Studierenden lernen die Grundlagen der Programmierung von
-mobilen Applikationen am Beispiel von Android kennen.
-Fachspezifische Vertiefungen:
-Die Studierenden lernen die besonderen Herausforderungen bei der
-Programmierung von mobilen Endgeräten kennen. Insbesondere erlernen
-die Studierenden die Grundlagen der Gestaltung mobiler
-Nutzeroberflächen, Konzepte der asynchronen Programmierung und
-vertiefen die Kenntnisse der Thread-Programmierung in Java.
-Fertigkeit zur Analyse und Strukturierung technischer Problemstellungen:
-An Beispielen erlernen die Studenten Architekturkonzepte für mobile
-Lösungen, insbesondere die Verteilung zwischen Client und Server und
-spezifische Kommunikationskonzepte zwischen mobilen Endgeräten. Die
-Studierenden erlernen die strukturierte Programmierung von
-Nutzeroberflächen auf der Basis von wiederverwendbaren SoftwareKomponenten.
-Kenntnisse von praxisrelevanten Aufgabenstellungen:
-Der Einsatz von Methoden und Techniken wird anhand von
-praxisrelevanten Aufgabenstellungen dargestellt und eingeübt.
-Die Studierenden haben ein grundlegendes Verständnis zum Aufbau und
-zur Architektur von mobilen Applikationen. Sie sind in der Lage, eine
-Aufgabenstellung mit einer mobilen Applikation für das Betriebssystem
-Android zu lösen. Insbesondere können die Studierenden mobile Nutzeroberflächen
-        gestalten, Sensordaten auswerten und ein
-Kommunikatonsprotokoll zu enem Server implementieren.
-
-</string>
     <string name="tel">tel:</string>
     <string name="email_message_type">message/rfc822</string>
     <string name="docent_list_title">Docent detail</string>
@@ -70,12 +18,12 @@ Kommunikatonsprotokoll zu enem Server implementieren.
     <string name="docents_title">Docents</string>
     <string name="log_onStart_called">OnStart() called</string>
     <string name="log_onDestroy_called">OnResume() called</string>
-    <string name="heute">"Heute, "</string>
-    <string name="morgen">"Morgen, "</string>
+    <string name="heute">"Today, "</string>
+    <string name="morgen">"Tomorrow, "</string>
     <string name="pref_eventid">eventId</string>
-    <string name="notification_room">"Raum: "</string>
+    <string name="notification_room">"Room: "</string>
     <string name="notification_start">", Start: "</string>
-    <string name="notification_end">", Ende: "</string>
+    <string name="notification_end">", End: "</string>
     <string name="server_basepath">http://staging.applab.fhws.de:8080/fhwslectures/api/</string>
     <string name="http_delete">DELETE</string>
     <string name="content_type_title">Content-Type</string>
@@ -91,4 +39,38 @@ Kommunikatonsprotokoll zu enem Server implementieren.
     <string name="prefs_lectures">lectures</string>
     <string name="prefs_nonote">No note</string>
     <string name="callingintent_eventID">eventId</string>
+    <string name="layout_cardView_docentname">Docent Name</string>
+    <string name="layout_cardView_docentroom">Docent Room</string>
+    <string name="layout_cardView_event_lecturename">Lecture Name</string>
+    <string name="layout_cardView_event_lecturetype">Lecture Type</string>
+    <string name="layout_cardView_event_docent">Docent</string>
+    <string name="layout_cardView_event_begintime">Begin Time</string>
+    <string name="layout_cardView_event_room">Room</string>
+    <string name="layout_addpage_lecturecaption">Lecture:</string>
+    <string name="layout_addpage_typecaption">Type:</string>
+    <string name="layout_addpage_docentcaption">Docents:</string>
+    <string name="layout_addpage_startcaption">Start:</string>
+    <string name="layout_addpage_endcaption">End:</string>
+    <string name="layout_addpage_roomcaption">Room:</string>
+    <string name="layout_addpage_taptoset">Tap to set</string>
+    <string name="no_content_placeholder">No content</string>
+    <string name="layout_docentdetail_telcaption">Telephone:</string>
+    <string name="layout_docentdetail_mailcaption">E-Mail:</string>
+    <string name="layout_docentdetail_locationcaption">Location:</string>
+    <string name="layout_docentdetail_consultationcaption">Consultation time:</string>
+    <string name="layout_docentdetail_welearncaption">Welearn:</string>
+    <string name="layout_docentdetail_welearnlinkcaption">Link</string>
+    <string name="layout_eventdetail_typecaption">Type:</string>
+    <string name="layout_eventdetail_docentscaption">Docents:</string>
+    <string name="layout_eventdetail_startcaption">Start:</string>
+    <string name="layout_eventdetail_endcaption">End:</string>
+    <string name="layout_eventdetail_roomcaption">Room:</string>
+    <string name="layout_lecturedetail_placecaption">Place:</string>
+    <string name="layout_lecturedetail_docentscaption">Docents:</string>
+    <string name="layout_lecturedetail_notescaption">Notes:</string>
+    <string name="layout_lecturedetail_desccaption">Description:</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_docents">Docents</string>
+    <string name="action_events">Events</string>
+    <string name="action_add_settings">Add event</string>
 </resources>

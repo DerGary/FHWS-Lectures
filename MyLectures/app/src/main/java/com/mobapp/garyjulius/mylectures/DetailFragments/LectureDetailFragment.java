@@ -1,6 +1,5 @@
 package com.mobapp.garyjulius.mylectures.DetailFragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -52,7 +51,7 @@ public class LectureDetailFragment extends Fragment {
         LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.lectureDocentLayout);
 
         for (int i : _actualLecture.get_docents()) {
-            TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.text_view, null);
+            TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.ripple_text_view, null);
             final Docent docent = DataBaseSingleton.getInstance().getDocentFromID(i);
             text.setText(docent.get_name());
             text.setOnClickListener(new View.OnClickListener() {

@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
-            android:text="Docent Name" />
+            android:text="@string/layout_cardView_docentname" />
 
         <TextView
             android:id="@+id/docent_room"
@@ -33,6 +33,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_horizontal"
             android:padding="3dp"
-            android:text="Docent Room" />
+            android:text="@string/layout_cardView_docentroom" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

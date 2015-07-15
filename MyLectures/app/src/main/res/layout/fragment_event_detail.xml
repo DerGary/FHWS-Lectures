@@ -23,7 +23,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/txtselector"
             android:gravity="center_horizontal"
-            android:text="Tontechnik und Audioprogrammierung"
+            android:text="@string/no_content_placeholder"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/clickableColor"
             android:textSize="22dp"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
-            android:text="Type:"
+            android:text="@string/layout_eventdetail_typecaption"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -48,7 +48,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:text="Medium Text"
+            android:text="@string/no_content_placeholder"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="18dp" />
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
-            android:text="Docents:"
+            android:text="@string/layout_eventdetail_docentscaption"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
-            android:text="Start:"
+            android:text="@string/layout_eventdetail_startcaption"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -92,7 +92,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:text="Medium Text"
+            android:text="@string/no_content_placeholder"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="18dp" />
 
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
-            android:text="End:"
+            android:text="@string/layout_eventdetail_endcaption"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -115,7 +115,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:text="Medium Text"
+            android:text="@string/no_content_placeholder"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="18dp" />
 
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
-            android:text="Room:"
+            android:text="@string/layout_eventdetail_roomcaption"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -138,7 +138,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:text="Medium Text"
+            android:text="@string/no_content_placeholder"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="18dp" />
     </LinearLayout>

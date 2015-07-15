@@ -30,7 +30,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
@@ -91,7 +90,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.EventDocentLayout);
 
         for (int i : _actualEvent.get_docent()) {
-            TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.text_view, null);
+            TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.ripple_text_view, null);
             final Docent docent = DataBaseSingleton.getInstance().getDocentFromID(i);
             text.setText(docent.get_name());
             text.setOnClickListener(new View.OnClickListener() {
