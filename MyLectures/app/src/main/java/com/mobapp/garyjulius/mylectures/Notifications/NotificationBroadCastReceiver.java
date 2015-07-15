@@ -42,13 +42,14 @@ public class NotificationBroadCastReceiver extends BroadcastReceiver {
                 Intent startIntent = new Intent(context, MainActivity.class);
                 startIntent.putExtra(context.getString(R.string.pref_eventid), e.get_id());
 
-                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, startIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, e.get_id(), startIntent, PendingIntent.FLAG_ONE_SHOT);
 
                 Notification.Builder mBuilder = new Notification.Builder(context)
                         .setSmallIcon(android.R.drawable.ic_menu_recent_history)
                         .setContentTitle(lecname)
                         .setContentText(context.getString(R.string.notification_room) + e.get_room() + context.getString(R.string.notification_start) + fmt.print(e.getBeginDateTime()) + context.getString(R.string.notification_end) + fmt.print(e.getEndDateTime()))
-                        .setContentIntent(pendingIntent);
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true);
                 Notification n = mBuilder.build();
 
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
