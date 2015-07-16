@@ -58,6 +58,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
     private TextView _eventLectureContent;
     private TextView _eventTypeContent;
     private boolean _positionSet = false;
+    private String _provider;
 
     private Event _actualEvent;
     private LocationManager _locationManager;
@@ -115,11 +116,9 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
         });
 
         _locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        String provider = LocationManager.NETWORK_PROVIDER;
-        _locationManager.requestLocationUpdates(provider, 0, 0, this);
+        _provider = LocationManager.NETWORK_PROVIDER;
+        boolean enabled = _locationManager.isProviderEnabled(_provider);
 
-        LocationManager service = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        boolean enabled = service.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         if (enabled == false && _ask) {
             _ask = false;
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -128,7 +127,7 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
                 public void onClick(DialogInterface dialog, int id) {
                     // User clicked OK button
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(intent);
+                    startActivityForResult(intent, 1);
                 }
             });
             builder.setNegativeButton(getResources().getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
@@ -145,10 +144,24 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+        else if(enabled)
+        {
+            _locationManager.requestLocationUpdates(_provider, 0, 0, this);
+        }
 
         return rootView;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1)
+        {
+            if(_locationManager.isProviderEnabled(_provider)) {
+                _locationManager.requestLocationUpdates(_provider, 0, 0, this);
+            }
+        }
+    }
 
     @Override
     public void onDestroy() {
