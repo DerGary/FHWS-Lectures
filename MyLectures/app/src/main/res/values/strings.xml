@@ -73,4 +73,5 @@
     <string name="action_docents">Docents</string>
     <string name="action_events">Events</string>
     <string name="action_add_settings">Add event</string>
+    <string name="layout_addpage_send">Send</string>
 </resources>
