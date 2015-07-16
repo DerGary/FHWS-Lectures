@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mobapp.garyjulius.mylectures.Helper.DownloadPictureTask;
@@ -74,7 +75,8 @@ public class DocentDetailFragment extends Fragment {
         }
         downloadPictureTask.execute(_docentPictureView);
 
-        _docentTelephoneContent.setOnClickListener(new View.OnClickListener() {
+        LinearLayout telLayout = (LinearLayout)rootView.findViewById(R.id.docentTelLayout);
+        telLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -83,7 +85,8 @@ public class DocentDetailFragment extends Fragment {
             }
         });
 
-        _docentMailContent.setOnClickListener(new View.OnClickListener() {
+        LinearLayout mailLayout = (LinearLayout)rootView.findViewById(R.id.docentMailLayout);
+        mailLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -94,7 +97,8 @@ public class DocentDetailFragment extends Fragment {
             }
         });
 
-        _docentWelearnContent.setOnClickListener(new View.OnClickListener() {
+        LinearLayout welearnLayout = (LinearLayout)rootView.findViewById(R.id.docentWelearnLayout);
+        welearnLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(_actualDocent.get_linkWeLearn()));

@@ -12,7 +12,7 @@
     <item name="darkred" type="color">#FFCC0000</item>
     <item name="black" type="color">#000000</item>
     <item name="white" type="color">#ffffff</item>
-    <item name="clickableColor" type="color">#ff00c7f0</item>
+    <item name="clickableColor" type="color">@color/material_deep_teal_200</item>
 
 
     <integer-array name="androidcolors">

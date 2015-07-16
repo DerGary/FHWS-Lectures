@@ -40,62 +40,71 @@
         android:background="@color/white"
         android:elevation="5dp"
         android:scaleType="center" />
-
-    <TextView
-        android:id="@+id/docentTelLabel"
-        android:layout_width="100dp"
+    <LinearLayout
+        android:id="@+id/docentTelLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="5dp"
-        android:text="@string/layout_docentdetail_telcaption"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/docentTelContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="40dp"
-        android:background="@drawable/txtselector"
+        android:background="@drawable/rippleeffect"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="false"
-        android:singleLine="false"
-        android:text="@string/no_content_placeholder"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/clickableColor"
-        android:textSize="18dp" />
+        android:hapticFeedbackEnabled="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/docentTelLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:text="@string/layout_docentdetail_telcaption"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/docentMailLabel"
-        android:layout_width="100dp"
+        <TextView
+            android:id="@+id/docentTelContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/no_content_placeholder"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickableColor"
+            android:textSize="18dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/docentMailLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="@string/layout_docentdetail_mailcaption"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/docentMailContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="40dp"
-        android:background="@drawable/txtselector"
+        android:background="@drawable/rippleeffect"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="false"
-        android:singleLine="false"
-        android:text="@string/no_content_placeholder"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/clickableColor"
-        android:textSize="18dp" />
+        android:hapticFeedbackEnabled="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/docentMailLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/layout_docentdetail_mailcaption"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/docentMailContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/no_content_placeholder"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickableColor"
+            android:textSize="18dp" />
+    </LinearLayout>
     <TextView
         android:id="@+id/docentPlaceLabel"
         android:layout_width="100dp"
@@ -137,30 +146,35 @@
         android:text="@string/no_content_placeholder"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="18dp" />
-
-    <TextView
-        android:id="@+id/docentWelearnLabel"
-        android:layout_width="100dp"
+    <LinearLayout
+        android:id="@+id/docentWelearnLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="@string/layout_docentdetail_welearncaption"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/docentWelearnContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:background="@drawable/txtselector"
+        android:background="@drawable/rippleeffect"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="false"
-        android:singleLine="false"
-        android:text="@string/layout_docentdetail_welearnlinkcaption"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/clickableColor"
-        android:textSize="18dp" />
+        android:hapticFeedbackEnabled="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/docentWelearnLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/layout_docentdetail_welearncaption"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/docentWelearnContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/layout_docentdetail_welearnlinkcaption"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/clickableColor"
+            android:textSize="18dp" />
+        </LinearLayout>
 </LinearLayout>
