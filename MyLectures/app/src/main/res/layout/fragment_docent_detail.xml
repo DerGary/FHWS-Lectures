@@ -15,18 +15,7 @@
 
         <TextView
             android:id="@+id/docentNameContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/docentNameLabel"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:text="@string/no_content_placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="22dp"
-            android:textStyle="bold" />
+            style="@style/HeaderTextView" />
     </LinearLayout>
 
     <ImageView
@@ -51,27 +40,12 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/docentTelLabel"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="5dp"
             android:text="@string/layout_docentdetail_telcaption"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            style="@style/LabelTextView" />
 
         <TextView
             android:id="@+id/docentTelContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:text="@string/no_content_placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/clickableColor"
-            android:textSize="18dp" />
+            style="@style/ClickableContentTextView" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/docentMailLayout"
@@ -84,68 +58,30 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/docentMailLabel"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:text="@string/layout_docentdetail_mailcaption"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            style="@style/LabelTextView"/>
 
         <TextView
             android:id="@+id/docentMailContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:text="@string/no_content_placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/clickableColor"
-            android:textSize="18dp" />
+            style="@style/ClickableContentTextView" />
     </LinearLayout>
     <TextView
         android:id="@+id/docentPlaceLabel"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:text="@string/layout_docentdetail_locationcaption"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        style="@style/LabelTextView" />
 
     <TextView
         android:id="@+id/docentPlaceContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="40dp"
-        android:text="@string/no_content_placeholder"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="18dp" />
+        style="@style/ContentTextView" />
 
     <TextView
         android:id="@+id/docentConsultationLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:text="@string/layout_docentdetail_consultationcaption"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        style="@style/LabelTextView" />
 
     <TextView
         android:id="@+id/docentConsultationContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="40dp"
-        android:text="@string/no_content_placeholder"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="18dp" />
+        style="@style/ContentTextView" />
     <LinearLayout
         android:id="@+id/docentWelearnLayout"
         android:layout_width="match_parent"
@@ -157,24 +93,12 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/docentWelearnLabel"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:text="@string/layout_docentdetail_welearncaption"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            style="@style/LabelTextView" />
 
         <TextView
             android:id="@+id/docentWelearnContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
             android:text="@string/layout_docentdetail_welearnlinkcaption"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/clickableColor"
-            android:textSize="18dp" />
+            style="@style/ClickableContentTextView"/>
         </LinearLayout>
 </LinearLayout>

@@ -36,72 +36,34 @@
 
                     <TextView
                         android:id="@+id/lectureNameContent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/no_content_placeholder"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+                        style="@style/HeaderTextView" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/lecturePlaceLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
                     android:text="@string/layout_lecturedetail_placecaption"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    style="@style/LabelTextView" />
 
                 <TextView
                     android:id="@+id/lecturePlaceContent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:text="@string/no_content_placeholder"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="18dp" />
+                    style="@style/ContentTextView" />
 
                 <TextView
                     android:id="@+id/lectureDocentLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
                     android:text="@string/layout_lecturedetail_docentscaption"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    style="@style/LabelTextView" />
 
                 <LinearLayout
                     android:id="@+id/lectureDocentLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
-                    android:orientation="vertical">
-                </LinearLayout>
+                    android:orientation="vertical"/>
 
                 <TextView
                     android:id="@+id/lectureNotesLabel"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
                     android:text="@string/layout_lecturedetail_notescaption"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    style="@style/LabelTextView" />
 
                 <EditText
                     android:id="@+id/lectureNotesTextfield"
@@ -117,15 +79,8 @@
 
                 <TextView
                     android:id="@+id/lectureDescLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
                     android:text="@string/layout_lecturedetail_desccaption"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    style="@style/LabelTextView" />
 
                 <TextView
                     android:id="@+id/lectureDescTextfield"

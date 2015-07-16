@@ -7,7 +7,6 @@ import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -105,7 +104,7 @@ public class AddPageFragment extends Fragment {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDocentTypeClicked();
+                onDocentClicked();
             }
         });
         layout = (LinearLayout) _rootLayout.findViewById(R.id.eventStartLayout);
@@ -168,9 +167,11 @@ public class AddPageFragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                _checkedLecture = _checkedLectureTemp;
-                TextView text = (TextView) _rootLayout.findViewById(R.id.eventLectureText);
-                text.setText(_lectures.get(_checkedLecture));
+                if(_checkedLectureTemp >= 0) {
+                    _checkedLecture = _checkedLectureTemp;
+                    TextView text = (TextView) _rootLayout.findViewById(R.id.eventLectureText);
+                    text.setText(_lectures.get(_checkedLecture));
+                }
             }
         });
         builder.setNegativeButton("Cancel", null);
@@ -189,16 +190,18 @@ public class AddPageFragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                _checkedLectureType = _checkedLectureTypeTemp;
-                TextView text = (TextView) _rootLayout.findViewById(R.id.eventTypeText);
-                text.setText(_lectureTypes.get(_checkedLectureType));
+                if(_checkedLectureTypeTemp >= 0) {
+                    _checkedLectureType = _checkedLectureTypeTemp;
+                    TextView text = (TextView) _rootLayout.findViewById(R.id.eventTypeText);
+                    text.setText(_lectureTypes.get(_checkedLectureType));
+                }
             }
         });
         builder.setNegativeButton("Cancel", null);
         builder.create().show();
     }
 
-    private void onDocentTypeClicked() {
+    private void onDocentClicked() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         _checkedDocentsTemp = _checkedDocents.clone();
         builder.setMultiChoiceItems(_docents.toArray(new String[_docents.size()]), _checkedDocentsTemp, new DialogInterface.OnMultiChoiceClickListener() {
@@ -220,12 +223,9 @@ public class AddPageFragment extends Fragment {
                 }
                 if (s.length() > 3) {
                     s = s.substring(0, s.length() - 2);
+                    TextView text = (TextView) _rootLayout.findViewById(R.id.eventDocentContent);
+                    text.setText(s);
                 }
-                LinearLayout layout = (LinearLayout) _rootLayout.findViewById(R.id.eventDocentLayoutContent);
-                layout.removeAllViews();
-                TextView text = (TextView) getActivity().getLayoutInflater().inflate(R.layout.simple_text_view, null);
-                text.setText(s);
-                layout.addView(text);
             }
         });
         builder.setNegativeButton("Cancel", null);
@@ -297,8 +297,10 @@ public class AddPageFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 _room = _edit.getText().toString();
-                TextView text = (TextView) _rootLayout.findViewById(R.id.eventRoomText);
-                text.setText(_room);
+                if(_room.length() > 0) {
+                    TextView text = (TextView) _rootLayout.findViewById(R.id.eventRoomText);
+                    text.setText(_room);
+                }
             }
         });
         builder.setNegativeButton("Cancel", null);

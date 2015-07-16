@@ -105,12 +105,6 @@ public class EventDetailFragment extends Fragment implements LocationListener, O
             layout.addView(text);
         }
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getActivity(), R.layout.row);
-
-        for (int i = 0; i < _actualEvent.get_docent().size(); i++) {
-            listAdapter.add(DataBaseSingleton.getInstance().getDocentFromID(_actualEvent.get_docent().get(i)).get_name());
-        }
-
         _eventLectureContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
