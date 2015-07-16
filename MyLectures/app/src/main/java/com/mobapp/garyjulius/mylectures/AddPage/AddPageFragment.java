@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.mobapp.garyjulius.mylectures.MainActivity;
 import com.mobapp.garyjulius.mylectures.Model.DataBaseSingleton;
@@ -297,7 +298,7 @@ public class AddPageFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 _room = _edit.getText().toString();
-                if(_room.length() > 0) {
+                if (_room.length() > 0) {
                     TextView text = (TextView) _rootLayout.findViewById(R.id.eventRoomText);
                     text.setText(_room);
                 }
@@ -358,6 +359,7 @@ public class AddPageFragment extends Fragment {
                             DataBaseSingleton.getInstance().saveDataBase(getActivity());
                             _fragment.setData(getActivity().getBaseContext(), DataBaseSingleton.getInstance().get_eventList());
                             getActivity().onBackPressed();
+                            Toast.makeText(getActivity(),getResources().getString(R.string.event_created),Toast.LENGTH_SHORT).show();
                         }
                     }
                 };
